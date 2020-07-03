@@ -4,20 +4,40 @@ import {connect} from 'react-redux'
 import {fetchStickers} from '../store/sticker'
 
 export class StickerBar extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.addToCanvas = this.addToCanvas.bind(this)
+  }
+
   componentDidMount() {
     this.props.fetchStickers()
   }
 
+  addToCanvas(sticker) {
+    console.log('clicked', sticker)
+    const canvas = new fabric.Canvas('my-canvas')
+
+    fabric.Image.fromURL(sticker.imgURL, img => {
+      img.scale(0.2)
+      img.set({left: 100, top: 100})
+      canvas
+        .add(img)
+        .renderAll()
+        .setActiveObject(img)
+    })
+
+    // console.log("image",image)
+  }
+
   render() {
     const stickers = this.props.stickers
-    console.log('sticker', stickers)
     return (
       <div id="sticker">
         <h1> Stickers!!</h1>
         {stickers.map(sticker => {
           return (
-            <div key={sticker.id}>
-              {' '}
+            <div key={sticker.id} onClick={() => this.addToCanvas(sticker)}>
               <img src={sticker.imgURL} />
             </div>
           )
