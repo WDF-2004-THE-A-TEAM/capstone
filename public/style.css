@@ -22,4 +22,15 @@ form div {
 
 #sticker {
   border: 1px solid black;
+  width: 300px;
+}
+
+#canvas {
+  background-color: burlywood;
+  width: 700;
+}
+
+.homeview {
+  display: flex;
+  flex-direction: row;
 }
