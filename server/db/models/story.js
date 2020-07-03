@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-export const Story = db.define('story', {
-  name: {
+const Story = db.define('story', {
+  title: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -15,3 +15,5 @@ export const Story = db.define('story', {
     defaultValue: 'public/LindaEng_Untitled_Artwork 8.png'
   }
 })
+
+module.exports = Story

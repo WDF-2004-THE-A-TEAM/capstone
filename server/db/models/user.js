@@ -35,6 +35,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  isLoggedIn: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
