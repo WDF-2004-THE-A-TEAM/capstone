@@ -1,7 +1,7 @@
 {
   "name": "eureka",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "interactive canvas",
   "engines": {
     "node": "~12.11.1"
   },
@@ -49,6 +49,7 @@
     "express": "^4.16.4",
     "express-session": "^1.17.1",
     "fabric": "^3.6.3",
+    "faker": "^4.1.0",
     "history": "^4.10.1",
     "kind-of": "^6.0.3",
     "morgan": "^1.10.0",
@@ -99,7 +100,7 @@
     "mocha": "^6.2.3",
     "nodemon": "^1.19.4",
     "npm-merge-driver": "^2.3.6",
-    "prettier": "1.11.1",
+    "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.4",
