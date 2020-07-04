@@ -8,6 +8,7 @@ describe('User model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
+  afterEach(() => db.sync({force: true}))
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
@@ -15,13 +16,14 @@ describe('User model', () => {
 
       beforeEach(async () => {
         cody = await User.create({
+          name: 'Cody is wack',
           email: 'cody@puppybook.com',
-          password: 'bones'
+          password: 'bonesarecrunchy'
         })
       })
 
       it('returns true if the password is correct', () => {
-        expect(cody.correctPassword('bones')).to.be.equal(true)
+        expect(cody.correctPassword('bonesarecrunchy')).to.be.equal(true)
       })
 
       it('returns false if the password is incorrect', () => {
