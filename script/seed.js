@@ -14,7 +14,7 @@ const seedUser = [
   {
     name: 'Pizza guy',
     email: 'pizza@gmail.com',
-    password: 'pepperon14lyfe',
+    password: 'pepperoni14lyfe',
     avatar: '',
     salt: '9876',
     googleId: 'gzsee3',
@@ -38,7 +38,7 @@ const seedStory = [
       'https://cdn.shopify.com/s/files/1/0278/9759/products/Three_Litte_Pigs_Box_Product_Front_-_Shopify_CM_2048x.jpg?v=1574272985'
   },
   {
-    title: 'Codouroy',
+    title: 'Corduroy',
     author: 'Linda E',
     coverImage:
       ' https://prodimage.images-bn.com/pimages/9780140501735_p0_v3_s550x406.jpg'
@@ -66,16 +66,19 @@ const seedPage = [
 ]
 const seedSticker = [
   {
-    imgURL:
+    imageURL:
       'https://i.pinimg.com/236x/39/b7/1d/39b71d7e538389db653f0fb24cf4dff8--jeep-stickers-mac-stickers.jpg'
   },
   {
-    imgURL:
+    imageURL:
       'https://dejpknyizje2n.cloudfront.net/marketplace/products/single-small-flame-sticker-1540311449.661467.png'
   },
   {
-    imgURL:
+    imageURL:
       'https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/lightning-bolt-513-14749-550x550.png'
+  },
+  {
+    imageURL: ''
   }
 ]
 
