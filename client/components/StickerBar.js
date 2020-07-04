@@ -4,12 +4,18 @@ import {fetchStickers} from '../store/sticker'
 
 const StickerBar = props => {
   const stickers = props.stickers
+  const addToCanvas = props.addToCanvas
   return (
     <div id="sticker">
       <h1> Stickers!!</h1>
       {stickers.map(sticker => {
         return (
-          <div key={sticker.id}>
+          <div
+            key={sticker.id}
+            onClick={() => {
+              addToCanvas(sticker)
+            }}
+          >
             <img src={sticker.imgURL} />
           </div>
         )

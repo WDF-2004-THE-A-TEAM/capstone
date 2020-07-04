@@ -10,22 +10,7 @@ class Canvas extends Component {
       canvas: []
     }
   }
-  componentDidMount() {
-    let canvas = new fabric.Canvas('my-canvas')
-  }
 
-  addToCanvas(sticker) {
-    console.log('clicked', sticker)
-
-    fabric.Image.fromURL(sticker.imgURL, img => {
-      img.scale(0.2)
-      img.set({left: 100, top: 100})
-      canvas
-        .add(img)
-        .renderAll()
-        .setActiveObject(img)
-    })
-  }
   // componentDidMount(){
   //   const canvas = new fabric.Canvas('my-canvas')
   //   let triangle = new fabric.Rect({
@@ -39,7 +24,6 @@ class Canvas extends Component {
   // }
 
   render() {
-    console.log('canvas props=', this.props.fabricCanvas)
     return (
       <div>
         <h1> My Canvas</h1>
