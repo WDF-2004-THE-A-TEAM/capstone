@@ -6,6 +6,30 @@ import StickerBar from './StickerBar'
 import Canvas from './Canvas'
 import {fabric} from 'fabric'
 
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import {withStyles} from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  },
+  canvas: {
+    width: '100%',
+    height: '600px',
+    backgroundColor: 'blue'
+  }
+})
+
 //This should be the parent component where it manages state
 class HomeView extends React.Component {
   constructor(props) {
@@ -34,14 +58,25 @@ class HomeView extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
-      <div className="homeview">
-        <StickerBar
-          addToCanvas={this.addToCanvas}
-          stickers={this.props.stickers}
-        />
-        <canvas id="my-canvas" width="600" height="600" />
-        {/* <Canvas /> */}
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={3}>
+            <Paper className={classes.paper}>
+              <StickerBar
+                addToCanvas={this.addToCanvas}
+                stickers={this.props.stickers}
+              />
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} sm={9}>
+            <Paper className={classes.paper}>
+              <Canvas />
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
     )
   }
@@ -59,4 +94,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(HomeView)
+export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))

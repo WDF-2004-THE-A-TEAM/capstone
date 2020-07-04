@@ -20,17 +20,11 @@ form div {
   display: inline-block;
 }
 
-#sticker {
-  border: 1px solid black;
-  width: 300px;
-}
-
-#my-canvas {
-  background-color: burlywood;
-  width: 700;
-}
-
 .homeview {
   display: flex;
   flex-direction: row;
+}
+
+img {
+  height: 150px;
 }
