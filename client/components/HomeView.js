@@ -31,7 +31,7 @@ const styles = theme => ({
 })
 
 //This should be the parent component where it manages state
-class HomeView extends React.Component {
+export class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
@@ -61,6 +61,7 @@ class HomeView extends React.Component {
     const {classes} = this.props
     return (
       <div className={classes.root}>
+        <h3>Hello</h3>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <Paper className={classes.paper}>
