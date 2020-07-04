@@ -33,8 +33,7 @@ export const fetchStickers = () => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_STICKERS:
-      console.log('reducer mode', state, action)
-
+      console.log('THIS IS THE ACTION=', action.type)
       return {...state, stickers: action.stickers}
     default:
       return state
