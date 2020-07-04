@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Navbar} from './components'
+import {Navbar, StickerBar} from './components'
 import Routes from './routes'
 
 const App = () => {
@@ -8,6 +8,8 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
+      {/* <StickerBar/> */}
+      {/* // add our canvas + tool bars + stickers bar //  */}
     </div>
   )
 }
