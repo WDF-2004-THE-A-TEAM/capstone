@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Navbar, StickerBar} from './components'
+import {Navbar} from './components'
 import Routes from './routes'
 import theme from './components/UI/theme'
 
@@ -12,8 +12,6 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Navbar />
         <Routes />
-        {/* <StickerBar/> */}
-        {/* // add our canvas + tool bars + stickers bar //  */}
       </ThemeProvider>
     </div>
   )
