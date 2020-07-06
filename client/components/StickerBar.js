@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const StickerBar = props => {
   const stickers = props.stickers
+  console.log('sticker', stickers)
   const addToCanvas = props.addToCanvas
 
   const classes = useStyles()

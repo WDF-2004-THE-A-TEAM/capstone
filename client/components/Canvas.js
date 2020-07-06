@@ -35,24 +35,21 @@ class Canvas extends Component {
     }
   }
 
-  // componentDidMount(){
-  //   const canvas = new fabric.Canvas('my-canvas')
-  //   let triangle = new fabric.Rect({
-  //     fill : 'red' ,
-  //     left : 100 ,
-  //     top : 100,
-  //     width : 20 ,
-  //     height : 20
-  // })
-  // canvas.add(triangle)
-  // }
+  clickToSave() {
+    alert('save this page')
+  }
 
   render() {
     const {classes} = this.props
 
     return (
       <div>
-        <h1> My Canvas</h1>
+        <div>
+          <button id="save-button" onClick={() => this.clickToSave()}>
+            SAVE
+          </button>
+          <h1> My Canvas</h1>
+        </div>
         <canvas id="my-canvas" width="800" height="600" />
       </div>
     )
