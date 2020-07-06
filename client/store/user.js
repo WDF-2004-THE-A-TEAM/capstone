@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const CREATE_USER = 'CREATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,10 +18,22 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const createUser = newUser => ({type: CREATE_USER, newUser})
 
 /**
  * THUNK CREATORS
  */
+
+//Thunks: Create a new user
+export const addNewUser = newUser => async dispatch => {
+  try {
+    const res = await axios.post('/api/users', newUser)
+    dispatch(createUser(res.data))
+  } catch (error) {
+    console.error('Big Sad: Error Making a new user')
+  }
+}
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
@@ -65,6 +78,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case CREATE_USER:
+      return action.newUser
     default:
       return state
   }

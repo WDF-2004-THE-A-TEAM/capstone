@@ -15,3 +15,20 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+//Create a new user
+router.post('/', async (req, res, next) => {
+  try {
+    console.log('SKLDHFKLDJSFJLDS REQ.BODY=====', req.body)
+    const newUser = await User.create(req.body)
+    if (newUser) {
+      res.status(200).json(newUser)
+    } else {
+      const error = new Error('WOOOMP: sorry Failed to POST /api/user')
+      error.status = 500
+      throw error
+    }
+  } catch (error) {
+    next(error)
+  }
+})
