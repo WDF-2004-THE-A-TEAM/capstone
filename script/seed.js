@@ -66,19 +66,16 @@ const seedPage = [
 ]
 const seedSticker = [
   {
-    imageURL:
+    imgURL:
       'https://i.pinimg.com/236x/39/b7/1d/39b71d7e538389db653f0fb24cf4dff8--jeep-stickers-mac-stickers.jpg'
   },
   {
-    imageURL:
+    imgURL:
       'https://dejpknyizje2n.cloudfront.net/marketplace/products/single-small-flame-sticker-1540311449.661467.png'
   },
   {
-    imageURL:
+    imgURL:
       'https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/lightning-bolt-513-14749-550x550.png'
-  },
-  {
-    imageURL: ''
   }
 ]
 
