@@ -5,10 +5,20 @@ class Canvas extends Component {
     super(props)
   }
 
+
+  clickToSave() {
+    alert('save this page')
+  }
+
   render() {
     return (
       <div>
-        <h1> My Canvas</h1>
+        <div>
+          <button id="save-button" onClick={() => this.clickToSave()}>
+            SAVE
+          </button>
+          <h1> My Canvas</h1>
+        </div>
         <canvas id="my-canvas" width="800" height="600" />
       </div>
     )
