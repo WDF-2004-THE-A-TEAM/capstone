@@ -8,6 +8,7 @@ import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   root: {
@@ -30,6 +31,9 @@ class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
+    this.drawOnCanvas = this.drawOnCanvas.bind(this)
+    this.clearEl = this.clearEl.bind(this)
+
     // this.state={
     //   canvas: canvas.object
     // }
@@ -39,6 +43,10 @@ class HomeView extends React.Component {
   componentDidMount() {
     this.props.fetchStickers()
     this.canvas = new fabric.Canvas('my-canvas')
+    this.canvas.isDrawingMode = false
+    this.canvas.freeDrawingBrush.width = 5
+    this.canvas.freeDrawingBrush.color = '#00aeff'
+    // this.drawingModeEl = $('drawing-mode')
   }
 
   addToCanvas(sticker) {
@@ -52,8 +60,25 @@ class HomeView extends React.Component {
     })
   }
 
+  clearEl() {
+    this.canvas.clear()
+  }
+
+  drawOnCanvas() {
+    this.canvas.isDrawingMode = !this.canvas.isDrawingMode
+    if (this.canvas.isDrawingMode) {
+      document.getElementById('draw-button').innerHTML = 'Draw Mode ON'
+      // Button.style.display = ''
+    } else {
+      document.getElementById('draw-button').innerHTML = 'Draw Mode OFF'
+      // Button.style.display = 'none'
+    }
+    // return alert('clicked')
+  }
+
   render() {
     const {classes} = this.props
+
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -64,6 +89,23 @@ class HomeView extends React.Component {
                 stickers={this.props.stickers}
               />
             </Paper>
+
+            <Button
+              id="draw-button"
+              onClick={() => {
+                this.drawOnCanvas()
+              }}
+            >
+              Draw Mode OFF
+            </Button>
+
+            <Button
+              onClick={() => {
+                this.clearEl()
+              }}
+            >
+              clear
+            </Button>
           </Grid>
 
           <Grid item xs={12} sm={9}>
