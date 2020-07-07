@@ -93,21 +93,25 @@ const SignUpForm = props => {
         return null
       }
     }
-    const newUserName = `${event.target.firstName.value} ${event.target.lastName.value}`
-    const newEmail = event.target.email.value
-    const newPassword = event.target.password.value
+    if (state.password !== state.confirmPassword) {
+      return null
+    } else {
+      const newUserName = `${event.target.firstName.value} ${event.target.lastName.value}`
+      const newEmail = event.target.email.value
+      const newPassword = event.target.password.value
 
-    const newUser = {
-      name: newUserName,
-      email: newEmail,
-      password: newPassword,
-      salt: 'salty123',
-      googleId: newUserName,
-      isLoggedIn: true
+      const newUser = {
+        name: newUserName,
+        email: newEmail,
+        password: newPassword,
+        salt: 'salty123',
+        googleId: newUserName,
+        isLoggedIn: true
+      }
+      console.log(newUser)
+      props.signUp(newUser)
+      history.push('/canvas')
     }
-    console.log(newUser)
-    props.signUp(newUser)
-    history.push('/canvas')
   }
 
   const handleChange = event => {
