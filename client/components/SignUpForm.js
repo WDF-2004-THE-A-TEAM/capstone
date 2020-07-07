@@ -47,22 +47,33 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  error: {
+    color: 'red',
+    marginLeft: '1em'
   }
 }))
 
 const SignUpForm = props => {
   const classes = useStyles()
-  const [state, setPassword] = React.useState({
+  const [state, setInfo] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    fieldEmpty: false
   })
 
   const Copyright = () => {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
+        {'Eureka © '}
+        <Link
+          color="inherit"
+          href="https://github.com/WDF-2004-THE-A-TEAM/capstone/"
+        >
+          The A Team
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -72,35 +83,43 @@ const SignUpForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    if (state.password !== state.confirmPassword) {
-      return null
-    } else {
-      const newUserName = `${event.target.firstName.value} ${event.target.lastName.value}`
-      const newEmail = event.target.email.value
-      const newPassword = event.target.password.value
-
-      const newUser = {
-        name: newUserName,
-        email: newEmail,
-        password: newPassword,
-        salt: 'salty123',
-        googleId: newUserName
+    for (let key in state) {
+      if (state[key] === '') {
+        setInfo({
+          ...state,
+          fieldEmpty: true
+        })
+        console.log('You have empty fields')
+        return null
       }
-      console.log(newUser)
-      props.signUp(newUser)
-      history.push('/canvas')
     }
+    const newUserName = `${event.target.firstName.value} ${event.target.lastName.value}`
+    const newEmail = event.target.email.value
+    const newPassword = event.target.password.value
+
+    const newUser = {
+      name: newUserName,
+      email: newEmail,
+      password: newPassword,
+      salt: 'salty123',
+      googleId: newUserName,
+      isLoggedIn: true
+    }
+    console.log(newUser)
+    props.signUp(newUser)
+    history.push('/canvas')
   }
 
   const handleChange = event => {
     event.preventDefault()
-    const passwordType = event.target.id
-    const password = event.target.value
-    console.log('password=', passwordType, password)
+    const infoType = event.target.id
+    const info = event.target.value
+    console.log('info=', infoType, info)
 
-    setPassword({
+    setInfo({
       ...state,
-      [passwordType]: password
+      [infoType]: info,
+      fieldEmpty: false
     })
     console.log('THIS IS STATE===', state)
   }
@@ -126,6 +145,7 @@ const SignUpForm = props => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={state.fieldEmpty === true && !state.firstName}
                   autoComplete="fname"
                   variant="outlined"
                   required
@@ -133,22 +153,38 @@ const SignUpForm = props => {
                   id="firstName"
                   label="First Name"
                   name="firstName"
+                  value={state.firstName}
+                  onChange={handleChange}
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={state.fieldEmpty === true && !state.lastName}
                   variant="outlined"
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  value={state.lastName}
+                  onChange={handleChange}
                   autoComplete="lname"
                 />
               </Grid>
             </Grid>
+            {state.fieldEmpty ? (
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Typography className={classes.error}>** Required</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography className={classes.error}>** Required</Typography>
+                </Grid>
+              </Grid>
+            ) : null}
             <TextField
+              error={state.fieldEmpty === true && !state.email}
               variant="outlined"
               margin="normal"
               required
@@ -156,9 +192,18 @@ const SignUpForm = props => {
               id="email"
               label="Email Address"
               name="email"
+              value={state.email}
+              onChange={handleChange}
               autoComplete="email"
               autoFocus
             />
+            {state.fieldEmpty && !state.email ? (
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Typography className={classes.error}>** Required</Typography>
+                </Grid>
+              </Grid>
+            ) : null}
             <TextField
               error={state.password.length <= 8 && state.password !== ''}
               variant="outlined"
