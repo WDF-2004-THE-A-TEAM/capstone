@@ -5,11 +5,14 @@ import StickerBar from './StickerBar'
 import Canvas from './Canvas'
 import SaveBar from './SaveBar'
 import {fabric} from 'fabric'
-
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+
+import Button from '@material-ui/core/Button'
+import DrawingTool from './DrawingTool'
 import {red} from '@material-ui/core/colors'
+
 
 const styles = theme => ({
   root: {
@@ -32,18 +35,31 @@ class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
-    // this.state={
-    //   canvas: canvas.object
-    // }
-    // this.updateView = this.updateView.bind(this)
+    this.clearEl = this.clearEl.bind(this)
+
+    this.state = {
+      canvas: new fabric.Canvas('my-canvas')
+    }
   }
 
   componentDidMount() {
     this.props.fetchStickers()
-    this.canvas = new fabric.Canvas('my-canvas')
+
+    this.setState({
+      canvas: new fabric.Canvas('my-canvas')
+    })
   }
 
   addToCanvas(sticker) {
+
+    fabric.Image.fromURL(sticker.imgURL, img => {
+      img.scale(0.2)
+      img.set({left: 100, top: 100})
+      this.state.canvas
+        .add(img)
+        .renderAll()
+        .setActiveObject(img)
+
     fabric.Image.fromURL(
       sticker.imgURL,
       img => {
@@ -62,11 +78,17 @@ class HomeView extends React.Component {
     const exportCanvas = document.getElementById('my-canvas')
     exportCanvas.toBlob(function(blob) {
       saveAs(blob, 'eureka_img.jpeg')
+
     })
+  }
+
+  clearEl() {
+    this.state.canvas.clear()
   }
 
   render() {
     const {classes} = this.props
+
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -77,6 +99,16 @@ class HomeView extends React.Component {
                 stickers={this.props.stickers}
               />
             </Paper>
+
+            <DrawingTool canvas={this.state.canvas} />
+
+            <Button
+              onClick={() => {
+                this.clearEl()
+              }}
+            >
+              clear
+            </Button>
           </Grid>
 
           <Grid item xs={12} sm={9}>
