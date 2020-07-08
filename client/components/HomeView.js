@@ -4,7 +4,6 @@ import {fetchStickers} from '../store/sticker'
 import StickerBar from './StickerBar'
 import Canvas from './Canvas'
 import {fabric} from 'fabric'
-
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -64,7 +63,7 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('canvas=>', this.state.canvas)
+
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
