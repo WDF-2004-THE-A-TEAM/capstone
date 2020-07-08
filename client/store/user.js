@@ -79,12 +79,12 @@ export const logout = () => async dispatch => {
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
+    case CREATE_USER:
+      return action.newUser
     case GET_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
-    case CREATE_USER:
-      return action.newUser
     default:
       return state
   }

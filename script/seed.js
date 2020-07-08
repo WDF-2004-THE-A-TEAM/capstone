@@ -52,33 +52,39 @@ const seedStory = [
 ]
 const seedPage = [
   {
-    imageURL:
+    imgURL:
       'https://lh3.googleusercontent.com/proxy/_t50bNKNBV12lPLGS43V_CQSIgmWYLKBpKuBOhYMcduULqkPtuVkRlcnLwHUgF_t1lGDDalrRj1Lk0uXUaxD7YA-bPiOAilYjjpmDaZegKmVZl48XbEKjz5KUrXmNo07N5jTaWDaQ8YOjMj6xHFf'
   },
   {
-    imageURL:
+    imgURL:
       'https://www.south-african-homeschool-curriculum.com/wp-content/uploads/2013/06/The-Herd-Boy.jpg'
   },
   {
-    imageURL:
+    imgURL:
       'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4f5b0b64115393.5ac74bf1aad22.jpg'
   }
 ]
 const seedSticker = [
   {
-    imageURL:
+    imgURL:
       'https://i.pinimg.com/236x/39/b7/1d/39b71d7e538389db653f0fb24cf4dff8--jeep-stickers-mac-stickers.jpg'
   },
   {
-    imageURL:
+    imgURL:
       'https://dejpknyizje2n.cloudfront.net/marketplace/products/single-small-flame-sticker-1540311449.661467.png'
   },
   {
-    imageURL:
+    imgURL:
       'https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/lightning-bolt-513-14749-550x550.png'
   },
   {
-    imageURL: ''
+    imgURL: 'https://i.imgur.com/lXZQgiL.png'
+  },
+  {
+    imgURL: 'https://i.imgur.com/xhmnxed.png'
+  },
+  {
+    imgURL: 'https://i.imgur.com/A8WJWOw.png'
   }
 ]
 
