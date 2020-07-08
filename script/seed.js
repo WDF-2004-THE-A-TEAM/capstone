@@ -76,6 +76,15 @@ const seedSticker = [
   {
     imgURL:
       'https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/lightning-bolt-513-14749-550x550.png'
+  },
+  {
+    imgURL: 'https://i.imgur.com/lXZQgiL.png'
+  },
+  {
+    imgURL: 'https://i.imgur.com/xhmnxed.png'
+  },
+  {
+    imgURL: 'https://i.imgur.com/A8WJWOw.png'
   }
 ]
 
