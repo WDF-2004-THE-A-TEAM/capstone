@@ -80,6 +80,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case CREATE_USER:
+      return action.newUser
     default:
       return state
   }
