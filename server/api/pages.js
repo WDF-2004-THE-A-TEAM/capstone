@@ -36,13 +36,15 @@ router.delete('/:pageID', async (req, res, next) => {
   try {
     const pageId = req.params.pageID
     const pageToDelete = await Page.findByPk(pageId)
-    const deletedPage = awaitpageToDelete.destroy()
-    if (deleted) {
+    const deletedPage = await pageToDelete.destroy()
+    if (deletedPage) {
       res.sendStatus(204)
     } else {
       const error = new Error(
         'Failed to delete keyboard to DELETE /api/pages/:pageID'
       )
+      error.status = 500
+      throw error
     }
   } catch (error) {
     next(error)
