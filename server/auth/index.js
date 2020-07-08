@@ -1,10 +1,17 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
-
+//auth route
 router.post('/login', async (req, res, next) => {
+  //method equals api/auth/login on the SignIn Form
+
   try {
-    const user = await User.findOne({where: {email: req.body.email}})
+    const user = await User.findOne({
+      where:
+        // this request.body is the user object {email, password} that I passed from the auth thunk in the SignIn Form.
+        {email: req.body.email}
+    })
+    //looking for the user by it's email
     if (!user) {
       console.log('No such user found:', req.body.email)
       res.status(401).send('Wrong username and/or password')
