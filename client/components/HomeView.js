@@ -59,7 +59,7 @@ class HomeView extends React.Component {
   }
 
   clearEl() {
-    this.canvas.clear()
+    this.state.canvas.clear()
   }
 
   render() {
