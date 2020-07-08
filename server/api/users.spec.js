@@ -30,4 +30,16 @@ describe('User routes', () => {
       expect(res.body[0].email).to.be.equal(codysEmail)
     })
   }) // end describe('/api/users')
+
+  describe('/api/users', () => {
+    it('responds with created user', async () => {
+      const response = request(app)
+        .post('/api/users')
+        .send({
+          name: 'New CODY!',
+          email: 'newUser@gmail.com'
+        })
+        .expect(201)
+    })
+  })
 }) // end describe('User routes')

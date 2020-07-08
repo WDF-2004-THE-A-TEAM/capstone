@@ -1,18 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {fetchStickers} from '../store/sticker'
 import StickerBar from './StickerBar'
 import Canvas from './Canvas'
+import SaveBar from './SaveBar'
 import {fabric} from 'fabric'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import {red} from '@material-ui/core/colors'
 
 const styles = theme => ({
   root: {
@@ -47,13 +44,24 @@ class HomeView extends React.Component {
   }
 
   addToCanvas(sticker) {
-    fabric.Image.fromURL(sticker.imgURL, img => {
-      img.scale(0.2)
-      img.set({left: 100, top: 100})
-      this.canvas
-        .add(img)
-        .renderAll()
-        .setActiveObject(img)
+    fabric.Image.fromURL(
+      sticker.imgURL,
+      img => {
+        img.scale(0.2)
+        img.set({left: 100, top: 100})
+        this.canvas
+          .add(img)
+          .renderAll()
+          .setActiveObject(img)
+      },
+      {crossOrigin: 'Anonymous'}
+    )
+  }
+
+  saveFile() {
+    const exportCanvas = document.getElementById('my-canvas')
+    exportCanvas.toBlob(function(blob) {
+      saveAs(blob, 'eureka_img.jpeg')
     })
   }
 
@@ -73,6 +81,12 @@ class HomeView extends React.Component {
 
           <Grid item xs={12} sm={9}>
             <Paper className={classes.paper}>
+              <SaveBar
+                canvas={this.canvas}
+                storage={this.storage}
+                canvasDom={this.canvasDom}
+                saveFile={this.saveFile}
+              />
               <Canvas />
             </Paper>
           </Grid>
