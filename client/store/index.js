@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import sticker from './sticker'
+import stories from './stories'
 
 const reducer = combineReducers({
   user,
-  sticker
+  sticker,
+  stories
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
