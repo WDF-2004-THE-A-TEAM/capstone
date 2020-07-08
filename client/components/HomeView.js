@@ -13,7 +13,6 @@ import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import {red} from '@material-ui/core/colors'
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -51,21 +50,12 @@ class HomeView extends React.Component {
   }
 
   addToCanvas(sticker) {
-
-    fabric.Image.fromURL(sticker.imgURL, img => {
-      img.scale(0.2)
-      img.set({left: 100, top: 100})
-      this.state.canvas
-        .add(img)
-        .renderAll()
-        .setActiveObject(img)
-
     fabric.Image.fromURL(
       sticker.imgURL,
       img => {
         img.scale(0.2)
         img.set({left: 100, top: 100})
-        this.canvas
+        this.state.canvas
           .add(img)
           .renderAll()
           .setActiveObject(img)
@@ -78,7 +68,6 @@ class HomeView extends React.Component {
     const exportCanvas = document.getElementById('my-canvas')
     exportCanvas.toBlob(function(blob) {
       saveAs(blob, 'eureka_img.jpeg')
-
     })
   }
 
