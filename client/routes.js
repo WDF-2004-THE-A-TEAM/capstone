@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, StickerBar} from './components'
 import Homeview from './components/HomeView'
 import SignUpForm from './components/SignUpForm'
+import SignInForm from './components/SignInForm'
+
 import {me} from './store'
 
 /**
@@ -25,6 +27,7 @@ class Routes extends Component {
         {/* <Route path="/signup" component={Signup} /> */}
         <Route path="/canvas" component={Homeview} />
         <Route path="/signup" component={SignUpForm} />
+        <Route path="/signin" component={SignInForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
