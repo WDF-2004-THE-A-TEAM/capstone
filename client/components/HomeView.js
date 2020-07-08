@@ -9,6 +9,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import DrawingTool from './DrawingTool'
 
 const styles = theme => ({
   root: {
@@ -31,29 +32,26 @@ class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
-    this.drawOnCanvas = this.drawOnCanvas.bind(this)
     this.clearEl = this.clearEl.bind(this)
 
-    // this.state={
-    //   canvas: canvas.object
-    // }
-    // this.updateView = this.updateView.bind(this)
+    this.state = {
+      canvas: new fabric.Canvas('my-canvas')
+    }
   }
 
   componentDidMount() {
     this.props.fetchStickers()
-    this.canvas = new fabric.Canvas('my-canvas')
-    this.canvas.isDrawingMode = false
-    this.canvas.freeDrawingBrush.width = 5
-    this.canvas.freeDrawingBrush.color = '#00aeff'
-    // this.drawingModeEl = $('drawing-mode')
+
+    this.setState({
+      canvas: new fabric.Canvas('my-canvas')
+    })
   }
 
   addToCanvas(sticker) {
     fabric.Image.fromURL(sticker.imgURL, img => {
       img.scale(0.2)
       img.set({left: 100, top: 100})
-      this.canvas
+      this.state.canvas
         .add(img)
         .renderAll()
         .setActiveObject(img)
@@ -64,21 +62,9 @@ class HomeView extends React.Component {
     this.canvas.clear()
   }
 
-  drawOnCanvas() {
-    this.canvas.isDrawingMode = !this.canvas.isDrawingMode
-    if (this.canvas.isDrawingMode) {
-      document.getElementById('draw-button').innerHTML = 'Draw Mode ON'
-      // Button.style.display = ''
-    } else {
-      document.getElementById('draw-button').innerHTML = 'Draw Mode OFF'
-      // Button.style.display = 'none'
-    }
-    // return alert('clicked')
-  }
-
   render() {
     const {classes} = this.props
-
+    console.log('canvas=>', this.state.canvas)
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -90,14 +76,7 @@ class HomeView extends React.Component {
               />
             </Paper>
 
-            <Button
-              id="draw-button"
-              onClick={() => {
-                this.drawOnCanvas()
-              }}
-            >
-              Draw Mode OFF
-            </Button>
+            <DrawingTool canvas={this.state.canvas} />
 
             <Button
               onClick={() => {
