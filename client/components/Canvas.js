@@ -9,9 +9,9 @@ class Canvas extends Component {
     return (
       <div>
         <div>
-          <h1> My Canvas</h1>
+          <h1>CANVAS</h1>
         </div>
-        <canvas id="my-canvas" width="800" height="600" />
+        <canvas id="my-canvas" width="1000" height="1000" />
       </div>
     )
   }

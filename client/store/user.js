@@ -68,7 +68,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
-    history.push('/login')
+    history.push('/canvas')
   } catch (err) {
     console.error(err)
   }

@@ -12,15 +12,19 @@ import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
     textAlign: 'center',
     color: theme.palette.text.secondary
+  },
+  stickerBar: {
+    padding: theme.spacing(4),
+    textAlign: 'center',
+    height: '800px'
   },
   canvas: {
     width: '100%',
@@ -57,7 +61,6 @@ class HomeView extends React.Component {
     )
   }
 
-
   clearEl() {
     this.canvas.clear()
   }
@@ -70,7 +73,7 @@ class HomeView extends React.Component {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.stickerBar}>
               <StickerBar
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
