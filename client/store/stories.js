@@ -37,8 +37,11 @@ export const fetchAllStories = () => async dispatch => {
 
 //add Story to User Thunk Creator
 export const addStoryToUser = newStory => {
+  console.log('story', newStory)
   return async dispatch => {
+    console.log('thunk dispatch', dispatch)
     const response = await axios.post('/api/stories/', newStory)
+    console.log('response', response)
     dispatch(addNewStory(response.data))
   }
 }

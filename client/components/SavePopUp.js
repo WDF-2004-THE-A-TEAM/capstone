@@ -5,6 +5,10 @@ export default class PopUp extends Component {
     this.props.toggle()
   }
 
+  saveAsNewStory() {
+    console.log('saving new story')
+  }
+
   render() {
     return (
       <div className="modal">
@@ -20,7 +24,7 @@ export default class PopUp extends Component {
             </label>
             <br />
             <button> Save as new story </button>
-            <button> add to exiting story </button>
+            <button> add to existing story </button>
             <button> SAVE/TEST</button>
           </form>
         </div>
