@@ -5,7 +5,6 @@ import {fetchStickers} from '../store/sticker'
 import {makeStyles} from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
-import testImg from '../../public/images/stickers/banana.png'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,7 +32,6 @@ const StickerBar = props => {
     <div id="sticker" className={classes.root}>
       <GridList className={classes.gridList} cellHeight={160} col={3}>
         <h1> Stickers!!</h1>
-        <img src={testImg} />
         {stickers.map(sticker => {
           return (
             <GridListTile

@@ -58,7 +58,10 @@ const Navbar = ({handleClick, isLoggedIn}) => {
   return (
     <div className={classes.root}>
       <ElevationScroll>
-        <AppBar position="fixed" color="secondary">
+        <AppBar
+          position="fixed"
+          style={{background: 'transparent', boxShadow: 'none'}}
+        >
           <Toolbar className={classes.headerContainer} disableGutters>
             <Link to="/canvas">
               <img className={classes.title} src={logo} alt="logo" />

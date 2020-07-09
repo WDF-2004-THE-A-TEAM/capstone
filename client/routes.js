@@ -6,7 +6,7 @@ import {Login, Signup, UserHome, StickerBar} from './components'
 import Homeview from './components/HomeView'
 import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
-
+import SplashPage from './components/SplashPage'
 import Gallery from './components/Gallery'
 import Page from './components/Page'
 import {me} from './store'
@@ -38,7 +38,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={SignInForm} />
+        <Route component={SplashPage} />
       </Switch>
     )
   }
