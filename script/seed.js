@@ -1,5 +1,28 @@
 const db = require('../server/db')
 const {User, Story, Page, Sticker} = require('../server/db/models')
+const fs = require('fs') //The fs module provides a lot of very useful functionality to access and interact with the file system.
+
+/*
+    Get all image paths in our sticker folder
+*/
+//created another variable to feed it the file path it wanted then on the next line is where we are construction what is going in the db what it was fed was the file path that relates to the sticker bar component now the string is constructed correctly we don't need to change file because the function cycles through that colder
+
+//path.join('..', '..', 'images', 'stickers')
+
+const getAllImagePaths = function(
+  dir = '../../images/stickers',
+  dirTwo = 'public/images/stickers',
+  stickers = []
+) {
+  fs.readdirSync(dirTwo).forEach(file => {
+    const path = `${dir}/${file}`
+    if (path.endsWith('.jpg') || path.endsWith('.png')) {
+      stickers.push({imgURL: `${path}`})
+    }
+  })
+
+  return stickers
+}
 
 const seedUser = [
   {
@@ -64,29 +87,7 @@ const seedPage = [
       'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4f5b0b64115393.5ac74bf1aad22.jpg'
   }
 ]
-const seedSticker = [
-  {
-    imgURL:
-      'https://i.pinimg.com/236x/39/b7/1d/39b71d7e538389db653f0fb24cf4dff8--jeep-stickers-mac-stickers.jpg'
-  },
-  {
-    imgURL:
-      'https://dejpknyizje2n.cloudfront.net/marketplace/products/single-small-flame-sticker-1540311449.661467.png'
-  },
-  {
-    imgURL:
-      'https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/lightning-bolt-513-14749-550x550.png'
-  },
-  {
-    imgURL: 'https://i.imgur.com/lXZQgiL.png'
-  },
-  {
-    imgURL: 'https://i.imgur.com/xhmnxed.png'
-  },
-  {
-    imgURL: 'https://i.imgur.com/A8WJWOw.png'
-  }
-]
+const seedSticker = getAllImagePaths()
 
 const seed = async () => {
   try {
