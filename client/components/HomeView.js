@@ -78,7 +78,7 @@ class HomeView extends React.Component {
 
             <DrawingTool canvas={this.canvas} />
 
-            <TextTool canvas={this.state.canvas} />
+            <TextTool canvas={this.canvas} />
 
             <Button
               onClick={() => {
