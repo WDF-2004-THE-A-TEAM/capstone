@@ -6,14 +6,14 @@ import user from './user'
 import sticker from './sticker'
 import stories from './stories'
 import allPages from './pages'
-import singlePage from './singlePage'
+import singlePageReducer from './singlePage'
 
 const reducer = combineReducers({
   user,
   sticker,
   stories,
   allPages,
-  singlePage
+  singlePageReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
