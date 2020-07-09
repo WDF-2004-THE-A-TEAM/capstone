@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {auth, me} from '../store/user'
+import history from '../history'
 
 import CoverImage from '../../public/LindaEng_Untitled_Artwork_7.png'
 
@@ -67,8 +68,75 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SignIn = () => {
+const SignIn = props => {
   const classes = useStyles()
+
+  //HOOKS
+  const [state, setInfo] = React.useState({
+    email: '',
+    password: '',
+    userNameAndPassword: null,
+    fieldEmpty: false
+  })
+
+  const handleSubmit = event => {
+    // the flow of the logic is when we submit the signIn form.
+    //we are going to pass in the user input to the dispatch method, then we make a call to the database using the auth thunk
+    // auth makes a call to the db to authenticate whether or not this email and this password exist together
+    //if this person exists the api route will return the user when the db returns the user obj then the obj will get processed in the store.
+    event.preventDefault()
+    // using this because when we click submit we don't want the page to refresh
+    const email = event.target.email.value
+    const password = event.target.password.value
+
+    const method = 'login' // Q: why am I doing this?
+    //A: we need a method for the thunk
+    props.login(email, password, method) //login is aka auth
+
+    if (state.user) {
+      setInfo({
+        ...state,
+        userNameAndPassword: true
+      })
+      if (state.userNameAndPassword) {
+        history.push('/account')
+      } else {
+        return null
+      }
+    } else {
+      for (let key in state) {
+        if (state[key] === '') {
+          setInfo({
+            ...state,
+            fieldEmpty: true
+          })
+          console.log('You have empty fields')
+          return null
+        } else {
+          setInfo({
+            ...state,
+            userNameAndPassword: false
+          })
+        }
+      }
+    }
+  }
+  //onchange in text field When you're typing in the text field it will fire this function the event=typing
+  const handleChange = event => {
+    event.preventDefault()
+    const infoType = event.target.id
+    const info = event.target.value
+    console.log('info=', infoType, info)
+
+    setInfo({
+      ...state,
+      [infoType]: info, //set the state to whatever the id is to whatever the person wrote
+      fieldEmpty: false,
+      userNameAndPassword: null
+    })
+    console.log('THIS IS STATE===', state)
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -81,8 +149,13 @@ const SignIn = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
+              error={
+                state.fieldEmpty === true || state.userNameAndPassword === false
+              }
+              value={state.email}
+              onChange={handleChange}
               variant="outlined"
               margin="normal"
               required
@@ -94,6 +167,11 @@ const SignIn = () => {
               autoFocus
             />
             <TextField
+              error={
+                state.fieldEmpty === true || state.userNameAndPassword === false
+              }
+              value={state.password}
+              onChange={handleChange}
               variant="outlined"
               margin="normal"
               required
@@ -138,9 +216,10 @@ const SignIn = () => {
     </Grid>
   )
 }
-// need mapstate to be able to use what ever the state is for the user we can't get that data yet until we do the dispatch
+// need mapState to be able to use what ever the state is for the user we can't get that data yet until we do the dispatch
 
 const mapState = state => {
+  //before we login our user is an empty object
   return {
     user: state.user.defaultUser
   }
@@ -148,21 +227,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(event) {
-      // the flow of the logic is when we submit the signIn form.
-      //we are going to pass in the user input to the dispatch method, then we make a call to the database using the auth thunk
-      // auth makes a call to the db to authenticate whether or not this email and this password exist together
-      //if this person exists the api route will return the user when the db returns the user obj then the obj will get processed in the store.
-      event.preventDefault()
-      // using this because when we click submit we don't want the page to refresh
-      const email = event.target.email.value
-      const password = event.target.password.value
+    //what is this doing?
 
-      const method = 'login' // Q: why am I doing this?
-      //A: we need a method for the thunk
-      dispatch(auth(email, password, method))
-      dispatch(me())
-    }
+    // the purpose of a mapDispatch its a way for us to access the methods that are inside of our store.
+    login: (email, password, method) => dispatch(auth(email, password, method)),
+    authenticateMe: () => dispatch(me())
   }
 }
 
