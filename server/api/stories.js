@@ -49,9 +49,17 @@ router.get('/:storyID/pages', async (req, res, next) => {
 
 //create story
 router.post('/', async (req, res, next) => {
+  console.log('json req.body ===', req.body)
+  let newStory = {
+    title: 'New Story',
+    author: 'Nan',
+    coverImage: 'public/LindaEng_Untitled_Artwork 8.png',
+    canvasJson: req.body
+  }
   try {
-    const newStory = await Story.create(req.body)
-    if (newStory) {
+    const updatedStory = await Story.create(newStory)
+    if (updatedStory) {
+      console.log('succesfully added new story to database')
       res.sendStatus(200)
     } else {
       res.sendStatus(500)
