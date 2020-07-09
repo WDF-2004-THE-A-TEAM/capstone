@@ -21,11 +21,30 @@ class SaveBar extends Component {
     console.log('cafter', this.state)
   }
 
+  saveFile() {
+    // 1) grab the canvas and convert to JSON
+    // 2) make an axios request to add this JSON to DB
+    console.log('saving file to DB')
+    let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
+    console.log('JSON', canvasJSON)
+    // console.log('toObject', this.canvas.toObject());//logs canvas as an object
+    // console.log('toSVG', this.canvas.toSVG());//logs the SVG representation of canvas
+  }
+
+  exportFile() {
+    // 1) grab canvas 'DOM' element
+    // 2) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
+    const exportCanvas = document.getElementById('my-canvas')
+    exportCanvas.toBlob(function(blob) {
+      saveAs(blob, 'eureka_img.jpeg')
+    })
+  }
+
   render() {
     return (
       <div>
-        <button onClick={() => this.props.exportFile()}> EXPORT </button>
-        <button onClick={() => this.props.saveFile()}> SAVE </button>
+        <button onClick={() => this.exportFile()}> EXPORT </button>
+        <button onClick={() => this.saveFile()}> SAVE </button>
         {/* <div className="btn" onClick={this.togglePop}>
             <button>SAVE CANVAS</button>
           </div>
