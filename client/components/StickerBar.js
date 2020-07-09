@@ -15,8 +15,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
+    paddingTop: '60px',
     width: 500,
-    height: 450
+    height: 700
   }
 }))
 
@@ -31,7 +32,7 @@ const StickerBar = props => {
   return (
     <div id="sticker" className={classes.root}>
       <GridList className={classes.gridList} cellHeight={160} col={3}>
-        <h1> Stickers!!</h1>
+        <h1>STICKERS:</h1>
         {stickers.map(sticker => {
           return (
             <GridListTile

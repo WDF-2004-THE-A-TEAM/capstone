@@ -6,6 +6,8 @@ import {saveAs} from 'file-saver'
 import {addStoryToUser} from '../store/stories'
 import {connect} from 'react-redux'
 
+import Button from '@material-ui/core/Button'
+
 class SaveBar extends Component {
   constructor(props) {
     super(props)
@@ -55,9 +57,9 @@ class SaveBar extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.exportFile()}> EXPORT </button>
-        <button onClick={() => this.saveAsNewStory()}>Save As New Story</button>
-        <button>Add To Existing Story</button>
+        <Button onClick={() => this.exportFile()}> EXPORT </Button>
+        <Button onClick={() => this.saveAsNewStory()}>SAVE AS NEW STORY</Button>
+        <Button>ADD TO EXISTING STORY</Button>
 
         {/* <button onClick={() => this.saveFile()}> SAVE </button> */}
         {/* <div className="btn" onClick={this.togglePop}>
