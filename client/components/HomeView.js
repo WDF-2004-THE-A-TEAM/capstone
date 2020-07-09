@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
+import TextTool from './TextTool'
 
 const styles = theme => ({
   root: {
@@ -76,6 +77,8 @@ class HomeView extends React.Component {
             </Paper>
 
             <DrawingTool canvas={this.canvas} />
+
+            <TextTool canvas={this.state.canvas} />
 
             <Button
               onClick={() => {
