@@ -35,18 +35,23 @@ class HomeView extends React.Component {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
     this.clearEl = this.clearEl.bind(this)
-
-    this.state = {
-      canvas: new fabric.Canvas('my-canvas')
-    }
+    // this.state = {
+    //   canvas: new fabric.Canvas(document.getElementById('my-canvas'))
+    // }
+    // this.state = {
+    //   canvas: null
+    // }
   }
 
   componentDidMount() {
     this.props.fetchStickers()
-
-    this.setState({
-      canvas: new fabric.Canvas('my-canvas')
-    })
+    // this.setState({
+    //   canvas: new fabric.Canvas('my-canvas')
+    // })
+    this.canvas = new fabric.Canvas('my-canvas')
+    // this.JSON = JSON.stringify(this.canvas)
+    // console.log('my canvas', this.state.canvas)
+    // this.JSON = JSON.stringify(this.canvas)
   }
 
   addToCanvas(sticker) {
@@ -55,7 +60,7 @@ class HomeView extends React.Component {
       img => {
         img.scale(0.2)
         img.set({left: 100, top: 100})
-        this.state.canvas
+        this.canvas
           .add(img)
           .renderAll()
           .setActiveObject(img)
@@ -64,18 +69,41 @@ class HomeView extends React.Component {
     )
   }
 
-  saveFile() {
+  exportFile() {
+    // 1) grab canvas 'DOM' element
+    // 2) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
     const exportCanvas = document.getElementById('my-canvas')
     exportCanvas.toBlob(function(blob) {
       saveAs(blob, 'eureka_img.jpeg')
     })
   }
 
+  saveFile() {
+    // 1) grab the canvas and convert to JSON
+    // 2) make an axios request to add this JSON to DB
+    console.log('saving file to DB')
+    let canvasJSON = JSON.stringify(this.canvas.toDatalessJSON())
+    console.log('JSON', canvasJSON)
+    // console.log('toObject', this.canvas.toObject());//logs canvas as an object
+    // console.log('toSVG', this.canvas.toSVG());//logs the SVG representation of canvas
+  }
+
+  drawOnCanvas() {
+    console.log('drawing....')
+    this.canvas.isDrawingMode = !this.canvas.isDrawingMode
+    if (this.canvas.isDrawingMode) {
+      document.getElementById('draw-button').innerHTML = 'Draw Mode : ON'
+    } else {
+      document.getElementById('draw-button').innerHTML = 'Draw Mode : OFF'
+    }
+  }
+
   clearEl() {
-    this.state.canvas.clear()
+    this.canvas.clear()
   }
 
   render() {
+    console.log('canvasss', this.canvas)
     const {classes} = this.props
 
     return (
@@ -89,7 +117,10 @@ class HomeView extends React.Component {
               />
             </Paper>
 
-            <DrawingTool canvas={this.state.canvas} />
+            <DrawingTool
+              canvas={this.canvas}
+              drawOnCanvas={this.drawOnCanvas}
+            />
 
             <Button
               onClick={() => {
@@ -104,9 +135,8 @@ class HomeView extends React.Component {
             <Paper className={classes.paper}>
               <SaveBar
                 canvas={this.canvas}
-                storage={this.storage}
-                canvasDom={this.canvasDom}
                 saveFile={this.saveFile}
+                exportFile={this.exportFile}
               />
               <Canvas />
             </Paper>
@@ -130,3 +160,9 @@ const mapDispatch = dispatch => {
 }
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
+
+// 1 ) this.canvas = new fabric.Canvas('my-canvas')  :: change our canvas from this.state to this.canvas
+// 2 ) move drawOnCanvas from drawingTool component to HomeView component
+// 3) be sure to change onClick to this.props.drawOnCanvas since the function is now pass from the Homeview component as a props
+// 4) On Homeview component,  make sure to pass props on Drawing Tool compoennt (line 120)
+//    - you need to pass 1) this.canvas (our canvas)   2) drawOnCanvas function

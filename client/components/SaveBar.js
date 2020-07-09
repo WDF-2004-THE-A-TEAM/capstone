@@ -21,14 +21,11 @@ class SaveBar extends Component {
     console.log('cafter', this.state)
   }
 
-  testing() {
-    console.log('clicked', this.props)
-  }
-
   render() {
     return (
       <div>
-        <button onClick={() => this.props.saveFile()}> EXPORT </button>
+        <button onClick={() => this.props.exportFile()}> EXPORT </button>
+        <button onClick={() => this.props.saveFile()}> SAVE </button>
         {/* <div className="btn" onClick={this.togglePop}>
             <button>SAVE CANVAS</button>
           </div>
