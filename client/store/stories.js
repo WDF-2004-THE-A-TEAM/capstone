@@ -45,7 +45,7 @@ export const addStoryToUser = newStory => {
 
 //reducer
 
-export default function(state = initialState, action) {
+export default function allStories(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_STORIES:
       return {...state, allStories: action.stories}
