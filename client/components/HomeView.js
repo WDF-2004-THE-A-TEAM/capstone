@@ -8,10 +8,10 @@ import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
+
 
 const styles = theme => ({
   root: {
@@ -56,6 +56,7 @@ class HomeView extends React.Component {
       {crossOrigin: 'Anonymous'}
     )
   }
+
 
   clearEl() {
     this.canvas.clear()

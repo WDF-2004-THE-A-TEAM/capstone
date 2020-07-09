@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
 import CoverImage from '../../public/LindaEng_Untitled_Artwork 5.png'
@@ -9,7 +10,6 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Link from '@material-ui/core/Link'
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
@@ -128,11 +128,6 @@ const SignUpForm = props => {
     console.log('THIS IS STATE===', state)
   }
 
-  const passwordToggle = event => {
-    if (event.target.id === 'password' && state.password.length < 8)
-      return state.password.length
-  }
-
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -233,7 +228,7 @@ const SignUpForm = props => {
               margin="normal"
               required
               fullWidth
-              name="confrimPassword"
+              name="confirmPassword"
               label="confirmPassword"
               type="password"
               id="confirmPassword"
