@@ -5,11 +5,15 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import sticker from './sticker'
 import stories from './stories'
+import allPages from './pages'
+import singlePage from './singlePage'
 
 const reducer = combineReducers({
   user,
   sticker,
-  stories
+  stories,
+  allPages,
+  singlePage
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
