@@ -31,6 +31,22 @@ router.get('/:storyID', async (req, res, next) => {
   }
 })
 
+//*****UPDATE THIS ROUTE */
+//get story with pages
+router.get('/:storyID/pages', async (req, res, next) => {
+  try {
+    const storyId = req.params.storyID
+    const story = await Story.findByPk(storyId)
+    if (story) {
+      res.status(200).json(story)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 //create story
 router.post('/', async (req, res, next) => {
   try {

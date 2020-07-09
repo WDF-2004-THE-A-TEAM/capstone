@@ -9,6 +9,22 @@ const Sticker = require('./sticker.js')
  *    BlogPost.belongsTo(User)
  */
 
+User.hasMany(Story)
+Story.belongsTo(User)
+Story.hasMany(Page)
+Page.belongsTo(Story)
+
+//Helper Methods
+Story.findStoryAndItsPages = function(storyId) {
+  return Story.findByPk(storyId, {
+    include: [
+      {
+        model: Page
+      }
+    ]
+  })
+}
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
