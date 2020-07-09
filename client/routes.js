@@ -25,7 +25,6 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
-        {/* <Route path="/signup" component={Signup} /> */}
         <Route path="/canvas" component={Homeview} />
         <Route path="/signup" component={SignUpForm} />
         <Route path="/signin" component={SignInForm} />
@@ -37,7 +36,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={SignInForm} />
       </Switch>
     )
   }
