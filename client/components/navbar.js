@@ -107,7 +107,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                       <Typography>Canvas</Typography>
                     </Button>
                   </Link>
-                  <Link to="/login">
+                  <Link to="/signin">
                     <Button>
                       <Typography>Login</Typography>
                     </Button>

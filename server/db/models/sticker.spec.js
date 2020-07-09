@@ -8,7 +8,7 @@ describe('Sticker Model', () => {
     return db.sync({force: true})
   })
   afterEach(() => db.sync({force: true}))
-  it('has imageURL', async () => {
+  it('has imgURL', async () => {
     const newSticker = await Sticker.create(sticker)
     expect(newSticker.imgURL).to.equal('public/Rebel_About.png')
   })

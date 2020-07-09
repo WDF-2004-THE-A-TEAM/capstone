@@ -9,6 +9,7 @@ import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+// eslint-disable-next-line no-unused-vars
 import {red} from '@material-ui/core/colors'
 
 const styles = theme => ({
@@ -61,6 +62,7 @@ class HomeView extends React.Component {
   saveFile() {
     const exportCanvas = document.getElementById('my-canvas')
     exportCanvas.toBlob(function(blob) {
+      // eslint-disable-next-line no-undef
       saveAs(blob, 'eureka_img.jpeg')
     })
   }

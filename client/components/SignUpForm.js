@@ -228,7 +228,7 @@ const SignUpForm = props => {
               margin="normal"
               required
               fullWidth
-              name="confrimPassword"
+              name="confirmPassword"
               label="confirmPassword"
               type="password"
               id="confirmPassword"
