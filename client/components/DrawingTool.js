@@ -8,13 +8,8 @@ export default class DrawingTool extends React.Component {
     this.drawOnCanvas = this.drawOnCanvas.bind(this)
   }
 
-  componentDidMount() {
-    this.props.canvas.isDrawingMode = false
-    // this.props.canvas.freeDrawingBrush.width = 15
-    // this.props.canvas.freeDrawingBrush.color = '#00aeff'
-  }
-
   drawOnCanvas() {
+    console.log('drawing....')
     this.props.canvas.isDrawingMode = !this.props.canvas.isDrawingMode
     if (this.props.canvas.isDrawingMode) {
       document.getElementById('draw-button').innerHTML = 'Draw Mode ON'
@@ -31,7 +26,7 @@ export default class DrawingTool extends React.Component {
           this.drawOnCanvas()
         }}
       >
-        Draw Mode OFF
+        Draw Mode : OFF
       </Button>
     )
   }

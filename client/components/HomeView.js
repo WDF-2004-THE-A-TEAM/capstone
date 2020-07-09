@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid'
 
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
-import {red} from '@material-ui/core/colors'
 import TextTool from './TextTool'
 
 const styles = theme => ({
@@ -36,18 +35,11 @@ class HomeView extends React.Component {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
     this.clearEl = this.clearEl.bind(this)
-
-    this.state = {
-      canvas: new fabric.Canvas('my-canvas')
-    }
   }
 
   componentDidMount() {
     this.props.fetchStickers()
-
-    this.setState({
-      canvas: new fabric.Canvas('my-canvas')
-    })
+    this.canvas = new fabric.Canvas('my-canvas')
   }
 
   addToCanvas(sticker) {
@@ -56,7 +48,7 @@ class HomeView extends React.Component {
       img => {
         img.scale(0.2)
         img.set({left: 100, top: 100})
-        this.state.canvas
+        this.canvas
           .add(img)
           .renderAll()
           .setActiveObject(img)
@@ -65,18 +57,12 @@ class HomeView extends React.Component {
     )
   }
 
-  saveFile() {
-    const exportCanvas = document.getElementById('my-canvas')
-    exportCanvas.toBlob(function(blob) {
-      saveAs(blob, 'eureka_img.jpeg')
-    })
-  }
-
   clearEl() {
-    this.state.canvas.clear()
+    this.canvas.clear()
   }
 
   render() {
+    console.log('canvasss', this.canvas)
     const {classes} = this.props
 
     return (
@@ -90,7 +76,7 @@ class HomeView extends React.Component {
               />
             </Paper>
 
-            <DrawingTool canvas={this.state.canvas} />
+            <DrawingTool canvas={this.canvas} />
 
             <TextTool canvas={this.state.canvas} />
 
@@ -107,9 +93,8 @@ class HomeView extends React.Component {
             <Paper className={classes.paper}>
               <SaveBar
                 canvas={this.canvas}
-                storage={this.storage}
-                canvasDom={this.canvasDom}
                 saveFile={this.saveFile}
+                exportFile={this.exportFile}
               />
               <Canvas />
             </Paper>
@@ -133,3 +118,9 @@ const mapDispatch = dispatch => {
 }
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
+
+// 1 ) this.canvas = new fabric.Canvas('my-canvas')  :: change our canvas from this.state to this.canvas
+// 2 ) move drawOnCanvas from drawingTool component to HomeView component
+// 3) be sure to change onClick to this.props.drawOnCanvas since the function is now pass from the Homeview component as a props
+// 4) On Homeview component,  make sure to pass props on Drawing Tool compoennt (line 120)
+//    - you need to pass 1) this.canvas (our canvas)   2) drawOnCanvas function
