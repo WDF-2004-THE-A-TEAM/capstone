@@ -5,6 +5,7 @@ import Canvas from './Canvas'
 import {saveAs} from 'file-saver'
 import {addStoryToUser} from '../store/stories'
 import {connect} from 'react-redux'
+import SaveToNewStoryCard from './SaveToNewStoryCard'
 
 import Button from '@material-ui/core/Button'
 
@@ -22,10 +23,9 @@ class SaveBar extends Component {
     this.setState({
       seen: !this.state.seen
     })
-    console.log('after', this.state)
   }
 
-  saveFile() {
+  saveFile(title, canvas) {
     // 1) grab the canvas and convert to JSON
     // 2) make an axios request to add this JSON to DB
     console.log('saving file to DB')
@@ -44,44 +44,32 @@ class SaveBar extends Component {
     })
   }
 
-  saveAsNewStory() {
-    console.log('saving new story')
-    let newStory = JSON.stringify(this.props.canvas.toDatalessJSON())
-    console.log('JSON', newStory)
-    this.props.addStoryToUser(newStory)
-
-    // call addStoryToUser function //
-    // mapState, mapDispatch
-  }
-
   render() {
+    console.log('after', this.state)
     return (
       <div>
+        <SaveToNewStoryCard
+          canvas={this.props.canvas}
+          addStory={this.props.addStoryToUser}
+          user={this.props.user}
+        />
         <Button onClick={() => this.exportFile()}> EXPORT </Button>
-        <Button onClick={() => this.saveAsNewStory()}>SAVE AS NEW STORY</Button>
         <Button>ADD TO EXISTING STORY</Button>
-
-        {/* <button onClick={() => this.saveFile()}> SAVE </button> */}
-        {/* <div className="btn" onClick={this.togglePop}>
-            <button canvas={this.props.canvas}>SAVE CANVAS</button>
-          </div>
-          {this.state.seen ? <PopUp canvas={this.props.canvas}toggle={this.togglePop} /> : null} */}
       </div>
     )
   }
 }
 
 const mapState = state => {
-  console.log('map state', state)
   return {
     stories: state.stories.allStories
   }
 }
 
 const mapDispatch = dispatch => {
-  console.log('mapdispatch', dispatch)
   return {
-    addStoryToUser: newStory => dispatch(addStoryToUser(newStory))
+    addStoryToUser: (userId, newStory) =>
+      dispatch(addStoryToUser(userId, newStory))
   }
 }
 export default connect(mapState, mapDispatch)(SaveBar)

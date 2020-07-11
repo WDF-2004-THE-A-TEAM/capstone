@@ -23,12 +23,10 @@ const useStyles = makeStyles(theme => ({
 
 const StickerBar = props => {
   const stickers = props.stickers
-  console.log('sticker', stickers)
   const addToCanvas = props.addToCanvas
   //public/images/stickers/arch.png
 
   const classes = useStyles()
-  console.log(stickers)
   return (
     <div id="sticker" className={classes.root}>
       <GridList className={classes.gridList} cellHeight={160} col={3}>

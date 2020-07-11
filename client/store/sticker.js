@@ -22,7 +22,6 @@ export const fetchStickers = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/stickers')
     dispatch(getStickers(data))
-    console.log('data', data)
   } catch (error) {
     console.error(error)
   }

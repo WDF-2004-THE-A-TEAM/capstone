@@ -25,10 +25,10 @@ const initialState = {
 }
 
 //Thunk creators
-
-export const fetchAllStories = () => async dispatch => {
+//get all stories from all users
+export const fetchAllStories = userId => async dispatch => {
   try {
-    const res = await axios.get('/api/stories')
+    const res = await axios.get(`/api/stories/${userId}/stories`)
     dispatch(getAllStories(res.data))
   } catch (error) {
     console.log(error)
@@ -36,12 +36,13 @@ export const fetchAllStories = () => async dispatch => {
 }
 
 //add Story to User Thunk Creator
-export const addStoryToUser = newStory => {
-  console.log('story', newStory)
+export const addStoryToUser = (userId, brandNewStory) => {
+  console.log('story', {userId, brandNewStory})
   return async dispatch => {
-    console.log('thunk dispatch', dispatch)
-    const response = await axios.post('/api/stories/', newStory)
-    console.log('response', response)
+    const response = await axios.post(
+      `/api/stories/${userId}/stories`,
+      brandNewStory
+    )
     dispatch(addNewStory(response.data))
   }
 }

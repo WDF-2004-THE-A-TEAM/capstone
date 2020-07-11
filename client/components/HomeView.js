@@ -66,9 +66,8 @@ class HomeView extends React.Component {
   }
 
   render() {
-    console.log('canvasss', this.canvas)
     const {classes} = this.props
-
+    console.log('HOMEVIEW==', this.props.user)
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -99,6 +98,7 @@ class HomeView extends React.Component {
                 canvas={this.canvas}
                 saveFile={this.saveFile}
                 exportFile={this.exportFile}
+                user={this.props.user}
               />
               <Canvas />
             </Paper>
@@ -111,7 +111,8 @@ class HomeView extends React.Component {
 
 const mapState = state => {
   return {
-    stickers: state.sticker.stickers
+    stickers: state.sticker.stickers,
+    user: state.user
   }
 }
 

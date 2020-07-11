@@ -6,13 +6,9 @@ const Story = db.define('story', {
     type: Sequelize.STRING,
     allowNull: true
   },
-  author: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
   coverImage: {
     type: Sequelize.STRING,
-    defaultValue: 'public/LindaEng_Untitled_Artwork 8.png'
+    defaultValue: 'https://source.unsplash.com/random'
   },
   canvasJson: {
     type: Sequelize.JSON
