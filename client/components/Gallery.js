@@ -22,7 +22,7 @@ class Gallery extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllStories()
+    this.props.fetchAllStories(this.props.user.id)
   }
 
   render() {
@@ -53,13 +53,14 @@ class Gallery extends React.Component {
 
 const mapState = state => {
   return {
-    stories: state.stories.allStories
+    stories: state.stories.allStories,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchAllStories: () => dispatch(fetchAllStories())
+    fetchAllStories: userId => dispatch(fetchAllStories(userId))
   }
 }
 

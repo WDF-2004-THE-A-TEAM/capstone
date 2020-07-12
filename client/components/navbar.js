@@ -53,7 +53,8 @@ function ElevationScroll(props) {
   })
 }
 
-const Navbar = ({handleClick, isLoggedIn}) => {
+const Navbar = ({handleClick, isLoggedIn, user}) => {
+  console.log('NAVVVBABRRRR====', user)
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -75,7 +76,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                     justify="center"
                     alignItems="center"
                   >
-                    <Link to="/canvas">
+                    <Link to={`/${user.id}/canvas`}>
                       <Button color="inherit">
                         <BrushIcon />
                         <Typography>Canvas</Typography>
@@ -136,7 +137,8 @@ const Navbar = ({handleClick, isLoggedIn}) => {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

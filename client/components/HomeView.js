@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
+import {fetchAllStories} from '../store/stories'
 
 const styles = theme => ({
   root: {
@@ -42,8 +43,12 @@ class HomeView extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchStickers()
+    //WHY IS THIS NOT WORKING WHEN REFRESHING???
     this.canvas = new fabric.Canvas('my-canvas')
+    this.props.fetchStickers()
+    if (this.props.match.params.userId) {
+      this.props.fetchAllStories(this.props.match.params.userId)
+    }
   }
 
   addToCanvas(sticker) {
@@ -67,7 +72,7 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('HOMEVIEW==', this.props.user)
+
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -82,7 +87,6 @@ class HomeView extends React.Component {
             <DrawingTool canvas={this.canvas} />
 
             <TextTool canvas={this.canvas} />
-
             <Button
               onClick={() => {
                 this.clearEl()
@@ -91,7 +95,6 @@ class HomeView extends React.Component {
               clear
             </Button>
           </Grid>
-
           <Grid item xs={12} sm={9}>
             <Paper className={classes.paper}>
               <SaveBar
@@ -99,6 +102,7 @@ class HomeView extends React.Component {
                 saveFile={this.saveFile}
                 exportFile={this.exportFile}
                 user={this.props.user}
+                stories={this.props.stories}
               />
               <Canvas />
             </Paper>
@@ -112,13 +116,16 @@ class HomeView extends React.Component {
 const mapState = state => {
   return {
     stickers: state.sticker.stickers,
-    user: state.user
+    user: state.user,
+    stories: state.stories.allStories
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchStickers: () => dispatch(fetchStickers())
+    fetchAllStories: userId => dispatch(fetchAllStories(userId)),
+    fetchStickers: () => dispatch(fetchStickers()),
+    getUser: () => dispatch(me())
   }
 }
 

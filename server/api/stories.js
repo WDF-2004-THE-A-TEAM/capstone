@@ -57,7 +57,7 @@ router.get('/:storyId/pages', async (req, res, next) => {
 
 //add page to story
 //need storyId, pageId, jsonObject, imageUrl
-router.post('/:storyId/pages/', async (req, res, next) => {
+router.post('/:storyId/pages', async (req, res, next) => {
   const storyId = req.params.storyId
   try {
     let pageBody = req.body

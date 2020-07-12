@@ -4,6 +4,7 @@ import history from '../history'
 //action types
 const GET_ALL_PAGES = 'GET_ALL_PAGES'
 const REMOVE_ONE_PAGE = 'REMOVE_ONE_PAGE'
+const ADD_PAGE = 'ADD_PAGE'
 
 //action creators
 const getAllPages = pages => {
@@ -18,6 +19,14 @@ const removeOnePage = pageID => {
     pageID
   }
 }
+
+const addPage = page => {
+  return {
+    type: ADD_PAGE,
+    page
+  }
+}
+
 //initial state
 const initialState = {
   allPages: []
@@ -43,6 +52,15 @@ export const deletePage = pageID => async dispatch => {
   }
 }
 
+export const addPageToStory = (storyId, page) => async dispatch => {
+  try {
+    const response = await axios.post(`/api/stories/${storyId}/pages`, page)
+    dispatch(addPage(response.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 //reducer
 export default function allPages(state = initialState, action) {
   switch (action.type) {
@@ -52,6 +70,11 @@ export default function allPages(state = initialState, action) {
       return {
         ...state,
         allPages: state.allPages.filter(id => id !== action.pageID)
+      }
+    case ADD_PAGE:
+      return {
+        ...state,
+        allPages: [...state.allPages, action.page]
       }
     default:
       return state

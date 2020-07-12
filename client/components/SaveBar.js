@@ -3,39 +3,20 @@ import {fabric} from 'fabric'
 import PopUp from './SavePopUp'
 import Canvas from './Canvas'
 import {saveAs} from 'file-saver'
-import {addStoryToUser} from '../store/stories'
+import {addStoryToUser, fetchAllStories} from '../store/stories'
+import {me} from '../store/user'
+import {addPageToStory} from '../store/pages'
 import {connect} from 'react-redux'
 import SaveToNewStoryCard from './SaveToNewStoryCard'
-
+import AddPageToStory from './AddPageToStory'
 import Button from '@material-ui/core/Button'
 
-class SaveBar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      seen: false
-    }
-    this.togglePop = this.togglePop.bind(this)
-  }
-
-  togglePop() {
-    console.log('change status', this.state)
-    this.setState({
-      seen: !this.state.seen
-    })
-  }
-
-  saveFile(title, canvas) {
-    // 1) grab the canvas and convert to JSON
-    // 2) make an axios request to add this JSON to DB
-    console.log('saving file to DB')
+const SaveBar = props => {
+  const saveFile = (title, canvas) => {
     let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
-    console.log('JSON', canvasJSON)
-    // console.log('toObject', this.canvas.toObject());//logs canvas as an object
-    // console.log('toSVG', this.canvas.toSVG());//logs the SVG representation of canvas
   }
 
-  exportFile() {
+  const exportFile = () => {
     // 1) grab canvas 'DOM' element
     // 2) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
     const exportCanvas = document.getElementById('my-canvas')
@@ -44,32 +25,36 @@ class SaveBar extends Component {
     })
   }
 
-  render() {
-    console.log('after', this.state)
-    return (
-      <div>
-        <SaveToNewStoryCard
-          canvas={this.props.canvas}
-          addStory={this.props.addStoryToUser}
-          user={this.props.user}
-        />
-        <Button onClick={() => this.exportFile()}> EXPORT </Button>
-        <Button>ADD TO EXISTING STORY</Button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Button onClick={() => exportFile()}> EXPORT </Button>
+      <SaveToNewStoryCard
+        canvas={props.canvas}
+        addStory={props.addStoryToUser}
+        user={props.user}
+      />
+      <AddPageToStory
+        canvas={props.canvas}
+        addPage={props.addPage}
+        getAllStories={props.getAllStories}
+        stories={props.stories}
+        user={props.user}
+      />
+    </div>
+  )
 }
 
-const mapState = state => {
-  return {
-    stories: state.stories.allStories
-  }
-}
+// const mapState = state => {
+//   return {
+//     stories: state.stories.allStories,
+//   }
+// }
 
 const mapDispatch = dispatch => {
   return {
     addStoryToUser: (userId, newStory) =>
-      dispatch(addStoryToUser(userId, newStory))
+      dispatch(addStoryToUser(userId, newStory)),
+    addPage: (storyId, newPage) => dispatch(addPageToStory(storyId, newPage))
   }
 }
-export default connect(mapState, mapDispatch)(SaveBar)
+export default connect(null, mapDispatch)(SaveBar)

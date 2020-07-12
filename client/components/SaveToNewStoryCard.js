@@ -47,6 +47,7 @@ const SaveToNewStoryCard = props => {
     }
     console.log('SAVE AS NEW STORY====', newStory)
     props.addStory(props.user.id, newStory)
+    handleClose()
   }
 
   return (
