@@ -41,9 +41,6 @@ const styles = theme => ({
 class Pages extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      background: ''
-    }
   }
 
   componentDidMount() {
@@ -55,14 +52,15 @@ class Pages extends React.Component {
   }
 
   render() {
-    console.log('pages==', this.props.pages)
     const {classes} = this.props
     return (
       <div>
         <Paper
           className={classes.mainFeaturedPost}
           style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)`
+            backgroundImage: this.props.pages[0]
+              ? `url(${this.props.pages[0].imgURL})`
+              : null
           }}
         >
           {/* Increase the priority of the hero background image */}
@@ -82,7 +80,7 @@ class Pages extends React.Component {
                   color="inherit"
                   gutterBottom
                 >
-                  Story Name goes here
+                  ADD STORY TITLE HERE
                 </Typography>
                 <Typography variant="h5" color="inherit" paragraph>
                   Front Page
