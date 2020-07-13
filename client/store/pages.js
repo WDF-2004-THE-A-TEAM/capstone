@@ -5,6 +5,7 @@ import history from '../history'
 const GET_ALL_PAGES = 'GET_ALL_PAGES'
 const REMOVE_ONE_PAGE = 'REMOVE_ONE_PAGE'
 const ADD_PAGE = 'ADD_PAGE'
+const EDIT_PAGE = 'EDIT_PAGE'
 
 //action creators
 const getAllPages = pages => {
@@ -23,6 +24,13 @@ const removeOnePage = pageID => {
 const addPage = page => {
   return {
     type: ADD_PAGE,
+    page
+  }
+}
+
+const getPageToEdit = page => {
+  return {
+    type: EDIT_PAGE,
     page
   }
 }
@@ -62,6 +70,15 @@ export const addPageToStory = (storyId, page) => async dispatch => {
   }
 }
 
+export const editPage = pageID => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/pages/${pageID}`)
+    dispatch(getPageToEdit(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 //reducer
 export default function allPages(state = initialState, action) {
   switch (action.type) {
@@ -76,6 +93,11 @@ export default function allPages(state = initialState, action) {
       return {
         ...state,
         allPages: [...state.allPages, action.page]
+      }
+    case EDIT_PAGE:
+      return {
+        ...state,
+        pages: [action.page]
       }
     default:
       return state
