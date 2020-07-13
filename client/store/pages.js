@@ -70,9 +70,10 @@ export const addPageToStory = (storyId, page) => async dispatch => {
   }
 }
 
-export const editPage = pageID => async dispatch => {
+export const fetchPageToEdit = pageID => async dispatch => {
   try {
     const {data} = await axios.get(`/api/pages/${pageID}`)
+    console.log('data', data)
     dispatch(getPageToEdit(data))
   } catch (error) {
     console.error(error)

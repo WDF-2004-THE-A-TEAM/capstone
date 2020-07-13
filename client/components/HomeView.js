@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
 import {fetchAllStories} from '../store/stories'
+import {fetchPageToEdit} from '../store/pages'
 
 const styles = theme => ({
   root: {
@@ -44,7 +45,22 @@ class HomeView extends React.Component {
 
   componentDidMount() {
     //WHY IS THIS NOT WORKING WHEN REFRESHING???
-    this.canvas = new fabric.Canvas('my-canvas')
+
+    let pageId = this.props.match.params.pageId
+    console.log('pageId', pageId)
+
+    if (!pageId) {
+      // if pageId isn't exits, then create new canvas
+      this.canvas = new fabric.Canvas('my-canvas')
+    } else {
+      // render canvas by Id
+      this.canvas = new fabric.Canvas('my-canvas')
+
+      this.props.fetchPageToEdit(pageId)
+      console.log('@@@@@@@')
+      console.log('after fetch from page', this.props)
+    }
+
     this.props.fetchStickers()
     if (this.props.match.params.userId) {
       this.props.fetchAllStories(this.props.match.params.userId)
@@ -71,6 +87,7 @@ class HomeView extends React.Component {
   }
 
   render() {
+    console.log('rendering', this.props)
     const {classes} = this.props
 
     return (
@@ -114,10 +131,12 @@ class HomeView extends React.Component {
 }
 
 const mapState = state => {
+  console.log('mapping', state)
   return {
     stickers: state.sticker.stickers,
     user: state.user,
-    stories: state.stories.allStories
+    stories: state.stories.allStories,
+    page: state.allPages.pages
   }
 }
 
@@ -125,7 +144,8 @@ const mapDispatch = dispatch => {
   return {
     fetchAllStories: userId => dispatch(fetchAllStories(userId)),
     fetchStickers: () => dispatch(fetchStickers()),
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    fetchPageToEdit: pageId => dispatch(fetchPageToEdit(pageId))
   }
 }
 
