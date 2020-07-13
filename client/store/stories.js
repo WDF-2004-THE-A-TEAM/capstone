@@ -25,30 +25,28 @@ const initialState = {
 }
 
 //Thunk creators
-
-export const fetchAllStories = () => async dispatch => {
-  try {
-    const res = await axios.get('/api/stories')
+//get all stories from user
+export const fetchAllStories = userId => {
+  return async dispatch => {
+    const res = await axios.get(`/api/stories/${userId}/stories`)
     dispatch(getAllStories(res.data))
-  } catch (error) {
-    console.log(error)
   }
 }
 
 //add Story to User Thunk Creator
-export const addStoryToUser = newStory => {
-  console.log('story', newStory)
+export const addStoryToUser = (userId, brandNewStory) => {
   return async dispatch => {
-    console.log('thunk dispatch', dispatch)
-    const response = await axios.post('/api/stories/', newStory)
-    console.log('response', response)
+    const response = await axios.post(
+      `/api/stories/${userId}/stories`,
+      brandNewStory
+    )
     dispatch(addNewStory(response.data))
   }
 }
 
 //reducer
 
-export default function allStories(state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_STORIES:
       return {...state, allStories: action.stories}

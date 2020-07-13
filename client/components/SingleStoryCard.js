@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -23,7 +24,9 @@ const SingleStoryCard = props => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={props.story.coverImage} />
+        <Link to={`/gallery/stories/${props.story.id}/pages`}>
+          <CardMedia className={classes.media} image={props.story.coverImage} />
+        </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.story.title}

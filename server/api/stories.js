@@ -1,11 +1,15 @@
 const router = require('express').Router()
-const {Story} = require('../db/models')
+const {Story, Page} = require('../db/models')
 module.exports = router
 
-//get all stories
-router.get('/', async (req, res, next) => {
+//get all stories from user
+router.get('/:userId/stories', async (req, res, next) => {
   try {
-    const stories = await Story.findAll()
+    const stories = await Story.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
     if (stories) {
       res.status(200).json(stories)
     } else {
@@ -17,7 +21,7 @@ router.get('/', async (req, res, next) => {
 })
 
 //get one story
-router.get('/:storyID', async (req, res, next) => {
+router.get('/:storyId', async (req, res, next) => {
   try {
     const storyId = req.params.storyID
     const story = await Story.findByPk(storyId)
@@ -32,11 +36,15 @@ router.get('/:storyID', async (req, res, next) => {
 })
 
 //*****UPDATE THIS ROUTE */
-//get story with pages
-router.get('/:storyID/pages', async (req, res, next) => {
+//get one story and its pages
+router.get('/:storyId/pages', async (req, res, next) => {
   try {
-    const storyId = req.params.storyID
-    const story = await Story.findByPk(storyId)
+    const storyId = req.params.storyId
+    const story = await Page.findAll({
+      where: {
+        storyId: storyId
+      }
+    })
     if (story) {
       res.status(200).json(story)
     } else {
@@ -47,17 +55,32 @@ router.get('/:storyID/pages', async (req, res, next) => {
   }
 })
 
-//create story
-router.post('/', async (req, res, next) => {
-  console.log('json req.body ===', req.body)
-  let newStory = {
-    title: 'New Story',
-    author: 'Nan',
-    coverImage: 'public/LindaEng_Untitled_Artwork 8.png',
-    canvasJson: req.body
-  }
+//add page to story
+//need storyId, pageId, jsonObject, imageUrl
+router.post('/:storyId/pages', async (req, res, next) => {
+  const storyId = req.params.storyId
   try {
-    const updatedStory = await Story.create(newStory)
+    let pageBody = req.body
+    pageBody.storyId = storyId
+    const newPage = await Page.create(pageBody)
+    if (newPage) {
+      console.log('Page has been sucessfully added to Story')
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//create story
+router.post('/:userId/stories', async (req, res, next) => {
+  console.log('json req.body ===', req.body)
+  try {
+    let storyBody = req.body
+    storyBody.userId = req.params.userId
+    const updatedStory = await Story.create(storyBody)
     if (updatedStory) {
       console.log('succesfully added new story to database')
       res.sendStatus(200)

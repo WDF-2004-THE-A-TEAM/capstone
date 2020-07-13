@@ -8,7 +8,7 @@ import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
 import SplashPage from './components/SplashPage'
 import Gallery from './components/Gallery'
-import Page from './components/Page'
+import Pages from './components/Pages'
 import {me} from './store'
 
 /**
@@ -33,12 +33,13 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/gallery" component={Gallery} />
-            <Route path="/page" component={Page} />
+            <Route path="/:userId/canvas" component={Homeview} />
+            <Route exact path="/gallery" component={Gallery} />
+            <Route path="/gallery/stories/:storyId/pages" component={Pages} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={SplashPage} />
+        <Route exact path="/" component={SplashPage} />
       </Switch>
     )
   }

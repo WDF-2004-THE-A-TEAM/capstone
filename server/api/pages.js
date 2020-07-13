@@ -66,7 +66,8 @@ router.post('/', async (req, res, next) => {
 })
 
 //update page
-router.put('/:pageID', async (req, res, next) => {
+//make sure story id gets sent here too
+router.put('/:pageId', async (req, res, next) => {
   try {
     const pageId = req.params.pageID
     const pageToEdit = await Page.findByPk(pageId)

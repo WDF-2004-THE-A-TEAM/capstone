@@ -4,7 +4,7 @@ const db = require('../db')
 const Page = db.define('page', {
   imgURL: {
     type: Sequelize.STRING,
-    defaultValue: 'public/LindaEng_Untitled_Artwork 5.png'
+    defaultValue: 'https://source.unsplash.com/random'
   },
   canvasPage: {
     type: Sequelize.JSON

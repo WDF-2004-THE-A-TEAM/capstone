@@ -22,7 +22,6 @@ export const fetchStickers = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/stickers')
     dispatch(getStickers(data))
-    console.log('data', data)
   } catch (error) {
     console.error(error)
   }
@@ -33,7 +32,6 @@ export const fetchStickers = () => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_STICKERS:
-      console.log('THIS IS THE ACTION=', action.type)
       return {...state, stickers: action.stickers}
     default:
       return state
