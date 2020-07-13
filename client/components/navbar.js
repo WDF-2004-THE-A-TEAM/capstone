@@ -54,7 +54,6 @@ function ElevationScroll(props) {
 }
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
-  console.log('NAVVVBABRRRR====', user)
   const classes = useStyles()
   return (
     <div className={classes.root}>

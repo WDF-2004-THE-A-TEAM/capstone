@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/styles'
 import Grid from '@material-ui/core/Grid'
-import {Link} from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -27,6 +26,9 @@ class Gallery extends React.Component {
 
   render() {
     const {classes} = this.props
+    {
+      console.log('GALLERY PROOPPSKLDJFLSKDJLFKSJ', this.props.stories)
+    }
     return (
       //create gallery card here
       <div className={classes.root}>
@@ -37,9 +39,7 @@ class Gallery extends React.Component {
               {this.props.stories.map(story => {
                 return (
                   <Grid key={story.id} item xs={12} sm={3}>
-                    <Link to="/page">
-                      <SingleStoryCard key={story.id} story={story} />
-                    </Link>
+                    <SingleStoryCard key={story.id} story={story} />
                   </Grid>
                 )
               })}

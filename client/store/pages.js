@@ -29,13 +29,14 @@ const addPage = page => {
 
 //initial state
 const initialState = {
-  allPages: []
+  pages: []
 }
 
 //Thunk creators
-export const fetchAllPages = () => async dispatch => {
+//fetch all pages from user
+export const fetchAllPages = storyId => async dispatch => {
   try {
-    const res = await axios.get('/api/pages')
+    const res = await axios.get(`/api/stories/${storyId}/pages`)
     dispatch(getAllPages(res.data))
   } catch (error) {
     console.error(error)
@@ -65,11 +66,11 @@ export const addPageToStory = (storyId, page) => async dispatch => {
 export default function allPages(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PAGES:
-      return {...state, allPages: action.pages}
+      return {...state, pages: action.pages}
     case REMOVE_ONE_PAGE:
       return {
         ...state,
-        allPages: state.allPages.filter(id => id !== action.pageID)
+        pages: state.allPages.filter(id => id !== action.pageID)
       }
     case ADD_PAGE:
       return {
