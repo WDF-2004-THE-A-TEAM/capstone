@@ -9,6 +9,7 @@ import {addPageToStory} from '../store/pages'
 import {connect} from 'react-redux'
 import SaveToNewStoryCard from './SaveToNewStoryCard'
 import AddPageToStory from './AddPageToStory'
+import SaveChange from './SaveChange'
 import Button from '@material-ui/core/Button'
 
 const SaveBar = props => {
@@ -34,6 +35,13 @@ const SaveBar = props => {
         user={props.user}
       />
       <AddPageToStory
+        canvas={props.canvas}
+        addPage={props.addPage}
+        getAllStories={props.getAllStories}
+        stories={props.stories}
+        user={props.user}
+      />
+      <SaveChange
         canvas={props.canvas}
         addPage={props.addPage}
         getAllStories={props.getAllStories}

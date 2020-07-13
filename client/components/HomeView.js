@@ -13,6 +13,7 @@ import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
 import {fetchAllStories} from '../store/stories'
 import {fetchPageToEdit} from '../store/pages'
+import axios from 'axios'
 
 const styles = theme => ({
   root: {
@@ -43,9 +44,8 @@ class HomeView extends React.Component {
     this.clearEl = this.clearEl.bind(this)
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     //WHY IS THIS NOT WORKING WHEN REFRESHING???
-
     let pageId = this.props.match.params.pageId
     console.log('pageId', pageId)
 
@@ -54,11 +54,16 @@ class HomeView extends React.Component {
       this.canvas = new fabric.Canvas('my-canvas')
     } else {
       // render canvas by Id
+      const {data} = await axios.get(`/api/pages/${pageId}`)
+      console.log('homeview data', data)
+      const canvasJSON = data.canvasPage
+      console.log(canvasJSON)
       this.canvas = new fabric.Canvas('my-canvas')
+      this.canvas.loadFromJSON(canvasJSON)
 
-      this.props.fetchPageToEdit(pageId)
-      console.log('@@@@@@@')
-      console.log('after fetch from page', this.props)
+      // this.props.fetchPageToEdit(pageId)
+      // console.log('@@@@@@@')
+      // console.log('after fetch from page', this.props)
     }
 
     this.props.fetchStickers()
@@ -87,11 +92,16 @@ class HomeView extends React.Component {
   }
 
   render() {
-    console.log('rendering', this.props)
+    console.log('rendering', this.props.page[0])
+    const currentPage = this.props.page[0]
+    console.log('current page', typeof currentPage)
     const {classes} = this.props
 
     return (
       <div className={classes.root}>
+        {/* <div> 
+          <h1> hello </h1>
+        </div>  */}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <Paper className={classes.stickerBar}>
