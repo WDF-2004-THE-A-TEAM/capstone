@@ -18,7 +18,7 @@ export default class Remove extends React.Component {
   render() {
     return (
       <div>
-        <div>key detected: {this.props.eventKey}</div>
+        <div>{this.props.eventKey}</div>
         <KeyboardEventHandler
           handleKeys={['backspace']}
           onKeyEvent={(key, e) => {
