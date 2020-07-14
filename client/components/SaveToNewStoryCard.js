@@ -39,15 +39,41 @@ const SaveToNewStoryCard = props => {
     console.log(open)
   }
 
-  const saveAsNewStory = () => {
-    let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
-    let newStory = {
-      title: open.title,
-      canvasJson: canvasJSON
+  //SAVE AS JSON for local database
+  // const saveAsNewStory = () => {
+  //   let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
+  //   let newStory = {
+  //     title: open.title,
+  //     canvasJson: canvasJSON
+  //   }
+  //   console.log('SAVE AS NEW STORY====', newStory)
+  //   props.addStory(props.user.id, newStory)
+  //   handleClose()
+  // }
+
+  const dataURItoBlob = dataURI => {
+    var binary = atob(dataURI.split(',')[1])
+    var array = []
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i))
     }
-    console.log('SAVE AS NEW STORY====', newStory)
-    props.addStory(props.user.id, newStory)
-    handleClose()
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+  }
+
+  //SAVE AS JPG FOR AWS IMAGE HOSTING
+  const saveAsNewStory = () => {
+    const canvas = document.getElementById('my-canvas')
+    const dataUrl = canvas.toDataURL('image/jpeg')
+    console.log('dataUrl=>', dataUrl)
+
+    const blobData = dataURItoBlob(dataUrl)
+    // console.log('blob data=>', blobData)
+
+    const params = {Body: blobData}
+
+    // console.log('params =>', params)
+    // bucket.upload
+    // canvas.toBlob()
   }
 
   return (
