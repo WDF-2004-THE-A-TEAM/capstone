@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 export default class Remove extends React.Component {
   constructor(props) {
@@ -16,14 +17,24 @@ export default class Remove extends React.Component {
 
   render() {
     return (
-      <Button
-        id="text-tool"
-        onClick={() => {
-          this.Remove()
-        }}
-      >
-        Delete
-      </Button>
+      <div>
+        <div>key detected: {this.props.eventKey}</div>
+        <KeyboardEventHandler
+          handleKeys={['backspace', 'b', 'c']}
+          onKeyEvent={(key, e) => {
+            this.Remove()
+          }}
+        ></KeyboardEventHandler>
+
+        <Button
+          id="text-tool"
+          onClick={() => {
+            this.Remove()
+          }}
+        >
+          Delete
+        </Button>
+      </div>
     )
   }
 }
