@@ -20,7 +20,7 @@ export default class Remove extends React.Component {
       <div>
         <div>key detected: {this.props.eventKey}</div>
         <KeyboardEventHandler
-          handleKeys={['backspace', 'b', 'c']}
+          handleKeys={['backspace']}
           onKeyEvent={(key, e) => {
             this.Remove()
           }}
