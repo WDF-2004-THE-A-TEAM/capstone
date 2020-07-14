@@ -4,14 +4,14 @@ const multerS3 = require('multer-s3')
 const multer = require('multer')
 const path = require('path')
 const router = express.Router()
-
+module.exports = router
 /**
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
-  accessKeyId: 'AKIAI4IYUCNFNIWHMB4Q',
-  secretAccessKey: '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',
-  Bucket: 'onclick'
+  accessKeyId: 'AKIAIAXXE3DPQ6DBDBSQ',
+  secretAccessKey: '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',
+  Bucket: 'eurekanewbucket'
 })
 /**
 
@@ -21,7 +21,7 @@ const s3 = new aws.S3({
 const profileImgUpload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'onclick',
+    bucket: 'eurekanewbucket',
     acl: 'public-read',
     key: function(req, file, cb) {
       cb(
@@ -37,7 +37,7 @@ const profileImgUpload = multer({
   fileFilter: function(req, file, cb) {
     checkFileType(file, cb)
   }
-}).single('profileImage')
+}).single('canvasImage')
 
 /**
  * Check File Type */
@@ -56,10 +56,10 @@ function checkFileType(file, cb) {
   }
 }
 
-router.post('/profile-img-upload', (req, res) => {
+router.post('/canvas-img-upload', (req, res) => {
   profileImgUpload(req, res, error => {
-    // console.log( 'requestOkokok', req.file );
-    // console.log( 'error', error );
+    console.log('requestOkokok', req.file)
+    console.log('error', error)
     if (error) {
       console.log('errors', error)
       res.json({error: error})
@@ -82,5 +82,3 @@ router.post('/profile-img-upload', (req, res) => {
   })
 })
 // End of single profile upload
-
-module.exports = router
