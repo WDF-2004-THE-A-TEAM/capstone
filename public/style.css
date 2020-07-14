@@ -69,7 +69,18 @@ img {
   color: cyan;
   cursor: pointer;
 }
-/* 
-canvas{
-  background-color: white;
-} */
+
+canvas {
+  border: solid 2px greenyellow;
+}
+
+#save-bar {
+  display: flex;
+  justify-content: center;
+  /* align-content: center; */
+}
+
+#my-canvas {
+  background-color: hotpink;
+  width: 100%;
+}

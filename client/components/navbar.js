@@ -24,7 +24,7 @@ import Tab from '@material-ui/core/Tab'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: '100px'
+    marginBottom: '0px'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -57,75 +57,69 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <ElevationScroll>
-        <AppBar
-          position="fixed"
-          style={{background: 'transparent', boxShadow: 'none'}}
-        >
-          <Toolbar className={classes.headerContainer} disableGutters>
-            <Link to="/canvas">
-              <img className={classes.title} src={logo} alt="logo" />
-            </Link>
-            <Box>
-              {isLoggedIn ? (
-                <React.Fragment>
-                  <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                  >
-                    <Link to={`/${user.id}/canvas`}>
-                      <Button color="inherit">
-                        <BrushIcon />
-                        <Typography>Canvas</Typography>
-                      </Button>
-                    </Link>
-
-                    <Link to="/gallery">
-                      <Button color="inherit">
-                        <DashboardIcon />
-                        <Typography>Gallery</Typography>
-                      </Button>
-                    </Link>
-
-                    <Button color="inherit" onClick={handleClick}>
-                      Logout
-                    </Button>
-
-                    <Link to="/account">
-                      <Button startIcon={<AccountCircleIcon />}>
-                        {' '}
-                        ACCOUNT{' '}
-                      </Button>
-                    </Link>
-                  </Grid>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  {/* The navbar will show these links before you log in */}
-                  <Link to="/canvas">
-                    <BrushIcon />
+      {/* <ElevationScroll> */}
+      <AppBar position="static" style={{background: 'grey', boxShadow: 'none'}}>
+        <Toolbar className={classes.headerContainer} disableGutters>
+          <Link to="/canvas">
+            <img className={classes.title} src={logo} alt="logo" />
+          </Link>
+          <Box>
+            {isLoggedIn ? (
+              <React.Fragment>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Link to={`/${user.id}/canvas`}>
                     <Button color="inherit">
+                      <BrushIcon />
                       <Typography>Canvas</Typography>
                     </Button>
                   </Link>
-                  <Link to="/signin">
-                    <Button>
-                      <Typography>Login</Typography>
+
+                  <Link to="/gallery">
+                    <Button color="inherit">
+                      <DashboardIcon />
+                      <Typography>Gallery</Typography>
                     </Button>
                   </Link>
-                  <Link to="/signup">
-                    <Button>
-                      <Typography>SignUp</Typography>
-                    </Button>
+
+                  <Button color="inherit" onClick={handleClick}>
+                    Logout
+                  </Button>
+
+                  <Link to="/account">
+                    <Button startIcon={<AccountCircleIcon />}> ACCOUNT </Button>
                   </Link>
-                </React.Fragment>
-              )}
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
+                </Grid>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {/* The navbar will show these links before you log in */}
+                <Link to="/canvas">
+                  <BrushIcon />
+                  <Button color="inherit">
+                    <Typography>Canvas</Typography>
+                  </Button>
+                </Link>
+                <Link to="/signin">
+                  <Button>
+                    <Typography>Login</Typography>
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button>
+                    <Typography>SignUp</Typography>
+                  </Button>
+                </Link>
+              </React.Fragment>
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+      {/* </ElevationScroll> */}
       <div className={classes.toolbarMargin} />
     </div>
   )
