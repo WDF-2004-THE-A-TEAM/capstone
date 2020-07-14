@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
 import {fetchAllStories} from '../store/stories'
-import {fetchPageToEdit} from '../store/pages'
+// import {fetchPageToEdit} from '../store/pages'
 import axios from 'axios'
 
 const styles = theme => ({
@@ -57,7 +57,7 @@ class HomeView extends React.Component {
       const {data} = await axios.get(`/api/pages/${pageId}`)
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
-      console.log(canvasJSON)
+      // console.log(canvasJSON)
       this.canvas = new fabric.Canvas('my-canvas')
       this.canvas.loadFromJSON(canvasJSON)
 
@@ -92,16 +92,10 @@ class HomeView extends React.Component {
   }
 
   render() {
-    console.log('rendering', this.props.page[0])
-    const currentPage = this.props.page[0]
-    console.log('current page', typeof currentPage)
     const {classes} = this.props
 
     return (
       <div className={classes.root}>
-        {/* <div> 
-          <h1> hello </h1>
-        </div>  */}
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <Paper className={classes.stickerBar}>
@@ -130,6 +124,7 @@ class HomeView extends React.Component {
                 exportFile={this.exportFile}
                 user={this.props.user}
                 stories={this.props.stories}
+                pageId={this.props.match.params.pageId}
               />
               <Canvas />
             </Paper>
@@ -145,8 +140,8 @@ const mapState = state => {
   return {
     stickers: state.sticker.stickers,
     user: state.user,
-    stories: state.stories.allStories,
-    page: state.allPages.pages
+    stories: state.stories.allStories
+    // page: state.allPages.pages
   }
 }
 
@@ -154,8 +149,8 @@ const mapDispatch = dispatch => {
   return {
     fetchAllStories: userId => dispatch(fetchAllStories(userId)),
     fetchStickers: () => dispatch(fetchStickers()),
-    getUser: () => dispatch(me()),
-    fetchPageToEdit: pageId => dispatch(fetchPageToEdit(pageId))
+    getUser: () => dispatch(me())
+    // fetchPageToEdit: pageId => dispatch(fetchPageToEdit(pageId))
   }
 }
 

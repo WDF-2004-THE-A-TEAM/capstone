@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
+import axios from 'axios'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -67,8 +68,14 @@ const SaveChange = props => {
     handleClose()
   }
 
-  const saveChange = () => {
+  const saveChange = async () => {
     console.log('saving change...')
+    let pageID = props.PageId
+    console.log('save pageId', pageID)
+
+    let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
+    await axios.put(`/api/pages/${pageID}`, {pageID, canvasJSON})
+    alert('successfully saved!')
     handleClose()
   }
 

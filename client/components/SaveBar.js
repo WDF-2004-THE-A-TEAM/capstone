@@ -47,6 +47,7 @@ const SaveBar = props => {
         getAllStories={props.getAllStories}
         stories={props.stories}
         user={props.user}
+        PageId={props.pageId}
       />
     </div>
   )
