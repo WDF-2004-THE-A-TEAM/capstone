@@ -26,7 +26,7 @@ const styles = theme => ({
     padding: theme.spacing(4),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: 'purple'
+    backgroundColor: 'lightgrey'
   },
   stickerBar: {
     padding: theme.spacing(4),
@@ -35,10 +35,10 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
-    height: '600px'
+    height: '100%'
   },
   container: {
-    backgroundColor: 'red'
+    backgroundColor: 'skyblue'
   }
 })
 
@@ -63,10 +63,11 @@ class HomeView extends React.Component {
     if (!pageId) {
       // if pageId isn't exits, then create new canvas
       this.canvas = new fabric.Canvas('my-canvas')
-      this.canvas.setDimensions(
-        {width: '100%', height: '100%'},
-        {cssOnly: true}
+      this.canvas.setBackgroundColor(
+        'white',
+        this.canvas.renderAll.bind(this.canvas)
       )
+      this.canvas.setDimensions({width: '100%', height: '100%'})
 
       // this.canvas.setHeight('800')
       // this.canvas.renderAll()
@@ -79,6 +80,10 @@ class HomeView extends React.Component {
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
       this.canvas = new fabric.Canvas('my-canvas')
+      // this.canvas.setDimensions(
+      //   {width: '100%', height: '100%'},
+      //   {cssOnly: true}
+      // )
       this.canvas.loadFromJSON(canvasJSON)
     }
 
@@ -146,9 +151,10 @@ class HomeView extends React.Component {
                   stories={this.props.stories}
                   pageId={this.props.match.params.pageId}
                 />
-                <Paper className={classes.canvas}>
+                <Canvas />
+                {/* <Paper className={classes.paper}>
                   <Canvas />
-                </Paper>
+                </Paper>   */}
               </Paper>
             </Grid>
           </Grid>
