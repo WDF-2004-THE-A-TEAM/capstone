@@ -32,7 +32,7 @@ const SaveBar = props => {
   }
 
   return (
-    <div>
+    <div id="save-bar">
       <Button onClick={() => exportFile()}> EXPORT </Button>
       <SaveToNewStoryCard
         canvas={props.canvas}

@@ -15,7 +15,13 @@ import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 // import {fetchPageToEdit} from '../store/pages'
 import axios from 'axios'
+
+import Container from '@material-ui/core/Container'
+import {grey} from '@material-ui/core/colors'
+import Navbar from './navbar'
+
 import ToolBar from './ToolBar'
+
 
 const styles = theme => ({
   root: {
@@ -24,7 +30,8 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing(4),
     textAlign: 'center',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    backgroundColor: '#C0D6DF'
   },
   stickerBar: {
     padding: theme.spacing(4),
@@ -33,8 +40,10 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
-    height: '600px',
-    backgroundColor: 'blue'
+    height: '600px'
+  },
+  container: {
+    backgroundColor: '#C0D6DF'
   }
 })
 
@@ -53,19 +62,15 @@ class HomeView extends React.Component {
 
     if (!pageId) {
       // if pageId isn't exits, then create new canvas
-      this.canvas = new fabric.Canvas('my-canvas')
+      this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
       // render canvas by Id
       const {data} = await axios.get(`/api/pages/${pageId}`)
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
-      // console.log(canvasJSON)
       this.canvas = new fabric.Canvas('my-canvas')
-      this.canvas.loadFromJSON(canvasJSON)
 
-      // this.props.fetchPageToEdit(pageId)
-      // console.log('@@@@@@@')
-      // console.log('after fetch from page', this.props)
+      this.canvas.loadFromJSON(canvasJSON)
     }
 
     this.props.fetchStickers()
@@ -94,6 +99,45 @@ class HomeView extends React.Component {
 
     return (
       <div className={classes.root}>
+
+        <Container maxWidth="lg" className={classes.container}>
+          {/* <Navbar /> */}
+          <Grid container spacing={3}>
+            {/* <Grid item xs={12} sm={3}>
+              <Paper className={classes.stickerBar}>
+                <StickerBar
+                  addToCanvas={this.addToCanvas}
+                  stickers={this.props.stickers}
+                />
+              </Paper>
+
+              <DrawingTool canvas={this.canvas} />
+
+              <TextTool canvas={this.canvas} />
+              <Button
+                onClick={() => {
+                  this.clearEl()
+                }}
+              >
+                clear
+              </Button>
+            </Grid> */}
+
+            <Grid item xs="12">
+              <Paper className={classes.paper}>
+                <h1> canvas </h1>
+                <SaveBar
+                  canvas={this.canvas}
+                  saveFile={this.saveFile}
+                  exportFile={this.exportFile}
+                  user={this.props.user}
+                  stories={this.props.stories}
+                  pageId={this.props.match.params.pageId}
+                />
+                <Canvas />
+              </Paper>
+            </Grid>
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <Paper className={classes.stickerBar}>
@@ -120,8 +164,9 @@ class HomeView extends React.Component {
               />
               <Canvas />
             </Paper>
+
           </Grid>
-        </Grid>
+        </Container>
       </div>
     )
   }
