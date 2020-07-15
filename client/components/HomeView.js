@@ -26,7 +26,7 @@ const styles = theme => ({
     padding: theme.spacing(4),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: 'purple'
+    backgroundColor: 'light grey'
   },
   stickerBar: {
     padding: theme.spacing(4),
@@ -38,7 +38,7 @@ const styles = theme => ({
     height: '600px'
   },
   container: {
-    backgroundColor: 'red'
+    backgroundColor: 'light blue'
   }
 })
 
@@ -99,9 +99,9 @@ class HomeView extends React.Component {
     return (
       <div className={classes.root}>
         <Container maxWidth="lg" className={classes.container}>
-          <Navbar />
+          {/* <Navbar /> */}
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
+            {/* <Grid item xs={12} sm={3}>
               <Paper className={classes.stickerBar}>
                 <StickerBar
                   addToCanvas={this.addToCanvas}
@@ -119,9 +119,9 @@ class HomeView extends React.Component {
               >
                 clear
               </Button>
-            </Grid>
+            </Grid> */}
 
-            <Grid item xs="9">
+            <Grid item xs="12">
               <Paper className={classes.paper}>
                 <h1> CANVAS </h1>
                 <SaveBar
@@ -132,9 +132,7 @@ class HomeView extends React.Component {
                   stories={this.props.stories}
                   pageId={this.props.match.params.pageId}
                 />
-                <Paper className={classes.canvas}>
-                  <Canvas />
-                </Paper>
+                <Canvas />
               </Paper>
             </Grid>
           </Grid>

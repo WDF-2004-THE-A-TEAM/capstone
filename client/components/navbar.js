@@ -24,7 +24,8 @@ import Tab from '@material-ui/core/Tab'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: '0px'
+
+    backgroundColor: 'red'
   },
   menuButton: {
     marginRight: theme.spacing(2)

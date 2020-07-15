@@ -8,7 +8,9 @@ class Canvas extends Component {
   render() {
     return (
       <div className="canvas-size">
-        <canvas id="my-canvas"> </canvas>
+        <canvas id="my-canvas" width="850" height="850">
+          {' '}
+        </canvas>
       </div>
     )
   }
