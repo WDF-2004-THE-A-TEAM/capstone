@@ -21,6 +21,10 @@ const ToolBar = props => {
   const classes = useStyles()
   console.log('props=>', props)
 
+  const clearEl = () => {
+    props.canvas.clear()
+  }
+
   return (
     <div className={classes.root}>
       <ButtonGroup
@@ -30,14 +34,21 @@ const ToolBar = props => {
         <Button>
           <ImageRoundedIcon />
         </Button>
+
         <Button>
           <DrawingTool canvas={props.canvas} />
         </Button>
+
         <Button>
           <TextTool canvas={props.canvas} />
         </Button>
+
         <Button aria-label="delete" fontSize="large">
-          <DeleteForeverRoundedIcon />
+          <DeleteForeverRoundedIcon
+            onClick={() => {
+              clearEl()
+            }}
+          />
         </Button>
       </ButtonGroup>
     </div>
