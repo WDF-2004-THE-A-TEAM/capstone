@@ -79,6 +79,10 @@ class HomeView extends React.Component {
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
       this.canvas = new fabric.Canvas('my-canvas')
+      this.canvas.setDimensions(
+        {width: '100%', height: '100%'},
+        {cssOnly: true}
+      )
       this.canvas.loadFromJSON(canvasJSON)
     }
 
