@@ -7,7 +7,7 @@ class Canvas extends Component {
 
   render() {
     return (
-      <div>
+      <div className="canvas-size">
         <canvas id="my-canvas"> </canvas>
       </div>
     )

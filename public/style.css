@@ -81,6 +81,12 @@ canvas {
 }
 
 #my-canvas {
-  background-color: hotpink;
+  /* background-color: hotpink; */
   width: 100%;
+  height: 100%;
+}
+
+.canvas-size {
+  width: 100%;
+  height: 100%;
 }

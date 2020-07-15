@@ -35,8 +35,7 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
-    height: '600px',
-    backgroundColor: 'skyblue'
+    height: '600px'
   },
   container: {
     backgroundColor: 'red'
@@ -56,9 +55,21 @@ class HomeView extends React.Component {
     let pageId = this.props.match.params.pageId
     console.log('pageId', pageId)
 
+    // const canvasDom = document.getElementById('my-canvas')
+    // const context = canvasDom.getContext('2d');
+    // context.width = '100%'
+    // context.height = '100%'
+
     if (!pageId) {
       // if pageId isn't exits, then create new canvas
       this.canvas = new fabric.Canvas('my-canvas')
+      this.canvas.setDimensions(
+        {width: '100%', height: '100%'},
+        {cssOnly: true}
+      )
+
+      // this.canvas.setHeight('800')
+      // this.canvas.renderAll()
       // const canvasSize = document.getElementById('my-canvas')
       // const ratio = canvasSize.getWidth() / canvasSize.getHeight();
       // canvasSize.setDimensions({width: containerWidth, height: containerWidth / ratio});
