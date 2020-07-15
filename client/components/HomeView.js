@@ -15,6 +15,7 @@ import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 // import {fetchPageToEdit} from '../store/pages'
 import axios from 'axios'
+import ToolBar from './ToolBar'
 
 const styles = theme => ({
   root: {
@@ -42,7 +43,7 @@ class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
-    this.clearEl = this.clearEl.bind(this)
+    // this.clearEl = this.clearEl.bind(this)
   }
 
   async componentDidMount() {
@@ -88,10 +89,6 @@ class HomeView extends React.Component {
     )
   }
 
-  clearEl() {
-    this.canvas.clear()
-  }
-
   render() {
     const {classes} = this.props
 
@@ -106,17 +103,10 @@ class HomeView extends React.Component {
               />
             </Paper>
 
-            <DrawingTool canvas={this.canvas} />
 
-            <TextTool canvas={this.canvas} />
+            <ToolBar canvas={this.canvas} />
             <Remove canvas={this.canvas} />
-            <Button
-              onClick={() => {
-                this.clearEl()
-              }}
-            >
-              clear
-            </Button>
+         
           </Grid>
           <Grid item xs={12} sm={9}>
             <Paper className={classes.paper}>
