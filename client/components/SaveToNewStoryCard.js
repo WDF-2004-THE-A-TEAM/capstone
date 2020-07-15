@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
+import axios from 'axios'
+
 const SaveToNewStoryCard = props => {
   const [open, setOpen] = React.useState({
     state: false,
@@ -60,20 +62,67 @@ const SaveToNewStoryCard = props => {
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
   }
 
+  const singleFileUploadHandler = fileToUpload => {
+    const data = new FormData()
+    // If file selected
+    if (fileToUpload) {
+      data.append('canvasImage', fileToUpload, fileToUpload.name)
+      axios
+        .post('/api/profile/canvas-img-upload', data, {
+          headers: {
+            accept: 'application/json',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+          }
+        })
+        .then(response => {
+          if (200 === response.status) {
+            // If file size is larger than expected.
+            if (response.data.error) {
+              if ('LIMIT_FILE_SIZE' === response.data.error.code) {
+                console.log('FILE TOO BIG')
+              } else {
+                console.log(response.data)
+                // If not the given file type
+              }
+            } else {
+              // Success
+              let fileName = response.data
+              console.log('fileData', fileName)
+              console.log('FILE SUCCESSFULLY LOADED')
+            }
+          }
+        })
+        .catch(error => {
+          // If another error
+          console.error(error)
+        })
+    } else {
+      // if file not selected throw error
+      console.log('UPLOADD SOMETHING')
+    }
+  }
+
   //SAVE AS JPG FOR AWS IMAGE HOSTING
   const saveAsNewStory = () => {
     const canvas = document.getElementById('my-canvas')
     const dataUrl = canvas.toDataURL('image/jpeg')
-    console.log('dataUrl=>', dataUrl)
-
     const blobData = dataURItoBlob(dataUrl)
-    // console.log('blob data=>', blobData)
 
-    const params = {Body: blobData}
+    const imageFileToUpload = Object.assign(blobData, {
+      name: `${open.title}.png`
+    })
 
-    // console.log('params =>', params)
-    // bucket.upload
-    // canvas.toBlob()
+    singleFileUploadHandler(imageFileToUpload)
+
+    let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
+    let newStory = {
+      title: open.title,
+      canvasJson: canvasJSON
+    }
+    console.log('SAVE AS NEW STORY====', newStory)
+    props.addStory(props.user.id, newStory)
+    handleClose()
   }
 
   return (
