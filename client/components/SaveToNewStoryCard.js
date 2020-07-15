@@ -60,15 +60,14 @@ const SaveToNewStoryCard = props => {
       name: `${open.title}.png`
     })
 
-    props.singleFileUploadHandler(imageFileToUpload)
-
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
     let newStory = {
       title: open.title,
       canvasJson: canvasJSON
     }
+
     console.log('SAVE AS NEW STORY====', newStory)
-    props.addStory(props.user.id, newStory)
+    props.addStory(props.user.id, newStory, imageFileToUpload)
     handleClose()
   }
 

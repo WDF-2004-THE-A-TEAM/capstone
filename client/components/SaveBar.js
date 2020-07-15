@@ -61,8 +61,8 @@ const SaveBar = props => {
 
 const mapDispatch = dispatch => {
   return {
-    addStoryToUser: (userId, newStory) =>
-      dispatch(addStoryToUser(userId, newStory)),
+    addStoryToUser: (userId, newStory, fileToUpload) =>
+      dispatch(addStoryToUser(userId, newStory, fileToUpload)),
     addPage: (storyId, newPage) => dispatch(addPageToStory(storyId, newPage))
   }
 }

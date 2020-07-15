@@ -11,7 +11,11 @@ const uploadImage = image => {
   }
 }
 
-export const singleFileUploadHandler = fileToUpload => dispatch => {
+export const singleFileUploadHandler = (
+  fileToUpload,
+  userId,
+  newStory
+) => dispatch => {
   const data = new FormData()
   // If file selected
   if (fileToUpload) {
@@ -37,7 +41,7 @@ export const singleFileUploadHandler = fileToUpload => dispatch => {
           } else {
             // Success
             let fileName = response.data
-            dispatch(uploadImage(response.data))
+
             console.log('fileData', fileName)
             console.log('FILE SUCCESSFULLY LOADED')
           }
