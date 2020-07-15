@@ -3,11 +3,10 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {makeStyles} from '@material-ui/core/styles'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
-import TextFieldsRoundedIcon from '@material-ui/icons/TextFieldsRounded'
-import GestureRoundedIcon from '@material-ui/icons/GestureRounded'
-import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
+
 import ImageRoundedIcon from '@material-ui/icons/ImageRounded'
 import TextTool from './TextTool'
+import DrawingTool from './DrawingTool'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +31,7 @@ const ToolBar = props => {
           <ImageRoundedIcon />
         </Button>
         <Button>
-          <CreateRoundedIcon />
+          <DrawingTool canvas={props.canvas} />
         </Button>
         <Button>
           <TextTool canvas={props.canvas} />

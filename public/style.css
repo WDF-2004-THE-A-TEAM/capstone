@@ -69,3 +69,7 @@ img {
   color: cyan;
   cursor: pointer;
 }
+
+#draw-button {
+  color: grey;
+}
