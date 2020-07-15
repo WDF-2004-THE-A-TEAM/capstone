@@ -20,7 +20,8 @@ import Navbar from './navbar'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: '100%'
   },
   paper: {
     padding: theme.spacing(4),
@@ -120,7 +121,7 @@ class HomeView extends React.Component {
         <Container maxWidth="lg" className={classes.container}>
           <Navbar />
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
+            {/* <Grid item xs={12} sm={3}>
               <Paper className={classes.stickerBar}>
                 <StickerBar
                   addToCanvas={this.addToCanvas}
@@ -138,7 +139,7 @@ class HomeView extends React.Component {
               >
                 clear
               </Button>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs="9">
               <Paper className={classes.paper}>
