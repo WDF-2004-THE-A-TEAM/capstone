@@ -1,21 +1,23 @@
 import {createMuiTheme} from '@material-ui/core/styles'
 
-const white = '#f4f6ff'
-const yellow = '#ffcb74'
-const orange = '#ea907a'
-const blue = '#4f8a8b'
+const imperialRed = '#E63946'
+const honeydew = '#F1FAEE'
+const powderBlue = '#A8DADC'
+const celadonBlue = '#457B9D'
+const prussianBlue = '#1D3557'
 
 export default createMuiTheme({
   palette: {
     common: {
-      orange,
-      yellow
+      celadonBlue,
+      prussianBlue,
+      powderBlue
     },
     primary: {
-      main: `${blue}`
+      main: `${honeydew}`
     },
     secondary: {
-      main: `${yellow}`
+      main: `${imperialRed}`
     }
   },
   typography: {
