@@ -24,7 +24,7 @@ import Tab from '@material-ui/core/Tab'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    fontFamily: 'Baloo Da 2, cursive',
+    // fontFamily: 'Baloo Da 2, cursive',
     backgroundColor: '#457B9D'
   },
   menuButton: {
@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarMargin: {
     height: '2px'
+  },
+  font: {
+    color: 'white'
   }
 }))
 
@@ -70,7 +73,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           <Link to="/canvas">
             <img className={classes.title} src={logo} alt="logo" />
           </Link>
-          <Box>
+          <Box className={classes.font}>
             {isLoggedIn ? (
               <React.Fragment>
                 <Grid
@@ -89,7 +92,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                   <Link to="/gallery">
                     <Button color="inherit">
                       <DashboardIcon />
-                      <Typography>Gallery</Typography>
+                      <Typography className={classes.font}>Gallery</Typography>
                     </Button>
                   </Link>
 
