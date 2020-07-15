@@ -1,4 +1,5 @@
 import {createMuiTheme} from '@material-ui/core/styles'
+import createTypography from '@material-ui/core/styles/createTypography'
 
 const white = '#f4f6ff'
 const yellow = '#ffcb74'
@@ -17,5 +18,8 @@ export default createMuiTheme({
     secondary: {
       main: `${yellow}`
     }
+  },
+  typography: {
+    fontFamily: ['Baloo Da 2'].join(',')
   }
 })

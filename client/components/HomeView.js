@@ -123,7 +123,7 @@ class HomeView extends React.Component {
 
             <Grid item xs="12">
               <Paper className={classes.paper}>
-                <h1> CANVAS </h1>
+                <h1> canvas </h1>
                 <SaveBar
                   canvas={this.canvas}
                   saveFile={this.saveFile}

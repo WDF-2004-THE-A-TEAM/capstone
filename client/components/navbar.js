@@ -24,8 +24,8 @@ import Tab from '@material-ui/core/Tab'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-
-    backgroundColor: 'red'
+    fontFamily: 'Baloo Da 2, cursive',
+    backgroundColor: '#457B9D'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between'
   },
   toolbarMargin: {
-    ...theme.mixins.toolbar
+    height: '2px'
   }
 }))
 
@@ -59,7 +59,13 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
   return (
     <div className={classes.root}>
       {/* <ElevationScroll> */}
-      <AppBar position="static" style={{background: 'grey', boxShadow: 'none'}}>
+      <AppBar
+        position="static"
+        style={{
+          background: '#457B9D',
+          boxShadow: 'none'
+        }}
+      >
         <Toolbar className={classes.headerContainer} disableGutters>
           <Link to="/canvas">
             <img className={classes.title} src={logo} alt="logo" />

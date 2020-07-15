@@ -1,7 +1,12 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Baloo Da 2', cursive;
 }
-
+h1 {
+  font-size: 60px;
+}
+navbar {
+  font-family: 'Baloo Da 2', cursive;
+}
 a {
   text-decoration: none;
 }
