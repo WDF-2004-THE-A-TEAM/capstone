@@ -76,6 +76,7 @@ img {
   cursor: pointer;
 }
 
+
 canvas {
   border: solid 2px darkgrey;
 }
@@ -98,3 +99,13 @@ canvas {
   display: flex;
   justify-content: center;
 }
+
+
+#draw-button {
+  color: grey;
+}
+/* 
+canvas{
+  background-color: white;
+} */
+
