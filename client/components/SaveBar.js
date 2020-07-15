@@ -18,8 +18,13 @@ const SaveBar = props => {
   }
 
   const exportFile = () => {
-    // 1) grab canvas 'DOM' element
-    // 2) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
+    // 1) change backgrounf color to white, then render the canvas
+    // 2) grab canvas 'DOM' element
+    // 3) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
+    props.canvas.setBackgroundColor(
+      'white',
+      props.canvas.renderAll.bind(props.canvas)
+    )
     const exportCanvas = document.getElementById('my-canvas')
     exportCanvas.toBlob(function(blob) {
       saveAs(blob, 'eureka_img.jpeg')
