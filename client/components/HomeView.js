@@ -17,6 +17,7 @@ import axios from 'axios'
 import Container from '@material-ui/core/Container'
 import {grey} from '@material-ui/core/colors'
 import Navbar from './navbar'
+import ToolBar from './ToolBar'
 
 const styles = theme => ({
   root: {
@@ -121,6 +122,8 @@ class HomeView extends React.Component {
         <Container maxWidth="lg" className={classes.container}>
           <Navbar />
           <Grid container spacing={3}>
+            <ToolBar />
+
             {/* <Grid item xs={12} sm={3}>
               <Paper className={classes.stickerBar}>
                 <StickerBar
