@@ -70,6 +70,12 @@ img {
   cursor: pointer;
 }
 
+
 #draw-button {
   color: grey;
 }
+/* 
+canvas{
+  background-color: white;
+} */
+
