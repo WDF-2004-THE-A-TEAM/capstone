@@ -1,26 +1,31 @@
 import {createMuiTheme} from '@material-ui/core/styles'
 
-const imperialRed = '#E63946'
-const honeydew = '#F1FAEE'
-const powderBlue = '#A8DADC'
-const celadonBlue = '#457B9D'
-const prussianBlue = '#1D3557'
-
+const cadet = '#4F6D7A'
+const platinum = '#EAEAEA'
+const columbiaBlue = '#C0D6DF'
+const carnationPink = '#F7ACCF'
+const dutchWhite = '#E8DAB2'
+const burntSienna = '#DD6E42'
 export default createMuiTheme({
   palette: {
     common: {
-      celadonBlue,
-      prussianBlue,
-      powderBlue
+      columbiaBlue,
+      carnationPink,
+      dutchWhite,
+      burntSienna
     },
     primary: {
-      main: `${honeydew}`
+      main: `${cadet}`
     },
     secondary: {
-      main: `${imperialRed}`
+      main: `${platinum}`
     }
   },
   typography: {
-    fontFamily: `'Baloo Da 2',cursive`
+    fontFamily: `'Baloo Da 2',cursive`,
+    color: `${platinum}`,
+    button: {
+      textTransform: 'none'
+    }
   }
 })

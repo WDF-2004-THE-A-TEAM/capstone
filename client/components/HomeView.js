@@ -26,7 +26,7 @@ const styles = theme => ({
     padding: theme.spacing(4),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: 'light grey'
+    backgroundColor: '#C0D6DF'
   },
   stickerBar: {
     padding: theme.spacing(4),
@@ -38,7 +38,7 @@ const styles = theme => ({
     height: '600px'
   },
   container: {
-    backgroundColor: 'light blue'
+    backgroundColor: '#C0D6DF'
   }
 })
 
@@ -57,7 +57,7 @@ class HomeView extends React.Component {
 
     if (!pageId) {
       // if pageId isn't exits, then create new canvas
-      this.canvas = new fabric.Canvas('my-canvas')
+      this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
       // render canvas by Id
       const {data} = await axios.get(`/api/pages/${pageId}`)

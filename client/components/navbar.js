@@ -24,8 +24,7 @@ import Tab from '@material-ui/core/Tab'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    // fontFamily: 'Baloo Da 2, cursive',
-    backgroundColor: '#457B9D'
+    backgroundColor: '#DD6E42'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -40,7 +39,12 @@ const useStyles = makeStyles(theme => ({
     height: '2px'
   },
   font: {
-    color: 'white'
+    color: '#4F6D7A'
+  },
+  buttonStyle: {
+    color: '#EAEAEA',
+    borderRadius: '50%',
+    backgroundColor: '#EAA286'
   }
 }))
 
@@ -65,7 +69,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
       <AppBar
         position="static"
         style={{
-          background: '#457B9D',
+          background: '#DD6E42',
           boxShadow: 'none'
         }}
       >
@@ -110,18 +114,18 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                 {/* The navbar will show these links before you log in */}
                 <Link to="/canvas">
                   <BrushIcon />
-                  <Button color="inherit">
-                    <Typography>Canvas</Typography>
+                  <Button className={classes.buttonStyle}>
+                    <Typography>canvas</Typography>
                   </Button>
                 </Link>
                 <Link to="/signin">
                   <Button>
-                    <Typography>Login</Typography>
+                    <Typography>login</Typography>
                   </Button>
                 </Link>
                 <Link to="/signup">
                   <Button>
-                    <Typography>SignUp</Typography>
+                    <Typography>sign up</Typography>
                   </Button>
                 </Link>
               </React.Fragment>
