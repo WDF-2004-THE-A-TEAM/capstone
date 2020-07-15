@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
+import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 // import {fetchPageToEdit} from '../store/pages'
 import axios from 'axios'
@@ -108,6 +109,7 @@ class HomeView extends React.Component {
             <DrawingTool canvas={this.canvas} />
 
             <TextTool canvas={this.canvas} />
+            <Remove canvas={this.canvas} />
             <Button
               onClick={() => {
                 this.clearEl()
