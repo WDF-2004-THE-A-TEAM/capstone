@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import {fabric} from 'fabric'
+import TextFieldsRoundedIcon from '@material-ui/icons/TextFieldsRounded'
 
 export default class TextTool extends React.Component {
   constructor(props) {
@@ -23,14 +24,14 @@ export default class TextTool extends React.Component {
 
   render() {
     return (
-      <Button
+      <TextFieldsRoundedIcon
         id="text-tool"
         onClick={() => {
           this.AddText()
         }}
       >
         Text
-      </Button>
+      </TextFieldsRoundedIcon>
     )
   }
 }
