@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -6,8 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-
-import axios from 'axios'
+import {singleFileUploadHandler} from '../store/amazon'
 
 const SaveToNewStoryCard = props => {
   const [open, setOpen] = React.useState({
@@ -41,18 +41,6 @@ const SaveToNewStoryCard = props => {
     console.log(open)
   }
 
-  //SAVE AS JSON for local database
-  // const saveAsNewStory = () => {
-  //   let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
-  //   let newStory = {
-  //     title: open.title,
-  //     canvasJson: canvasJSON
-  //   }
-  //   console.log('SAVE AS NEW STORY====', newStory)
-  //   props.addStory(props.user.id, newStory)
-  //   handleClose()
-  // }
-
   const dataURItoBlob = dataURI => {
     var binary = atob(dataURI.split(',')[1])
     var array = []
@@ -60,47 +48,6 @@ const SaveToNewStoryCard = props => {
       array.push(binary.charCodeAt(i))
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
-  }
-
-  const singleFileUploadHandler = fileToUpload => {
-    const data = new FormData()
-    // If file selected
-    if (fileToUpload) {
-      data.append('canvasImage', fileToUpload, fileToUpload.name)
-      axios
-        .post('/api/profile/canvas-img-upload', data, {
-          headers: {
-            accept: 'application/json',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'Content-Type': `multipart/form-data; boundary=${data._boundary}`
-          }
-        })
-        .then(response => {
-          if (200 === response.status) {
-            // If file size is larger than expected.
-            if (response.data.error) {
-              if ('LIMIT_FILE_SIZE' === response.data.error.code) {
-                console.log('FILE TOO BIG')
-              } else {
-                console.log(response.data)
-                // If not the given file type
-              }
-            } else {
-              // Success
-              let fileName = response.data
-              console.log('fileData', fileName)
-              console.log('FILE SUCCESSFULLY LOADED')
-            }
-          }
-        })
-        .catch(error => {
-          // If another error
-          console.error(error)
-        })
-    } else {
-      // if file not selected throw error
-      console.log('UPLOADD SOMETHING')
-    }
   }
 
   //SAVE AS JPG FOR AWS IMAGE HOSTING
@@ -113,7 +60,7 @@ const SaveToNewStoryCard = props => {
       name: `${open.title}.png`
     })
 
-    singleFileUploadHandler(imageFileToUpload)
+    props.singleFileUploadHandler(imageFileToUpload)
 
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
     let newStory = {
@@ -166,4 +113,9 @@ const SaveToNewStoryCard = props => {
   )
 }
 
-export default SaveToNewStoryCard
+const mapDispatch = dispatch => {
+  return {
+    singleFileUploadHandler: image => dispatch(singleFileUploadHandler(image))
+  }
+}
+export default connect(null, mapDispatch)(SaveToNewStoryCard)
