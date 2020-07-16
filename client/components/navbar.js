@@ -22,6 +22,10 @@ import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
+import ColorLensIcon from '@material-ui/icons/ColorLens'
+import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -128,18 +132,18 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
 
                 <Link to="/canvas">
                   <Button className={classes.buttonStyle}>
-                    <Typography>canvas</Typography>
+                    <ColorLensIcon />
                   </Button>
                 </Link>
 
                 <Link to="/signin">
                   <Button className={classes.buttonStyle}>
-                    <Typography>login</Typography>
+                    <PersonPinIcon />
                   </Button>
                 </Link>
                 <Link to="/signup">
                   <Button className={classes.buttonStyle}>
-                    <Typography>sign up</Typography>
+                    <PersonAddIcon />
                   </Button>
                 </Link>
               </React.Fragment>
