@@ -2,11 +2,12 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {makeStyles} from '@material-ui/core/styles'
-import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
-
-import ImageRoundedIcon from '@material-ui/icons/ImageRounded'
+import ClearRoundedIcon from '@material-ui/icons/ClearRounded'
 import TextTool from './TextTool'
 import DrawingTool from './DrawingTool'
+import StickerBar from './StickerBar'
+import Remove from './Delete'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 const ToolBar = props => {
   const classes = useStyles()
-  console.log('props=>', props)
 
   const clearEl = () => {
     props.canvas.clear()
@@ -27,29 +27,44 @@ const ToolBar = props => {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        // className={classes.button}
-        orientation="vertical"
-      >
-        <Button>
-          <ImageRoundedIcon />
-        </Button>
+      <ButtonGroup orientation="vertical">
+        <Tooltip title="STICKERS" placement="right-start" arrow>
+          <Button>
+            <StickerBar
+              canvas={props.canvas}
+              stickers={props.stickers}
+              addToCanvas={props.addToCanvas}
+            />
+          </Button>
+        </Tooltip>
 
-        <Button>
-          <DrawingTool canvas={props.canvas} />
-        </Button>
+        <Tooltip title="DRAW" placement="right-start" arrow>
+          <Button>
+            <DrawingTool canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
-        <Button>
-          <TextTool canvas={props.canvas} />
-        </Button>
+        <Tooltip title="TEXT" placement="right-start" arrow>
+          <Button>
+            <TextTool canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
-        <Button aria-label="delete" fontSize="large">
-          <DeleteForeverRoundedIcon
-            onClick={() => {
-              clearEl()
-            }}
-          />
-        </Button>
+        <Tooltip title="DELETE" placement="right-start" arrow>
+          <Button>
+            <Remove canvas={props.canvas} />
+          </Button>
+        </Tooltip>
+
+        <Tooltip title="CLEAR CANVAS" placement="right-start" arrow>
+          <Button aria-label="delete" fontSize="large">
+            <ClearRoundedIcon
+              onClick={() => {
+                clearEl()
+              }}
+            />
+          </Button>
+        </Tooltip>
       </ButtonGroup>
     </div>
   )

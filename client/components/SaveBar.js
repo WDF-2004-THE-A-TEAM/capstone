@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 
 const SaveBar = props => {
   const classes = useStyles()
-
   const saveFile = (title, canvas) => {
     let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
   }
@@ -52,6 +51,7 @@ const SaveBar = props => {
         canvas={props.canvas}
         addStory={props.addStoryToUser}
         user={props.user}
+        stories={props.stories}
       />
       <AddPageToStory
         canvas={props.canvas}

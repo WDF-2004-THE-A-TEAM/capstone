@@ -20,11 +20,11 @@ const useStyles = makeStyles({
 
 const SingleStoryCard = props => {
   const classes = useStyles()
-  console.log('STORYCARD props=', props.story)
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <Link to={`/gallery/stories/${props.story.id}/pages`}>
+        <Link to={`/${props.userId}/gallery/stories/${props.story.id}/pages`}>
           <CardMedia className={classes.media} image={props.story.coverImage} />
         </Link>
         <CardContent>

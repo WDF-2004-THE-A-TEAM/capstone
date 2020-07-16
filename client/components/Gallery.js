@@ -26,9 +26,7 @@ class Gallery extends React.Component {
 
   render() {
     const {classes} = this.props
-    {
-      console.log('GALLERY PROOPPSKLDJFLSKDJLFKSJ', this.props.stories)
-    }
+
     return (
       //create gallery card here
       <div className={classes.root}>
@@ -39,7 +37,12 @@ class Gallery extends React.Component {
               {this.props.stories.map(story => {
                 return (
                   <Grid key={story.id} item xs={12} sm={3}>
-                    <SingleStoryCard key={story.id} story={story} />
+                    <SingleStoryCard
+                      key={story.id}
+                      story={story}
+                      userId={this.props.user.id}
+                      stories={this.props.stories}
+                    />
                   </Grid>
                 )
               })}

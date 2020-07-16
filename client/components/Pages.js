@@ -91,7 +91,11 @@ class Pages extends React.Component {
             </Grid>
           </Grid>
         </Paper>
-        <PageCard pages={this.props.pages} />
+        <PageCard
+          pages={this.props.pages}
+          userId={this.props.match.params.userId}
+          storyId={this.props.match.params.storyId}
+        />
       </div>
     )
   }
