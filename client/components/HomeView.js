@@ -108,9 +108,8 @@ class HomeView extends React.Component {
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
               />
-
-              <Remove canvas={this.canvas} />
             </Grid>
+
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1> canvas </h1>

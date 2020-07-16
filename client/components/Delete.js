@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
 
 export default class Remove extends React.Component {
   constructor(props) {
@@ -26,14 +27,14 @@ export default class Remove extends React.Component {
           }}
         ></KeyboardEventHandler>
 
-        <Button
+        <DeleteForeverRoundedIcon
           id="text-tool"
           onClick={() => {
             this.Remove()
           }}
         >
           Delete
-        </Button>
+        </DeleteForeverRoundedIcon>
       </div>
     )
   }
