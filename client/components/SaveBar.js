@@ -57,18 +57,18 @@ const SaveBar = props => {
     </div>
   )
 }
-
-// const mapState = state => {
-//   return {
-//     stories: state.stories.allStories,
-//   }
-// }
+const mapState = state => {
+  return {
+    stories: state.stories.allStories
+  }
+}
 
 const mapDispatch = dispatch => {
   return {
-    addStoryToUser: (userId, newStory) =>
-      dispatch(addStoryToUser(userId, newStory)),
-    addPage: (storyId, newPage) => dispatch(addPageToStory(storyId, newPage))
+    addStoryToUser: (userId, newStory, fileToUpload) =>
+      dispatch(addStoryToUser(userId, newStory, fileToUpload)),
+    addPage: (storyId, newPage, fileToUpload) =>
+      dispatch(addPageToStory(storyId, newPage, fileToUpload))
   }
 }
-export default connect(null, mapDispatch)(SaveBar)
+export default connect(mapState, mapDispatch)(SaveBar)

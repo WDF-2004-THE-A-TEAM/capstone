@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -6,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import {singleFileUploadHandler} from '../store/amazon'
 
 const SaveToNewStoryCard = props => {
   const [open, setOpen] = React.useState({
@@ -39,18 +41,6 @@ const SaveToNewStoryCard = props => {
     console.log(open)
   }
 
-  //SAVE AS JSON for local database
-  // const saveAsNewStory = () => {
-  //   let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
-  //   let newStory = {
-  //     title: open.title,
-  //     canvasJson: canvasJSON
-  //   }
-  //   console.log('SAVE AS NEW STORY====', newStory)
-  //   props.addStory(props.user.id, newStory)
-  //   handleClose()
-  // }
-
   const dataURItoBlob = dataURI => {
     var binary = atob(dataURI.split(',')[1])
     var array = []
@@ -64,16 +54,21 @@ const SaveToNewStoryCard = props => {
   const saveAsNewStory = () => {
     const canvas = document.getElementById('my-canvas')
     const dataUrl = canvas.toDataURL('image/jpeg')
-    console.log('dataUrl=>', dataUrl)
-
     const blobData = dataURItoBlob(dataUrl)
-    // console.log('blob data=>', blobData)
 
-    const params = {Body: blobData}
+    const imageFileToUpload = Object.assign(blobData, {
+      name: `${open.title}.png`
+    })
 
-    // console.log('params =>', params)
-    // bucket.upload
-    // canvas.toBlob()
+    let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
+    let newStory = {
+      title: open.title,
+      canvasJson: canvasJSON
+    }
+
+    console.log('SAVE AS NEW STORY====', newStory)
+    props.addStory(props.user.id, newStory, imageFileToUpload)
+    handleClose()
   }
 
   return (
@@ -117,4 +112,9 @@ const SaveToNewStoryCard = props => {
   )
 }
 
-export default SaveToNewStoryCard
+const mapDispatch = dispatch => {
+  return {
+    singleFileUploadHandler: image => dispatch(singleFileUploadHandler(image))
+  }
+}
+export default connect(null, mapDispatch)(SaveToNewStoryCard)

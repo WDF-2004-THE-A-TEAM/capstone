@@ -9,6 +9,7 @@ import SignInForm from './components/SignInForm'
 import SplashPage from './components/SplashPage'
 import Gallery from './components/Gallery'
 import Pages from './components/Pages'
+import AmazonTest from './components/amazonTest'
 import {me} from './store'
 
 /**
@@ -36,6 +37,7 @@ class Routes extends Component {
             <Route path="/:userId/canvas" component={Homeview} />
             <Route path="/canvas/:pageId" component={Homeview} />
             <Route exact path="/gallery" component={Gallery} />
+            <Route path="/test" component={AmazonTest} />
             <Route path="/gallery/stories/:storyId/pages" component={Pages} />
           </Switch>
         )}

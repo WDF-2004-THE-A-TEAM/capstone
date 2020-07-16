@@ -39,6 +39,9 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
+//AMAZON
+const profile = require('../server/api/profile')
+app.use('/api/profile', profile)
 
 const createApp = () => {
   // logging middleware
