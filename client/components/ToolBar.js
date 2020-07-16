@@ -3,10 +3,9 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {makeStyles} from '@material-ui/core/styles'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
-
-import ImageRoundedIcon from '@material-ui/icons/ImageRounded'
 import TextTool from './TextTool'
 import DrawingTool from './DrawingTool'
+import StickerBar from './StickerBar'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,12 +26,13 @@ const ToolBar = props => {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        // className={classes.button}
-        orientation="vertical"
-      >
+      <ButtonGroup orientation="vertical">
         <Button>
-          <ImageRoundedIcon />
+          <StickerBar
+            canvas={props.canvas}
+            stickers={props.stickers}
+            addToCanvas={props.addToCanvas}
+          />
         </Button>
 
         <Button>
