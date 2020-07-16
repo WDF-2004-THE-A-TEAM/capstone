@@ -28,7 +28,7 @@ const ToolBar = props => {
   return (
     <div className={classes.root}>
       <ButtonGroup orientation="vertical">
-        <Tooltip title="STICKERS" placement="right-start">
+        <Tooltip title="STICKERS" placement="right-start" arrow>
           <Button>
             <StickerBar
               canvas={props.canvas}
@@ -38,25 +38,25 @@ const ToolBar = props => {
           </Button>
         </Tooltip>
 
-        <Tooltip title="DRAW" placement="right-start">
+        <Tooltip title="DRAW" placement="right-start" arrow>
           <Button>
             <DrawingTool canvas={props.canvas} />
           </Button>
         </Tooltip>
 
-        <Tooltip title="TEXT" placement="right-start">
+        <Tooltip title="TEXT" placement="right-start" arrow>
           <Button>
             <TextTool canvas={props.canvas} />
           </Button>
         </Tooltip>
 
-        <Tooltip title="DELETE" placement="right-start">
+        <Tooltip title="DELETE" placement="right-start" arrow>
           <Button>
             <Remove canvas={props.canvas} />
           </Button>
         </Tooltip>
 
-        <Tooltip title="CLEAR CANVAS" placement="right-start">
+        <Tooltip title="CLEAR CANVAS" placement="right-start" arrow>
           <Button aria-label="delete" fontSize="large">
             <ClearRoundedIcon
               onClick={() => {
