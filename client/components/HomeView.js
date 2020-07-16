@@ -114,7 +114,7 @@ class HomeView extends React.Component {
               <ToolBar canvas={this.canvas} />
               <Remove canvas={this.canvas} />
             </Grid>
-            <Grid item xs="12">
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1> canvas </h1>
                 <SaveBar
