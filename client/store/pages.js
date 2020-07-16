@@ -5,7 +5,7 @@ import history from '../history'
 const GET_ALL_PAGES = 'GET_ALL_PAGES'
 const REMOVE_ONE_PAGE = 'REMOVE_ONE_PAGE'
 const ADD_PAGE = 'ADD_PAGE'
-// const EDIT_PAGE = 'EDIT_PAGE'
+const GET_ONE_PAGE = 'GET_ONE_PAGE'
 
 //action creators
 const getAllPages = pages => {
@@ -28,12 +28,12 @@ const addPage = page => {
   }
 }
 
-// const getPageToEdit = page => {
-//   return {
-//     type: EDIT_PAGE,
-//     page
-//   }
-// }
+const getPageToEdit = page => {
+  return {
+    type: GET_ONE_PAGE,
+    page
+  }
+}
 
 //initial state
 const initialState = {
@@ -93,8 +93,6 @@ export const addPageToStory = (storyId, newPage, fileToUpload) => {
               })
               axios.post(`/api/stories/${storyId}/pages`, imageObj)
               dispatch(addPage(response.data))
-              console.log('fileData', fileName)
-              console.log('FILE SUCCESSFULLY LOADED')
             }
           }
         })
@@ -109,15 +107,15 @@ export const addPageToStory = (storyId, newPage, fileToUpload) => {
   }
 }
 
-// export const fetchPageToEdit = pageID => async dispatch => {
-//   try {
-//     const {data} = await axios.get(`/api/pages/${pageID}`)
-//     console.log('data', data)
-//     dispatch(getPageToEdit(data))
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
+export const fetchOnePage = pageID => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/pages/${pageID}`)
+    console.log('data', data)
+    dispatch(getPageToEdit(data))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 //reducer
 export default function allPages(state = initialState, action) {
@@ -134,11 +132,11 @@ export default function allPages(state = initialState, action) {
         ...state,
         pages: action.page
       }
-    // case EDIT_PAGE:
-    //   return {
-    //     ...state,
-    //     pages: [action.page]
-    //   }
+    case GET_ONE_PAGE:
+      return {
+        ...state,
+        pages: [action.page]
+      }
     default:
       return state
   }

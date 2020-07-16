@@ -33,6 +33,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const SavePageToStory = props => {
+  console.log('check props for savePageToStory ===', props.stories)
+  const stories = props.stories
+  console.log('is this an array', Array.isArray(stories))
+
   const classes = useStyles()
   const [storyId, setStoryId] = React.useState('')
   const [open, setOpen] = React.useState({
@@ -126,13 +130,20 @@ const SavePageToStory = props => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {props.stories.map((story, id) => {
+              {/* {console.log('is this story?', Array.isArray(stories))
+                        
+            }
+            {/* { (stories) ? stories.map((story,id)=>{
+              console.log('story@@@@@', story)
+            }): null} */}{' '}
+              */}
+              {/* {props.stories.map((story, id) => {
                 return (
                   <MenuItem key={id} value={story.id}>
                     {story.title}
                   </MenuItem>
                 )
-              })}
+              })} */}
             </Select>
           </FormControl>
         </DialogContent>
