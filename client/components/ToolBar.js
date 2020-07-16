@@ -7,6 +7,7 @@ import TextTool from './TextTool'
 import DrawingTool from './DrawingTool'
 import StickerBar from './StickerBar'
 import Remove from './Delete'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,33 +28,43 @@ const ToolBar = props => {
   return (
     <div className={classes.root}>
       <ButtonGroup orientation="vertical">
-        <Button>
-          <StickerBar
-            canvas={props.canvas}
-            stickers={props.stickers}
-            addToCanvas={props.addToCanvas}
-          />
-        </Button>
+        <Tooltip title="STICKERS" placement="right-start">
+          <Button>
+            <StickerBar
+              canvas={props.canvas}
+              stickers={props.stickers}
+              addToCanvas={props.addToCanvas}
+            />
+          </Button>
+        </Tooltip>
 
-        <Button>
-          <DrawingTool canvas={props.canvas} />
-        </Button>
+        <Tooltip title="DRAW" placement="right-start">
+          <Button>
+            <DrawingTool canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
-        <Button>
-          <TextTool canvas={props.canvas} />
-        </Button>
+        <Tooltip title="TEXT" placement="right-start">
+          <Button>
+            <TextTool canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
-        <Button>
-          <Remove canvas={props.canvas} />
-        </Button>
+        <Tooltip title="DELETE" placement="right-start">
+          <Button>
+            <Remove canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
-        <Button aria-label="delete" fontSize="large">
-          <ClearRoundedIcon
-            onClick={() => {
-              clearEl()
-            }}
-          />
-        </Button>
+        <Tooltip title="CLEAR CANVAS" placement="right-start">
+          <Button aria-label="delete" fontSize="large">
+            <ClearRoundedIcon
+              onClick={() => {
+                clearEl()
+              }}
+            />
+          </Button>
+        </Tooltip>
       </ButtonGroup>
     </div>
   )
