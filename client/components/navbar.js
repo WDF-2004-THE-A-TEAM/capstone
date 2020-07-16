@@ -88,24 +88,27 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                 >
                   <Link to={`/${user.id}/canvas`}>
                     <Button color="inherit">
-                      <BrushIcon />
-                      <Typography>Canvas</Typography>
+
+                      <Typography> canvas </Typography>
+
                     </Button>
                   </Link>
 
                   <Link to="/gallery">
                     <Button color="inherit">
                       <DashboardIcon />
-                      <Typography className={classes.font}>Gallery</Typography>
-                    </Button>
+    <Typography className={classes.font}>gallery</Typography>
+   </Button>
                   </Link>
 
                   <Button color="inherit" onClick={handleClick}>
-                    Logout
+
+                    logout
                   </Button>
 
                   <Link to="/account">
-                    <Button startIcon={<AccountCircleIcon />}> ACCOUNT </Button>
+                    <Button startIcon={<AccountCircleIcon />}> account </Button>
+
                   </Link>
                 </Grid>
               </React.Fragment>

@@ -8,6 +8,7 @@ import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
@@ -40,7 +41,10 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
-    height: '600px'
+
+    height: '600px',
+    backgroundColor: 'blue'
+
   },
   container: {
     backgroundColor: '#C0D6DF'
@@ -68,7 +72,10 @@ class HomeView extends React.Component {
       const {data} = await axios.get(`/api/pages/${pageId}`)
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
-      this.canvas = new fabric.Canvas('my-canvas')
+
+      // console.log(canvasJSON)
+      this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
+      this.canvas.loadFromJSON(canvasJSON)
 
       this.canvas.loadFromJSON(canvasJSON)
     }
@@ -100,29 +107,21 @@ class HomeView extends React.Component {
     return (
       <div className={classes.root}>
 
-        <Container maxWidth="lg" className={classes.container}>
-          {/* <Navbar /> */}
+        <Container maxwidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* <Grid item xs={12} sm={3}>
-              <Paper className={classes.stickerBar}>
-                <StickerBar
-                  addToCanvas={this.addToCanvas}
-                  stickers={this.props.stickers}
-                />
-              </Paper>
+            <Grid item xs={12} sm={3}>
+              {/* <Paper className={classes.stickerBar}>
 
-              <DrawingTool canvas={this.canvas} />
+              <StickerBar
+                addToCanvas={this.addToCanvas}
+                stickers={this.props.stickers}
+              />
+            </Paper> */}
 
-              <TextTool canvas={this.canvas} />
-              <Button
-                onClick={() => {
-                  this.clearEl()
-                }}
-              >
-                clear
-              </Button>
-            </Grid> */}
 
+              <ToolBar canvas={this.canvas} />
+              <Remove canvas={this.canvas} />
+            </Grid>
             <Grid item xs="12">
               <Paper className={classes.paper}>
                 <h1> canvas </h1>
@@ -137,33 +136,6 @@ class HomeView extends React.Component {
                 <Canvas />
               </Paper>
             </Grid>
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={3}>
-            <Paper className={classes.stickerBar}>
-              <StickerBar
-                addToCanvas={this.addToCanvas}
-                stickers={this.props.stickers}
-              />
-            </Paper>
-
-
-            <ToolBar canvas={this.canvas} />
-            <Remove canvas={this.canvas} />
-         
-          </Grid>
-          <Grid item xs={12} sm={9}>
-            <Paper className={classes.paper}>
-              <SaveBar
-                canvas={this.canvas}
-                saveFile={this.saveFile}
-                exportFile={this.exportFile}
-                user={this.props.user}
-                stories={this.props.stories}
-                pageId={this.props.match.params.pageId}
-              />
-              <Canvas />
-            </Paper>
 
           </Grid>
         </Container>
