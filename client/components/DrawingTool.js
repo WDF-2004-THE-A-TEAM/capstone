@@ -32,13 +32,13 @@ class DrawingTool extends React.Component {
   render() {
     return (
       <div>
-        <CreateRoundedIcon
+        <GestureRoundedIcon
           id="draw-button"
           disabled={true}
           onClick={() => {
             this.drawOnCanvas()
           }}
-        ></CreateRoundedIcon>
+        ></GestureRoundedIcon>
       </div>
     )
   }

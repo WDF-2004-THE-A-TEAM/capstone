@@ -15,8 +15,6 @@ import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 import {fetchOnePage} from '../store/pages'
 import axios from 'axios'
-
-import Container from '@material-ui/core/Container'
 import {grey} from '@material-ui/core/colors'
 import Navbar from './navbar'
 
@@ -125,18 +123,14 @@ class HomeView extends React.Component {
         <Container maxwidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
-              {/* <Paper className={classes.stickerBar}>
-
-              <StickerBar
+              <ToolBar
+                canvas={this.canvas}
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
               />
-            </Paper> */}
-
-              <ToolBar canvas={this.canvas} />
-              <Remove canvas={this.canvas} />
             </Grid>
-            <Grid item xs="12">
+
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1> canvas </h1>
                 <SaveBar
