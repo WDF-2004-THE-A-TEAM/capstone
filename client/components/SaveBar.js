@@ -12,13 +12,27 @@ import AddPageToStory from './AddPageToStory'
 import SaveChange from './SaveChange'
 import Button from '@material-ui/core/Button'
 
+import {makeStyles} from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+  buttonStyle: {
+    color: '#EAEAEA',
+    borderRadius: '50%',
+    backgroundColor: '#EAA286',
+    padding: 25,
+    marginLeft: '24px'
+  }
+}))
+
 const SaveBar = props => {
+  const classes = useStyles()
+
   const saveFile = (title, canvas) => {
     let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
   }
 
   const exportFile = () => {
-    // 1) change backgrounf color to white, then render the canvas
+    // 1) change background color to white, then render the canvas
     // 2) grab canvas 'DOM' element
     // 3) call ToBlob function on the canvas DOM and SaveAs.'file_name.jpeg'
     props.canvas.setBackgroundColor(
