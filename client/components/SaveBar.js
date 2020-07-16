@@ -13,6 +13,7 @@ import SaveChange from './SaveChange'
 import Button from '@material-ui/core/Button'
 
 const SaveBar = props => {
+  console.log('save bar props', props)
   const saveFile = (title, canvas) => {
     let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
   }
@@ -38,6 +39,7 @@ const SaveBar = props => {
         canvas={props.canvas}
         addStory={props.addStoryToUser}
         user={props.user}
+        stories={props.stories}
       />
       <AddPageToStory
         canvas={props.canvas}
