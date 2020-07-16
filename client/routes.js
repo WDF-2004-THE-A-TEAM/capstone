@@ -34,11 +34,17 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/:userId/canvas" component={Homeview} />
-            <Route path="/canvas/:pageId" component={Homeview} />
+            <Route exact path="/:userId/canvas" component={Homeview} />
+            <Route
+              path="/:userId/canvas/story/:storyId/page/:pageId"
+              component={Homeview}
+            />
             <Route exact path="/gallery" component={Gallery} />
             <Route path="/test" component={AmazonTest} />
-            <Route path="/gallery/stories/:storyId/pages" component={Pages} />
+            <Route
+              path="/:userId/gallery/stories/:storyId/pages"
+              component={Pages}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

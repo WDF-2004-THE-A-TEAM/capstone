@@ -8,13 +8,12 @@ import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
 import TextTool from './TextTool'
 import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
-// import {fetchPageToEdit} from '../store/pages'
+import {fetchOnePage} from '../store/pages'
 import axios from 'axios'
 import {grey} from '@material-ui/core/colors'
 import Navbar from './navbar'
@@ -57,27 +56,47 @@ class HomeView extends React.Component {
 
   componentDidMount() {
     //WHY IS THIS NOT WORKING WHEN REFRESHING???
+    this.props.fetchStickers()
+    this.props.fetchAllStories(this.props.match.params.userId)
+
+    // this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     let pageId = this.props.match.params.pageId
 
+    // if (this.props.match.params.userId){
+    //   this.props.fetchAllStories(this.props.match.params.userId)
+    // }
+
+    // console.log('page', pageId, this.props)
+
+    // if (!pageId) {
+    //   // if pageId isn't exits, then create new canvas
+    // } else {
+    //   // render canvas by Id
+    //   const {data} = axios.get(`/api/pages/${pageId}`)
+    //   console.log('homeview data', data)
+    //   // const canvasJSON = data.canvasPage
+
+    //   // console.log(canvasJSON)
+    //   this.props.fetchOnePage(pageId)
+    //   console.log('#### props ###', this.props)
+    //   // this.canvas.loadFromJSON(canvasJSON)
+    // }
     if (!pageId) {
-      // if pageId isn't exits, then create new canvas
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
-      // render canvas by Id
-      const {data} = axios.get(`/api/pages/${pageId}`)
-      console.log('homeview data', data)
-      const canvasJSON = data.canvasPage
-
-      // console.log(canvasJSON)
+      // this.props.fetchOnePage(pageId)
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
-      this.canvas.loadFromJSON(canvasJSON)
 
-      this.canvas.loadFromJSON(canvasJSON)
+      const findPageById = async () => {
+        const {data} = await axios.get(`/api/pages/${pageId}`)
+        const canvasJSON = data.canvasPage
+        this.canvas.loadFromJSON(canvasJSON)
+      }
+
+      findPageById()
     }
 
-    this.props.fetchStickers()
-
-    this.props.fetchAllStories(this.props.match.params.userId)
+    // this.props.fetchStickers()
   }
 
   addToCanvas(sticker) {
@@ -97,6 +116,7 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
+    console.log('page!!!', this.props)
 
     return (
       <div className={classes.root}>
@@ -115,8 +135,8 @@ class HomeView extends React.Component {
                 <h1> canvas </h1>
                 <SaveBar
                   canvas={this.canvas}
-                  saveFile={this.saveFile}
-                  exportFile={this.exportFile}
+                  // saveFile={this.saveFile}
+                  // exportFile={this.exportFile}
                   user={this.props.user}
                   stories={this.props.stories}
                   pageId={this.props.match.params.pageId}
@@ -136,8 +156,8 @@ const mapState = state => {
   return {
     stickers: state.sticker.stickers,
     user: state.user,
-    stories: state.stories.allStories
-    // page: state.allPages.pages
+    stories: state.stories.allStories,
+    page: state.allPages.pages
   }
 }
 
@@ -145,8 +165,8 @@ const mapDispatch = dispatch => {
   return {
     fetchAllStories: userId => dispatch(fetchAllStories(userId)),
     fetchStickers: () => dispatch(fetchStickers()),
-    getUser: () => dispatch(me())
-    // fetchPageToEdit: pageId => dispatch(fetchPageToEdit(pageId))
+    getUser: () => dispatch(me()),
+    fetchOnePage: pageId => dispatch(fetchOnePage(pageId))
   }
 }
 

@@ -18,6 +18,8 @@ router.get('/', async (req, res, next) => {
 
 //get One page
 router.get('/:pageID', async (req, res, next) => {
+  console.log('getting data===', req.body)
+
   try {
     const pageId = req.params.pageID
     const onePage = await Page.findByPk(pageId)
@@ -68,6 +70,7 @@ router.post('/', async (req, res, next) => {
 //update page
 //make sure story id gets sent here too
 router.put('/:pageId', async (req, res, next) => {
+  console.log('BODY.REQ', req.body)
   try {
     const pageId = req.body.pageID
     const pageToEdit = await Page.findByPk(pageId)

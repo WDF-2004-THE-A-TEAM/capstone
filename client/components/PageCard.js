@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 const PageCard = props => {
   const classes = useStyles()
+  console.log('find user id', props)
   const pages = props.pages
   return (
     <React.Fragment>
@@ -71,9 +72,13 @@ const PageCard = props => {
                       View
                     </Button>
 
-                    <Button size="small" color="primary">
-                      <Link to={`/canvas/${page.id}`}> Edit </Link>
-                    </Button>
+                    <Link
+                      to={`/${props.userId}/canvas/story/${props.storyId}/page/${page.id}`}
+                    >
+                      <Button size="small" color="primary">
+                        Edit
+                      </Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
