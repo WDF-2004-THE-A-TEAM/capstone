@@ -23,7 +23,7 @@ router.get('/:userId/stories', async (req, res, next) => {
 //get one story
 router.get('/:storyId', async (req, res, next) => {
   try {
-    const storyId = req.params.storyID
+    const storyId = req.params.storyId
     const story = await Story.findByPk(storyId)
     if (story) {
       res.status(200).json(story)

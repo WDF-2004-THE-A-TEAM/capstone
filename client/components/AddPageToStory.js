@@ -43,7 +43,6 @@ const SavePageToStory = props => {
   const handleChange = event => {
     event.preventDefault()
     setStoryId(event.target.value)
-    console.log(storyId)
   }
 
   const handleClickOpen = () => {
@@ -68,12 +67,31 @@ const SavePageToStory = props => {
     setOpenDropDown(true)
   }
 
+  const dataURItoBlob = dataURI => {
+    var binary = atob(dataURI.split(',')[1])
+    var array = []
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i))
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+  }
+
   const saveAsNewPage = () => {
+    const canvas = document.getElementById('my-canvas')
+    const dataUrl = canvas.toDataURL('image/jpeg')
+    const blobData = dataURItoBlob(dataUrl)
+
+    const imageFileToUpload = Object.assign(blobData, {
+      name: `PAGE.png`
+    })
+
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
     let newPage = {
       canvasPage: canvasJSON
     }
-    props.addPage(storyId, newPage)
+
+    console.log('reADY?', storyId, newPage, imageFileToUpload)
+    props.addPage(storyId, newPage, imageFileToUpload)
     handleClose()
   }
 

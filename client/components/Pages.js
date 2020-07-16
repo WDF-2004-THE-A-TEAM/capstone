@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import PageCard from './PageCard'
 import {fetchAllPages} from '../store/pages'
+import {fetchOneStory} from '../store/stories'
 
 const styles = theme => ({
   mainFeaturedPost: {
@@ -45,21 +46,19 @@ class Pages extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllPages(this.props.match.params.storyId)
-
-    // this.setState({
-    //   background: this.props.pages[0].imgURL
-    // })
+    this.props.fetchOneStory(this.props.match.params.storyId)
   }
 
   render() {
     const {classes} = this.props
+    console.log('IS THERE A STORY==', this.props)
     return (
       <div>
         <Paper
           className={classes.mainFeaturedPost}
           style={{
-            backgroundImage: this.props.pages[0]
-              ? `url(${this.props.pages[0].imgURL})`
+            backgroundImage: this.props.story
+              ? `url(${this.props.story.coverImage})`
               : null
           }}
         >
@@ -67,7 +66,7 @@ class Pages extends React.Component {
           {
             <img
               style={{display: 'none'}}
-              src="https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+              src={`${this.props.story.coverImage}`}
             />
           }
           <div className={classes.overlay} />
@@ -104,12 +103,14 @@ Pages.propTypes = {
 
 const mapState = state => {
   return {
-    pages: state.allPages.pages
+    pages: state.allPages.pages,
+    story: state.stories.allStories
   }
 }
 
 const mapDispatch = dispatch => {
   return {
+    fetchOneStory: storyId => dispatch(fetchOneStory(storyId)),
     fetchAllPages: storyId => dispatch(fetchAllPages(storyId))
   }
 }

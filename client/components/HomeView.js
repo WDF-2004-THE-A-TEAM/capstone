@@ -44,17 +44,16 @@ class HomeView extends React.Component {
     this.clearEl = this.clearEl.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     //WHY IS THIS NOT WORKING WHEN REFRESHING???
     let pageId = this.props.match.params.pageId
-    console.log('pageId', pageId)
 
     if (!pageId) {
       // if pageId isn't exits, then create new canvas
       this.canvas = new fabric.Canvas('my-canvas')
     } else {
       // render canvas by Id
-      const {data} = await axios.get(`/api/pages/${pageId}`)
+      const {data} = axios.get(`/api/pages/${pageId}`)
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
       // console.log(canvasJSON)
@@ -67,9 +66,8 @@ class HomeView extends React.Component {
     }
 
     this.props.fetchStickers()
-    if (this.props.match.params.userId) {
-      this.props.fetchAllStories(this.props.match.params.userId)
-    }
+
+    this.props.fetchAllStories(this.props.match.params.userId)
   }
 
   addToCanvas(sticker) {

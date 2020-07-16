@@ -2,10 +2,18 @@ import axios from 'axios'
 import history from '../history'
 
 //action types
+const GET_ONE_STORY = 'GET_ONE_STORY'
 const GET_ALL_STORIES = 'GET_ALL_STORIES'
 const ADD_STORY = 'ADD_STORY'
 
 //action creator
+const getOneStory = story => {
+  return {
+    type: GET_ONE_STORY,
+    story
+  }
+}
+
 const getAllStories = stories => {
   return {
     type: GET_ALL_STORIES,
@@ -30,6 +38,14 @@ export const fetchAllStories = userId => {
   return async dispatch => {
     const res = await axios.get(`/api/stories/${userId}/stories`)
     dispatch(getAllStories(res.data))
+  }
+}
+
+//get one story by id
+export const fetchOneStory = storyId => {
+  return async dispatch => {
+    const res = await axios.get(`/api/stories/${storyId}`)
+    dispatch(getOneStory(res.data))
   }
 }
 
@@ -90,7 +106,8 @@ export default function(state = initialState, action) {
       return {...state, allStories: action.stories}
     case ADD_STORY:
       return {...state, allStories: [...state.allStories, action.newStory]}
-
+    case GET_ONE_STORY:
+      return {...state, allStories: action.story}
     default:
       return state
   }
