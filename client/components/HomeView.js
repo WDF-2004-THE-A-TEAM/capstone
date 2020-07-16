@@ -6,7 +6,7 @@ import Canvas from './Canvas'
 import SaveBar from './SaveBar'
 import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
-
+import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
@@ -125,11 +125,11 @@ class HomeView extends React.Component {
                 className={classes.stickerBar}
               /> */}
 
-             <ToolBar
-              canvas={this.canvas}
-              addToCanvas={this.addToCanvas}
-              stickers={this.props.stickers}
-            />
+              <ToolBar
+                canvas={this.canvas}
+                addToCanvas={this.addToCanvas}
+                stickers={this.props.stickers}
+              />
             </Grid>
             <Grid item md={9} className={classes.paper}>
               <h1> canvas </h1>
@@ -142,7 +142,6 @@ class HomeView extends React.Component {
                 pageId={this.props.match.params.pageId}
               />
               <Canvas />
-
             </Grid>
           </Grid>
         </Container>
