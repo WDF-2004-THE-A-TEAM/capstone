@@ -76,7 +76,7 @@ img {
   cursor: pointer;
 }
 
-<<<<<<< head ======= canvas {
+ canvas {
   border: solid 2px darkgrey;
 }
 
@@ -85,6 +85,8 @@ img {
   justify-content: center;
   /* align-content: center; */
 }
+
+
 
 #my-canvas {
   /* background-color: hotpink; */
@@ -99,7 +101,9 @@ img {
   justify-content: center;
 }
 
->>>>>>>70f96ac6de38d46f8aa5c18b57ab18fadddfec88 #draw-button {
+
+#draw-button {
+
   color: grey;
 }
 /* 

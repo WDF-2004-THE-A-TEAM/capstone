@@ -16,7 +16,13 @@ import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 // import {fetchPageToEdit} from '../store/pages'
 import axios from 'axios'
+
+import Container from '@material-ui/core/Container'
+import {grey} from '@material-ui/core/colors'
+import Navbar from './navbar'
+
 import ToolBar from './ToolBar'
+
 
 const styles = theme => ({
   root: {
@@ -35,8 +41,10 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
+
     height: '600px',
     backgroundColor: 'blue'
+
   },
   container: {
     backgroundColor: '#C0D6DF'
@@ -64,13 +72,12 @@ class HomeView extends React.Component {
       const {data} = await axios.get(`/api/pages/${pageId}`)
       console.log('homeview data', data)
       const canvasJSON = data.canvasPage
+
       // console.log(canvasJSON)
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
       this.canvas.loadFromJSON(canvasJSON)
 
-      // this.props.fetchPageToEdit(pageId)
-      // console.log('@@@@@@@')
-      // console.log('after fetch from page', this.props)
+      this.canvas.loadFromJSON(canvasJSON)
     }
 
     this.props.fetchStickers()
@@ -99,15 +106,18 @@ class HomeView extends React.Component {
 
     return (
       <div className={classes.root}>
+
         <Container maxwidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={3}>
               {/* <Paper className={classes.stickerBar}>
+
               <StickerBar
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
               />
             </Paper> */}
+
 
               <ToolBar canvas={this.canvas} />
               <Remove canvas={this.canvas} />
@@ -126,6 +136,7 @@ class HomeView extends React.Component {
                 <Canvas />
               </Paper>
             </Grid>
+
           </Grid>
         </Container>
       </div>
