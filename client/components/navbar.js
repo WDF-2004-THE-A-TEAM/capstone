@@ -4,10 +4,11 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import logo from '../../public/images/logo.png'
-
+import {borders} from '@material-ui/system'
 //make styles bc we are working inside a functional component
 import {makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -21,10 +22,15 @@ import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
+import ColorLensIcon from '@material-ui/icons/ColorLens'
+import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#DD6E42'
+    backgroundColor: '#DD6E42',
+    padding: theme.spacing(8)
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -44,7 +50,9 @@ const useStyles = makeStyles(theme => ({
   buttonStyle: {
     color: '#EAEAEA',
     borderRadius: '50%',
-    backgroundColor: '#EAA286'
+    backgroundColor: '#EAA286',
+    padding: 25,
+    marginLeft: '24px'
   }
 }))
 
@@ -65,6 +73,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
+      <Container></Container>
       {/* <ElevationScroll> */}
       <AppBar
         position="static"
@@ -73,7 +82,11 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           boxShadow: 'none'
         }}
       >
-        <Toolbar className={classes.headerContainer} disableGutters>
+        <Toolbar
+          className={classes.headerContainer}
+          maxwidth="lg"
+          disableGutters
+        >
           <Link to="/canvas">
             <img className={classes.title} src={logo} alt="logo" />
           </Link>
@@ -87,48 +100,50 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                   alignItems="center"
                 >
                   <Link to={`/${user.id}/canvas`}>
-                    <Button color="inherit">
-
+                    <Button className={classes.buttonStyle}>
                       <Typography> canvas </Typography>
-
                     </Button>
                   </Link>
 
                   <Link to="/gallery">
-                    <Button color="inherit">
-                      <DashboardIcon />
-    <Typography className={classes.font}>gallery</Typography>
-   </Button>
+                    <Button className={classes.buttonStyle}>
+                      <Typography className={classes.font}>gallery</Typography>
+                    </Button>
                   </Link>
 
-                  <Button color="inherit" onClick={handleClick}>
-
+                  <Button className={classes.buttonStyle} onClick={handleClick}>
                     logout
                   </Button>
 
                   <Link to="/account">
-                    <Button startIcon={<AccountCircleIcon />}> account </Button>
-
+                    <Button
+                      className={classes.buttonStyle}
+                      startIcon={<AccountCircleIcon />}
+                    >
+                      {' '}
+                      account{' '}
+                    </Button>
                   </Link>
                 </Grid>
               </React.Fragment>
             ) : (
               <React.Fragment>
                 {/* The navbar will show these links before you log in */}
+
                 <Link to="/canvas">
-                  <BrushIcon />
                   <Button className={classes.buttonStyle}>
-                    <Typography>canvas</Typography>
+                    <ColorLensIcon />
                   </Button>
                 </Link>
+
                 <Link to="/signin">
-                  <Button>
-                    <Typography>login</Typography>
+                  <Button className={classes.buttonStyle}>
+                    <PersonPinIcon />
                   </Button>
                 </Link>
                 <Link to="/signup">
-                  <Button>
-                    <Typography>sign up</Typography>
+                  <Button className={classes.buttonStyle}>
+                    <PersonAddIcon />
                   </Button>
                 </Link>
               </React.Fragment>

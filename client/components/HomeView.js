@@ -6,7 +6,7 @@ import Canvas from './Canvas'
 import SaveBar from './SaveBar'
 import {fabric} from 'fabric'
 import {withStyles} from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
+
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import DrawingTool from './DrawingTool'
@@ -22,7 +22,8 @@ import ToolBar from './ToolBar'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: '#C0D6DF'
   },
   paper: {
     padding: theme.spacing(4),
@@ -37,12 +38,7 @@ const styles = theme => ({
   },
   canvas: {
     width: '100%',
-
-    height: '600px',
-    backgroundColor: 'blue'
-  },
-  container: {
-    backgroundColor: '#C0D6DF'
+    height: '600px'
   }
 })
 
@@ -121,28 +117,32 @@ class HomeView extends React.Component {
     return (
       <div className={classes.root}>
         <Container maxwidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
-              <ToolBar
-                canvas={this.canvas}
+          <Grid container alignItems="center" spacing={3}>
+            <Grid item md={3}>
+              {/* <StickerBar
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
-              />
-            </Grid>
+                className={classes.stickerBar}
+              /> */}
 
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <h1> canvas </h1>
-                <SaveBar
-                  canvas={this.canvas}
-                  // saveFile={this.saveFile}
-                  // exportFile={this.exportFile}
-                  user={this.props.user}
-                  stories={this.props.stories}
-                  pageId={this.props.match.params.pageId}
-                />
-                <Canvas />
-              </Paper>
+             <ToolBar
+              canvas={this.canvas}
+              addToCanvas={this.addToCanvas}
+              stickers={this.props.stickers}
+            />
+            </Grid>
+            <Grid item md={9} className={classes.paper}>
+              <h1> canvas </h1>
+              <SaveBar
+                canvas={this.canvas}
+                saveFile={this.saveFile}
+                exportFile={this.exportFile}
+                user={this.props.user}
+                stories={this.props.stories}
+                pageId={this.props.match.params.pageId}
+              />
+              <Canvas />
+
             </Grid>
           </Grid>
         </Container>
