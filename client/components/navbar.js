@@ -127,6 +127,19 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     </Link>
                   </Tooltip>
 
+
+                  <Link to="/gallery">
+                    <Button className={classes.buttonStyle}>
+                      <Typography className={classes.font}>gallery</Typography>
+                    </Button>
+                  </Link>
+
+                  <Button className={classes.buttonStyle} onClick={handleClick}>
+                    logout
+                  </Button>
+
+                  <Link to={`/${user.id}/account`}>
+
                   <Tooltip
                     TransitionComponent={Fade}
                     TransitionProps={{timeout: 600}}
@@ -134,6 +147,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="bottom"
                     arrow
                   >
+
                     <Button
                       className={classes.buttonStyle}
                       onClick={handleClick}

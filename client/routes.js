@@ -10,6 +10,7 @@ import SplashPage from './components/SplashPage'
 import Gallery from './components/Gallery'
 import Pages from './components/Pages'
 import AmazonTest from './components/amazonTest'
+import Account from './components/Account'
 import {me} from './store'
 
 /**
@@ -45,6 +46,7 @@ class Routes extends Component {
               path="/:userId/gallery/stories/:storyId/pages"
               component={Pages}
             />
+            <Route exact path="/:userId/account" component={Account} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
