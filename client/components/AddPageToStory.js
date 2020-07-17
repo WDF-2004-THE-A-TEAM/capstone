@@ -149,16 +149,7 @@ const SavePageToStory = props => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {/* {console.log('is this story?', Array.isArray(stories))
-
-            }
-            {/* { (stories) ? stories.map((story,id)=>{
-              console.log('story@@@@@', story)
-
-            }): null} */}
-
               {props.stories.map((story, id) => {
-
                 return (
                   <MenuItem key={id} value={story.id}>
                     {story.title}
