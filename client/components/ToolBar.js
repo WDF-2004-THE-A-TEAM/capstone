@@ -15,11 +15,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     '& > *': {
       margin: theme.spacing(1)
-    }
+    },
+    justifyContent: 'center'
   },
   buttonStyle: {
     color: '#4F6D7A',
-    padding: 40
+    padding: 35,
+    borderRadius: '25%'
   }
 }))
 
