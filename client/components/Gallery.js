@@ -25,6 +25,7 @@ class Gallery extends React.Component {
   }
 
   render() {
+    console.log('gallery', this.props)
     const {classes} = this.props
 
     return (
@@ -33,6 +34,9 @@ class Gallery extends React.Component {
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="lg">
+            <div>
+              <h2 id="user-name"> Welcome, {this.props.user.name}!</h2>
+            </div>
             <Grid container spacing={3}>
               {this.props.stories.map(story => {
                 return (

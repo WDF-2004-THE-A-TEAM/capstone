@@ -102,3 +102,8 @@ canvas {
 #draw-button {
   color: grey;
 }
+
+#user-name {
+  color: #4f6d7a;
+  font-size: 200%;
+}
