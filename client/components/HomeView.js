@@ -115,7 +115,6 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('page!!!', this.props)
 
     return (
       <div className={classes.root}>
@@ -154,7 +153,6 @@ class HomeView extends React.Component {
 }
 
 const mapState = state => {
-  console.log('mapping', state)
   return {
     stickers: state.sticker.stickers,
     user: state.user,

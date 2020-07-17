@@ -29,6 +29,7 @@ export default class Remove extends React.Component {
 
         <DeleteForeverRoundedIcon
           id="text-tool"
+          fontSize="large"
           onClick={() => {
             this.Remove()
           }}

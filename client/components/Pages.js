@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import PageCard from './PageCard'
 import {fetchAllPages} from '../store/pages'
-import {fetchOneStory} from '../store/stories'
+import {fetchOneStory} from '../store/singleStory'
 
 const styles = theme => ({
   mainFeaturedPost: {
@@ -108,7 +108,7 @@ Pages.propTypes = {
 const mapState = state => {
   return {
     pages: state.allPages.pages,
-    story: state.stories.allStories
+    story: state.singleStory.story
   }
 }
 
