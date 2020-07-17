@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/box'
 import splashPageImage from '../../public/SplashPage.jpg'
 import splashPageImage2 from '../../public/splash_page.png'
-import splashPageImage3 from '../../public/splash.png'
+import splashPageImage3 from '../../public/splash_unicorn.png'
 
 import {Link} from 'react-router-dom'
 
