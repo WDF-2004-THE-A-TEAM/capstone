@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   gridList: {
     paddingTop: '40px',
+    paddingBottom: '40px',
     width: 200,
     height: 350
   }
@@ -48,7 +49,7 @@ const StickerBar = props => {
   //Thie stickers are here in this body rendered below in the the Popover component
   const body = (
     <div id="sticker" className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={160} col={3}>
+      <GridList className={classes.gridList} cellHeight={160} col={2}>
         {/* <h1>STICKERS:</h1> */}
         {stickers.map(sticker => {
           return (
