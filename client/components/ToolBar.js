@@ -59,8 +59,10 @@ const ToolBar = props => {
         <Tooltip title="CLEAR CANVAS" placement="right-start" arrow>
           <Button aria-label="delete" fontSize="large">
             <ClearRoundedIcon
+              canvas={props.canvas}
               onClick={() => {
                 clearEl()
+                props.canvas.backgroundColor = 'white'
               }}
             />
           </Button>

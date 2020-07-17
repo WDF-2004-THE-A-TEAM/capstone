@@ -18,7 +18,6 @@ class DrawingTool extends React.Component {
   }
 
   drawOnCanvas() {
-    console.log('drawing....')
     this.props.canvas.isDrawingMode = !this.props.canvas.isDrawingMode
     if (this.props.canvas.isDrawingMode) {
       document.getElementById('draw-button').disabled = false
@@ -32,13 +31,13 @@ class DrawingTool extends React.Component {
   render() {
     return (
       <div>
-        <GestureRoundedIcon
+        <CreateRoundedIcon
           id="draw-button"
           disabled={true}
           onClick={() => {
             this.drawOnCanvas()
           }}
-        ></GestureRoundedIcon>
+        ></CreateRoundedIcon>
       </div>
     )
   }
