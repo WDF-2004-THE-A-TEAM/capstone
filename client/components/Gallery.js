@@ -18,10 +18,13 @@ const styles = theme => ({
 class Gallery extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      stories: []
+    }
   }
 
   componentDidMount() {
-    this.props.fetchAllStories(this.props.user.id)
+    this.props.fetchAllStories(this.props.match.params.userId)
   }
 
   render() {
@@ -34,18 +37,20 @@ class Gallery extends React.Component {
           <CssBaseline />
           <Container maxWidth="lg">
             <Grid container spacing={3}>
-              {this.props.stories.map(story => {
-                return (
-                  <Grid key={story.id} item xs={12} sm={3}>
-                    <SingleStoryCard
-                      key={story.id}
-                      story={story}
-                      userId={this.props.user.id}
-                      stories={this.props.stories}
-                    />
-                  </Grid>
-                )
-              })}
+              {this.props.stories !== undefined
+                ? this.props.stories.map(story => {
+                    return (
+                      <Grid key={story.id} item xs={12} sm={3}>
+                        <SingleStoryCard
+                          key={story.id}
+                          story={story}
+                          userId={this.props.user.id}
+                          stories={this.props.stories}
+                        />
+                      </Grid>
+                    )
+                  })
+                : null}
             </Grid>
           </Container>
         </React.Fragment>

@@ -33,12 +33,11 @@ const SaveToNewStoryCard = props => {
     event.preventDefault()
     const titleLabel = event.target.id
     const title = event.target.value
-    console.log('title==', titleLabel, title)
+
     setOpen({
       ...open,
       [titleLabel]: title
     })
-    console.log(open)
   }
 
   const dataURItoBlob = dataURI => {

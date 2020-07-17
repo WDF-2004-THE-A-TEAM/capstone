@@ -105,7 +105,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     </Button>
                   </Link>
 
-                  <Link to="/gallery">
+                  <Link to={`/${user.id}/gallery`}>
                     <Button className={classes.buttonStyle}>
                       <Typography className={classes.font}>gallery</Typography>
                     </Button>

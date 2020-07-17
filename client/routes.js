@@ -36,12 +36,14 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/:userId/canvas" component={Homeview} />
             <Route
+              exact
               path="/:userId/canvas/story/:storyId/page/:pageId"
               component={Homeview}
             />
-            <Route exact path="/gallery" component={Gallery} />
+            <Route exact path="/:userId/gallery" component={Gallery} />
             <Route path="/test" component={AmazonTest} />
             <Route
+              exact
               path="/:userId/gallery/stories/:storyId/pages"
               component={Pages}
             />

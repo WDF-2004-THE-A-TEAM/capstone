@@ -126,7 +126,6 @@ const SignIn = props => {
     event.preventDefault()
     const infoType = event.target.id
     const info = event.target.value
-    console.log('info=', infoType, info)
 
     setInfo({
       ...state,
@@ -134,7 +133,6 @@ const SignIn = props => {
       fieldEmpty: false,
       userNameAndPassword: null
     })
-    console.log('THIS IS STATE===', state)
   }
 
   return (
