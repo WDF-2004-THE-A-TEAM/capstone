@@ -34,6 +34,7 @@ class DrawingTool extends React.Component {
       <div>
         <GestureRoundedIcon
           id="draw-button"
+          fontSize="large"
           disabled={true}
           onClick={() => {
             this.drawOnCanvas()
