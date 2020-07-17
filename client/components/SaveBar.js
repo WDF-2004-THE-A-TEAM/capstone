@@ -4,8 +4,7 @@ import PopUp from './SavePopUp'
 import Canvas from './Canvas'
 import {saveAs} from 'file-saver'
 import {addStoryToUser} from '../store/singleStory'
-import {me} from '../store/user'
-import {addPageToStory} from '../store/pages'
+import {addPageToStory} from '../store/singlePage'
 import {connect} from 'react-redux'
 import SaveToNewStoryCard from './SaveToNewStoryCard'
 import AddPageToStory from './AddPageToStory'
@@ -30,9 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 const SaveBar = props => {
   const classes = useStyles()
-  const saveFile = (title, canvas) => {
-    let canvasJSON = JSON.stringify(this.props.canvas.toDatalessJSON())
-  }
 
   const exportFile = () => {
     // 1) change background color to white, then render the canvas
