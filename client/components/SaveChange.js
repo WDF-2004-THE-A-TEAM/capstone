@@ -44,7 +44,6 @@ const SaveChange = props => {
   const handleChange = event => {
     event.preventDefault()
     setStoryId(event.target.value)
-    console.log(storyId)
   }
 
   const handleClickOpen = () => {
@@ -79,10 +78,7 @@ const SaveChange = props => {
   }
 
   const saveChange = async () => {
-    console.log('saving change...')
     let pageID = props.PageId
-    console.log('save pageId', pageID)
-
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
     await axios.put(`/api/pages/${pageID}`, {pageID, canvasJSON})
     alert('successfully saved!')

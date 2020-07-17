@@ -3,7 +3,7 @@ import {fabric} from 'fabric'
 import PopUp from './SavePopUp'
 import Canvas from './Canvas'
 import {saveAs} from 'file-saver'
-import {addStoryToUser, fetchAllStories} from '../store/stories'
+import {addStoryToUser} from '../store/singleStory'
 import {me} from '../store/user'
 import {addPageToStory} from '../store/pages'
 import {connect} from 'react-redux'
@@ -88,11 +88,6 @@ const SaveBar = props => {
     </div>
   )
 }
-const mapState = state => {
-  return {
-    stories: state.stories.allStories
-  }
-}
 
 const mapDispatch = dispatch => {
   return {
@@ -102,4 +97,4 @@ const mapDispatch = dispatch => {
       dispatch(addPageToStory(storyId, newPage, fileToUpload))
   }
 }
-export default connect(mapState, mapDispatch)(SaveBar)
+export default connect(null, mapDispatch)(SaveBar)
