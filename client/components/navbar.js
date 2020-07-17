@@ -115,7 +115,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     logout
                   </Button>
 
-                  <Link to="/account">
+                  <Link to={`/${user.id}/account`}>
                     <Button
                       className={classes.buttonStyle}
                       startIcon={<AccountCircleIcon />}
