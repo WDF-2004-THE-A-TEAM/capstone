@@ -120,25 +120,24 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
-                    <Link to="/gallery">
+                    <Link to={`/${user.id}/gallery`}>
                       <Button className={classes.buttonStyle}>
                         <BurstModeRoundedIcon />
                       </Button>
                     </Link>
                   </Tooltip>
 
-
-                  <Link to={`/${user.id}/gallery`}>
+                  {/* <Link to={`/${user.id}/gallery`}>
                     <Button className={classes.buttonStyle}>
                       <Typography className={classes.font}>gallery</Typography>
                     </Button>
-                  </Link>
+                  </Link> */}
 
                   <Button className={classes.buttonStyle} onClick={handleClick}>
                     logout
                   </Button>
 
-                  <Link to={`/${user.id}/account`}>
+                  {/* <Link to={`/${user.id}/account`}> */}
 
                   <Tooltip
                     TransitionComponent={Fade}
@@ -147,7 +146,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="bottom"
                     arrow
                   >
-
                     <Button
                       className={classes.buttonStyle}
                       onClick={handleClick}
@@ -155,6 +153,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       <EmojiPeopleRoundedIcon />
                     </Button>
                   </Tooltip>
+                  {/* </Link> */}
 
                   <Tooltip
                     TransitionComponent={Fade}
@@ -163,7 +162,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
-                    <Link to="/account">
+                    <Link to={`/${user.id}/account`}>
                       <Button className={classes.buttonStyle}>
                         <AccountCircleIcon />
                       </Button>
