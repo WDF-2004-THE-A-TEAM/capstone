@@ -11,6 +11,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
 import axios from 'axios'
+import Fade from '@material-ui/core/Fade'
+import Tooltip from '@material-ui/core/Tooltip'
+import SaveIcon from '@material-ui/icons/Save'
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -20,6 +24,12 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120
+  },
+  buttonStyle: {
+    color: '#4F6D7A',
+    padding: 25,
+    marginLeft: '24px',
+    marginRight: '24px'
   }
 }))
 
@@ -81,9 +91,17 @@ const SaveChange = props => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Save Change
-      </Button>
+      <Tooltip
+        TransitionComponent={Fade}
+        TransitionProps={{timeout: 600}}
+        title="SAVE CHANGE"
+        placement="top"
+        arrow
+      >
+        <IconButton className={classes.buttonStyle} onClick={handleClickOpen}>
+          <SaveIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
       <Dialog
         open={open.state}
         onClose={handleClose}

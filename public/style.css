@@ -77,7 +77,7 @@ img {
 }
 
 canvas {
-  border: solid 2px darkgrey;
+  border: solid 2px #4f6d7a;
 }
 
 #save-bar {
@@ -100,5 +100,5 @@ canvas {
 }
 
 #draw-button {
-  color: grey;
+  color: #4f6d7a;
 }

@@ -25,7 +25,9 @@ export default class TextTool extends React.Component {
   render() {
     return (
       <TextFieldsRoundedIcon
+        fontSize="large"
         id="text-tool"
+        color="#4f6d7a"
         onClick={() => {
           this.AddText()
         }}

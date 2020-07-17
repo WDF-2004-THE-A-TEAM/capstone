@@ -12,19 +12,20 @@ import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import MenuIcon from '@material-ui/icons/Menu'
-import DashboardIcon from '@material-ui/icons/Dashboard'
 import Box from '@material-ui/core/Box'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
-import BrushIcon from '@material-ui/icons/Brush'
 import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-
+import Fade from '@material-ui/core/Fade'
+import Tooltip from '@material-ui/core/Tooltip'
+//icons
 import ColorLensIcon from '@material-ui/icons/ColorLens'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import PersonPinIcon from '@material-ui/icons/PersonPin'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import BurstModeRoundedIcon from '@material-ui/icons/BurstModeRounded'
+import EmojiPeopleRoundedIcon from '@material-ui/icons/EmojiPeopleRounded'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -99,11 +100,33 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                   justify="center"
                   alignItems="center"
                 >
-                  <Link to={`/${user.id}/canvas`}>
-                    <Button className={classes.buttonStyle}>
-                      <Typography> canvas </Typography>
-                    </Button>
-                  </Link>
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="CANVAS"
+                    placement="bottom"
+                    arrow
+                  >
+                    <Link to={`/${user.id}/canvas`}>
+                      <Button className={classes.buttonStyle}>
+                        <ColorLensIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="GALLERY"
+                    placement="top"
+                    arrow
+                  >
+                    <Link to="/gallery">
+                      <Button className={classes.buttonStyle}>
+                        <BurstModeRoundedIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
+
 
                   <Link to="/gallery">
                     <Button className={classes.buttonStyle}>
@@ -116,36 +139,87 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                   </Button>
 
                   <Link to={`/${user.id}/account`}>
+
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="LOG OUT"
+                    placement="bottom"
+                    arrow
+                  >
+
                     <Button
                       className={classes.buttonStyle}
-                      startIcon={<AccountCircleIcon />}
+                      onClick={handleClick}
                     >
-                      {' '}
-                      account{' '}
+                      <EmojiPeopleRoundedIcon />
                     </Button>
-                  </Link>
+                  </Tooltip>
+
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="ACCOUNT"
+                    placement="top"
+                    arrow
+                  >
+                    <Link to="/account">
+                      <Button className={classes.buttonStyle}>
+                        <AccountCircleIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
                 </Grid>
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {/* The navbar will show these links before you log in */}
-
-                <Link to="/canvas">
-                  <Button className={classes.buttonStyle}>
-                    <ColorLensIcon />
-                  </Button>
-                </Link>
-
-                <Link to="/signin">
-                  <Button className={classes.buttonStyle}>
-                    <PersonPinIcon />
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button className={classes.buttonStyle}>
-                    <PersonAddIcon />
-                  </Button>
-                </Link>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  {/* The navbar will show these links before you log in */}
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="CANVAS"
+                    placement="bottom"
+                    arrow
+                  >
+                    <Link to="/canvas">
+                      <Button className={classes.buttonStyle}>
+                        <ColorLensIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="LOG IN"
+                    placement="top"
+                    arrow
+                  >
+                    <Link to="/signin">
+                      <Button className={classes.buttonStyle}>
+                        <PersonPinIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                  <Tooltip
+                    TransitionComponent={Fade}
+                    TransitionProps={{timeout: 600}}
+                    title="SIGN UP"
+                    placement="bottom"
+                    arrow
+                  >
+                    <Link to="/signup">
+                      <Button className={classes.buttonStyle}>
+                        <PersonAddIcon />
+                      </Button>
+                    </Link>
+                  </Tooltip>
+                </Grid>
               </React.Fragment>
             )}
           </Box>
