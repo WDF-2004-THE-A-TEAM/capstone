@@ -20,6 +20,11 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
+import Fade from '@material-ui/core/Fade'
+import Tooltip from '@material-ui/core/Tooltip'
+
+import IconButton from '@material-ui/core/IconButton'
+import LibraryBooksRoundedIcon from '@material-ui/icons/LibraryBooksRounded'
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -29,6 +34,13 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120
+  },
+  buttonStyle: {
+    color: '#4F6D7A',
+    padding: 25,
+    marginLeft: '24px',
+    marginRight: '24px',
+    marginBottom: '24px'
   }
 }))
 
@@ -101,9 +113,17 @@ const SavePageToStory = props => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Save Page To Story
-      </Button>
+      <Tooltip
+        TransitionComponent={Fade}
+        TransitionProps={{timeout: 600}}
+        title="SAVE PAGE TO STORY"
+        placement="top"
+        arrow
+      >
+        <IconButton className={classes.buttonStyle} onClick={handleClickOpen}>
+          <LibraryBooksRoundedIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
       <Dialog
         open={open.state}
         onClose={handleClose}
@@ -136,7 +156,6 @@ const SavePageToStory = props => {
             {/* { (stories) ? stories.map((story,id)=>{
               console.log('story@@@@@', story)
             }): null} */}{' '}
-              */}
               {/* {props.stories.map((story, id) => {
                 return (
                   <MenuItem key={id} value={story.id}>
