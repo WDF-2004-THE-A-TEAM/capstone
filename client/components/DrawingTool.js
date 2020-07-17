@@ -22,10 +22,10 @@ class DrawingTool extends React.Component {
     this.props.canvas.isDrawingMode = !this.props.canvas.isDrawingMode
     if (this.props.canvas.isDrawingMode) {
       document.getElementById('draw-button').disabled = false
-      document.getElementById('draw-button').style.color = 'black'
+      document.getElementById('draw-button').style.color = '#F7ACCF'
     } else {
       document.getElementById('draw-button').disabled = true
-      document.getElementById('draw-button').style.color = 'grey'
+      document.getElementById('draw-button').style.color = '#4F6D7A'
     }
   }
 
