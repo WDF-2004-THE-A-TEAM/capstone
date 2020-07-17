@@ -100,9 +100,14 @@ const ToolBar = props => {
             fontSize="large"
           >
             <ClearRoundedIcon
+
+              canvas={props.canvas}
+
               fontSize="large"
+
               onClick={() => {
                 clearEl()
+                props.canvas.backgroundColor = 'white'
               }}
             />
           </Button>

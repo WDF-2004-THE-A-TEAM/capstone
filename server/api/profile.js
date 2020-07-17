@@ -13,6 +13,7 @@ const s3 = new aws.S3({
   secretAccessKey: '',
   Bucket: 'eurekanewbucket'
 })
+
 /**
 
  /**
