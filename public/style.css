@@ -3,6 +3,7 @@ body {
 }
 h1 {
   font-size: 60px;
+  padding: 0;
 }
 navbar {
   font-family: 'Baloo Da 2', cursive;
