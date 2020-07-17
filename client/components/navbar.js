@@ -29,13 +29,10 @@ import EmojiPeopleRoundedIcon from '@material-ui/icons/EmojiPeopleRounded'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: '#DD6E42',
-    padding: theme.spacing(8)
+    display: 'flex',
+    flexGrow: 1
   },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
+
   title: {
     height: '9em'
   },
@@ -57,25 +54,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function ElevationScroll(props) {
-  const {children} = props
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    //how far the user scrolls to trigger
-    threshold: 0
-  })
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
-  })
-}
-
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Container></Container>
-      {/* <ElevationScroll> */}
       <AppBar
         position="static"
         style={{
@@ -83,11 +65,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           boxShadow: 'none'
         }}
       >
-        <Toolbar
-          className={classes.headerContainer}
-          maxwidth="lg"
-          disableGutters
-        >
+        <Toolbar className={classes.headerContainer}>
           <Link to="/canvas">
             <img className={classes.title} src={logo} alt="logo" />
           </Link>
@@ -224,7 +202,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           </Box>
         </Toolbar>
       </AppBar>
-      {/* </ElevationScroll> */}
+
       <div className={classes.toolbarMargin} />
     </div>
   )
