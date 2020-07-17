@@ -11,16 +11,20 @@ import SaveToNewStoryCard from './SaveToNewStoryCard'
 import AddPageToStory from './AddPageToStory'
 import SaveChange from './SaveChange'
 import Button from '@material-ui/core/Button'
+import GetAppIcon from '@material-ui/icons/GetApp'
+import Fade from '@material-ui/core/Fade'
+import Tooltip from '@material-ui/core/Tooltip'
+import IconButton from '@material-ui/core/IconButton'
 
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   buttonStyle: {
-    color: '#EAEAEA',
-    borderRadius: '50%',
-    backgroundColor: '#EAA286',
+    color: '#4F6D7A',
     padding: 25,
-    marginLeft: '24px'
+    marginLeft: '24px',
+    marginRight: '24px',
+    marginBottom: '24px'
   }
 }))
 
@@ -46,7 +50,20 @@ const SaveBar = props => {
 
   return (
     <div id="save-bar">
-      <Button onClick={() => exportFile()}> EXPORT </Button>
+      <Tooltip
+        TransitionComponent={Fade}
+        TransitionProps={{timeout: 600}}
+        title="EXPORT"
+        placement="top"
+        arrow
+      >
+        <IconButton
+          className={classes.buttonStyle}
+          onClick={() => exportFile()}
+        >
+          <GetAppIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
       <SaveToNewStoryCard
         canvas={props.canvas}
         addStory={props.addStoryToUser}

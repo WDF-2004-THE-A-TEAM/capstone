@@ -8,6 +8,21 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {singleFileUploadHandler} from '../store/amazon'
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded'
+import Fade from '@material-ui/core/Fade'
+import Tooltip from '@material-ui/core/Tooltip'
+import IconButton from '@material-ui/core/IconButton'
+
+import {makeStyles} from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+  buttonStyle: {
+    color: '#4F6D7A',
+    padding: 25,
+    marginLeft: '24px',
+    marginRight: '24px'
+  }
+}))
 
 const SaveToNewStoryCard = props => {
   const [open, setOpen] = React.useState({
@@ -69,12 +84,20 @@ const SaveToNewStoryCard = props => {
     props.addStory(props.user.id, newStory, imageFileToUpload)
     handleClose()
   }
-
+  const classes = useStyles()
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Save As New Story
-      </Button>
+      <Tooltip
+        TransitionComponent={Fade}
+        TransitionProps={{timeout: 600}}
+        title="SAVE AS NEW STORY"
+        placement="top"
+        arrow
+      >
+        <IconButton className={classes.buttonStyle} onClick={handleClickOpen}>
+          <MenuBookRoundedIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
       <Dialog
         open={open.state}
         onClose={handleClose}
