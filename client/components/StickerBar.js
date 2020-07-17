@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    paddingTop: '60px',
+    paddingTop: '40px',
     width: 200,
     height: 350
   }
@@ -48,7 +48,7 @@ const StickerBar = props => {
   //Thie stickers are here in this body rendered below in the the Popover component
   const body = (
     <div id="sticker" className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={80} col={3}>
+      <GridList className={classes.gridList} cellHeight={160} col={3}>
         {/* <h1>STICKERS:</h1> */}
         {stickers.map(sticker => {
           return (
@@ -58,7 +58,7 @@ const StickerBar = props => {
                 addToCanvas(sticker)
               }}
             >
-              <img src={`${sticker.imgURL}`} width="100" height="auto" />
+              <img src={`${sticker.imgURL}`} width="100%" height="auto" />
             </GridListTile>
           )
         })}
@@ -69,6 +69,7 @@ const StickerBar = props => {
   return (
     <div>
       <ImageRoundedIcon
+        fontSize="large"
         aria-describedby={id}
         variant="contained"
         onClick={handleClick}
