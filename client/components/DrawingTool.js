@@ -1,7 +1,6 @@
 import React from 'react'
 import GestureRoundedIcon from '@material-ui/icons/GestureRounded'
 import {withStyles} from '@material-ui/core/styles'
-import {Fade, Tooltip} from '@material-ui/core'
 
 const styles = theme => ({
   root: {
@@ -34,23 +33,15 @@ class DrawingTool extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Tooltip
-          TransitionComponent={Fade}
-          TransitionProps={{timeout: 600}}
-          title="DRAW"
-          placement="right-start"
-          arrow
-        >
-          <GestureRoundedIcon
-            className={classes.root}
-            id="draw-button"
-            fontSize="large"
-            disabled={true}
-            onClick={() => {
-              this.drawOnCanvas()
-            }}
-          ></GestureRoundedIcon>
-        </Tooltip>
+        <GestureRoundedIcon
+          className={classes.root}
+          id="draw-button"
+          fontSize="large"
+          disabled={true}
+          onClick={() => {
+            this.drawOnCanvas()
+          }}
+        ></GestureRoundedIcon>
       </div>
     )
   }
