@@ -51,17 +51,17 @@ const ToolBar = props => {
           </Button>
         </Tooltip>
 
-        <Tooltip
+        {/* <Tooltip
           TransitionComponent={Fade}
           TransitionProps={{timeout: 600}}
           title="DRAW"
           placement="right-start"
           arrow
-        >
-          <Button className={classes.buttonStyle}>
-            <DrawingTool canvas={props.canvas} />
-          </Button>
-        </Tooltip>
+        > */}
+        {/* <Button className={classes.buttonStyle}> */}
+        <DrawingTool canvas={props.canvas} />
+        {/* </Button> */}
+        {/* </Tooltip> */}
 
         <Tooltip
           TransitionComponent={Fade}
@@ -100,11 +100,8 @@ const ToolBar = props => {
             fontSize="large"
           >
             <ClearRoundedIcon
-
               canvas={props.canvas}
-
               fontSize="large"
-
               onClick={() => {
                 clearEl()
                 props.canvas.backgroundColor = 'white'
