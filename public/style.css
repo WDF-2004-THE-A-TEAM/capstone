@@ -108,3 +108,7 @@ canvas {
   color: #4f6d7a;
   font-size: 200%;
 }
+
+#button-container {
+  pointer-events: inherit;
+}

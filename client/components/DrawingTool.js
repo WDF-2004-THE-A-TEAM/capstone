@@ -1,19 +1,14 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import GestureRoundedIcon from '@material-ui/icons/GestureRounded' //another drawing tool icon option
-import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
+import GestureRoundedIcon from '@material-ui/icons/GestureRounded'
 import {withStyles} from '@material-ui/core/styles'
-import Fade from '@material-ui/core/Fade'
-import Tooltip from '@material-ui/core/Tooltip'
+import {Fade, Tooltip} from '@material-ui/core'
 
 const styles = theme => ({
+  root: {
+    padding: 35
+  },
   disabled: {
     backgroundColor: theme.palette.primary || 'red'
-  },
-  buttonStyle: {
-    color: '#4F6D7A',
-    padding: 35,
-    borderRadius: '25%'
   }
 })
 
@@ -46,17 +41,15 @@ class DrawingTool extends React.Component {
           placement="right-start"
           arrow
         >
-          <Button variant="outlined">
-            <GestureRoundedIcon
-              className={classes.buttonStyle}
-              id="draw-button"
-              fontSize="large"
-              disabled={true}
-              onClick={() => {
-                this.drawOnCanvas()
-              }}
-            ></GestureRoundedIcon>
-          </Button>
+          <GestureRoundedIcon
+            className={classes.root}
+            id="draw-button"
+            fontSize="large"
+            disabled={true}
+            onClick={() => {
+              this.drawOnCanvas()
+            }}
+          ></GestureRoundedIcon>
         </Tooltip>
       </div>
     )
