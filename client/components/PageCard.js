@@ -73,6 +73,9 @@ const PageCard = props => {
                         Edit
                       </Button>
                     </Link>
+                    <Button size="small" color="primary">
+                      Delete
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
