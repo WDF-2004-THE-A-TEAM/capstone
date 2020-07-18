@@ -5,7 +5,6 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
 import {withStyles} from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
 import Tooltip from '@material-ui/core/Tooltip'
-import {borders} from '@material-ui/system'
 
 const styles = theme => ({
   disabled: {
