@@ -9,15 +9,9 @@ import {withStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import DrawingTool from './DrawingTool'
-import TextTool from './TextTool'
-import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
 import {fetchOnePage} from '../store/singlePage'
 import axios from 'axios'
-import {grey} from '@material-ui/core/colors'
-import Navbar from './navbar'
-
 import ToolBar from './ToolBar'
 
 const styles = theme => ({
@@ -42,60 +36,29 @@ const styles = theme => ({
   }
 })
 
-//This should be the parent component where it manages state
 class HomeView extends React.Component {
   constructor(props) {
     super(props)
     this.addToCanvas = this.addToCanvas.bind(this)
-    // this.clearEl = this.clearEl.bind(this)
   }
 
   componentDidMount() {
-    //WHY IS THIS NOT WORKING WHEN REFRESHING???
     this.props.fetchStickers()
     this.props.fetchAllStories(this.props.match.params.userId)
-
-    // this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     let pageId = this.props.match.params.pageId
-
-    // if (this.props.match.params.userId){
-    //   this.props.fetchAllStories(this.props.match.params.userId)
-    // }
-
-    // console.log('page', pageId, this.props)
-
-    // if (!pageId) {
-    //   // if pageId isn't exits, then create new canvas
-    // } else {
-    //   // render canvas by Id
-    //   const {data} = axios.get(`/api/pages/${pageId}`)
-    //   console.log('homeview data', data)
-    //   // const canvasJSON = data.canvasPage
-
-    //   // console.log(canvasJSON)
-    //   this.props.fetchOnePage(pageId)
-    //   console.log('#### props ###', this.props)
-    //   // this.canvas.loadFromJSON(canvasJSON)
-    // }
     if (!pageId) {
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
-      // this.props.fetchOnePage(pageId)
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
-
       const findPageById = async () => {
         const {data} = await axios.get(`/api/pages/${pageId}`)
         const canvasJSON = data.canvasPage
-
         console.log('canvas', canvasJSON)
         this.canvas.loadFromJSON(canvasJSON)
         this.canvas.backgroundColor = 'white'
       }
-
       findPageById()
     }
-
-    // this.props.fetchStickers()
   }
 
   addToCanvas(sticker) {
@@ -115,18 +78,11 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
-
     return (
       <div className={classes.root}>
         <Container maxwidth="lg" className={classes.container}>
           <Grid container alignItems="center" spacing={3}>
             <Grid item md={3}>
-              {/* <StickerBar
-                addToCanvas={this.addToCanvas}
-                stickers={this.props.stickers}
-                className={classes.stickerBar}
-              /> */}
-
               <ToolBar
                 canvas={this.canvas}
                 addToCanvas={this.addToCanvas}
@@ -171,9 +127,3 @@ const mapDispatch = dispatch => {
 }
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
-
-// 1 ) this.canvas = new fabric.Canvas('my-canvas')  :: change our canvas from this.state to this.canvas
-// 2 ) move drawOnCanvas from drawingTool component to HomeView component
-// 3) be sure to change onClick to this.props.drawOnCanvas since the function is now pass from the Homeview component as a props
-// 4) On Homeview component,  make sure to pass props on Drawing Tool compoennt (line 120)
-//    - you need to pass 1) this.canvas (our canvas)   2) drawOnCanvas function
