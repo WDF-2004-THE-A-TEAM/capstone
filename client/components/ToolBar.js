@@ -20,8 +20,12 @@ const useStyles = makeStyles(theme => ({
   },
   buttonStyle: {
     color: '#4F6D7A',
-    padding: 35,
-    borderRadius: '25%'
+    borderRadius: '25%',
+    padding: 0,
+    margin: 0
+  },
+  clearButton: {
+    padding: 35
   }
 }))
 
@@ -51,17 +55,17 @@ const ToolBar = props => {
           </Button>
         </Tooltip>
 
-        {/* <Tooltip
+        <Tooltip
           TransitionComponent={Fade}
           TransitionProps={{timeout: 600}}
           title="DRAW"
           placement="right-start"
           arrow
-        > */}
-        {/* <Button className={classes.buttonStyle}> */}
-        <DrawingTool canvas={props.canvas} />
-        {/* </Button> */}
-        {/* </Tooltip> */}
+        >
+          <Button className={classes.buttonStyle}>
+            <DrawingTool canvas={props.canvas} />
+          </Button>
+        </Tooltip>
 
         <Tooltip
           TransitionComponent={Fade}
@@ -101,6 +105,7 @@ const ToolBar = props => {
           >
             <ClearRoundedIcon
               canvas={props.canvas}
+              className={classes.clearButton}
               fontSize="large"
               onClick={() => {
                 clearEl()
