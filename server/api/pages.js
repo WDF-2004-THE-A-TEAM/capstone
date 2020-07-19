@@ -70,17 +70,13 @@ router.post('/', async (req, res, next) => {
 //update page
 //make sure story id gets sent here too
 router.put('/:pageId', async (req, res, next) => {
-  console.log('BODY.REQ', req.body)
   try {
-    const pageId = req.body.pageID
+    const pageId = req.params.pageId
     const pageToEdit = await Page.findByPk(pageId)
-
-    const updateCanvas = {
-      id: pageId,
-      canvasPage: req.body.canvasJSON
-    }
-    const updatedPage = await pageToEdit.update(updateCanvas)
-
+    console.log('PAGETOEDITTT===', pageToEdit)
+    const storyId = pageToEdit.storyId
+    const updatedPage = await pageToEdit.update(req.body)
+    updatePage.storyId = storyId
     if (updatedPage) {
       res.status(200).json(updatedPage)
     } else {

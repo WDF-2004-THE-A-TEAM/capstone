@@ -77,10 +77,31 @@ const SaveChange = props => {
     handleClose()
   }
 
-  const saveChange = async () => {
+  const dataURItoBlob = dataURI => {
+    var binary = atob(dataURI.split(',')[1])
+    var array = []
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i))
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+  }
+
+  const saveChange = () => {
+    const canvas = document.getElementById('my-canvas')
+    const dataUrl = canvas.toDataURL('image/jpeg')
+    const blobData = dataURItoBlob(dataUrl)
     let pageID = props.PageId
+
+    const imageFileToUpload = Object.assign(blobData, {
+      name: `PAGE.png`
+    })
+
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
-    await axios.put(`/api/pages/${pageID}`, {pageID, canvasJSON})
+    let newPage = {
+      canvasPage: canvasJSON
+    }
+
+    props.editPage(pageID, newPage, imageFileToUpload)
     alert('successfully saved!')
     handleClose()
   }

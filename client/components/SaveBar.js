@@ -4,7 +4,7 @@ import PopUp from './SavePopUp'
 import Canvas from './Canvas'
 import {saveAs} from 'file-saver'
 import {addStoryToUser} from '../store/singleStory'
-import {addPageToStory} from '../store/singlePage'
+import {addPageToStory, editOnePage} from '../store/singlePage'
 import {connect} from 'react-redux'
 import SaveToNewStoryCard from './SaveToNewStoryCard'
 import AddPageToStory from './AddPageToStory'
@@ -75,7 +75,7 @@ const SaveBar = props => {
       />
       <SaveChange
         canvas={props.canvas}
-        addPage={props.addPage}
+        editPage={props.editPage}
         getAllStories={props.getAllStories}
         stories={props.stories}
         user={props.user}
@@ -87,6 +87,8 @@ const SaveBar = props => {
 
 const mapDispatch = dispatch => {
   return {
+    editPage: (pageID, newPage, fileToUpload) =>
+      dispatch(editOnePage(pageID, newPage, fileToUpload)),
     addStoryToUser: (userId, newStory, fileToUpload) =>
       dispatch(addStoryToUser(userId, newStory, fileToUpload)),
     addPage: (storyId, newPage, fileToUpload) =>

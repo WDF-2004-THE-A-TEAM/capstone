@@ -45,7 +45,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const SavePageToStory = props => {
-  console.log('check props for savePageToStory ===', props.stories)
   const stories = props.stories
 
   const classes = useStyles()
@@ -105,7 +104,6 @@ const SavePageToStory = props => {
       canvasPage: canvasJSON
     }
 
-    console.log('reADY?', storyId, newPage, imageFileToUpload)
     props.addPage(storyId, newPage, imageFileToUpload)
     handleClose()
   }
