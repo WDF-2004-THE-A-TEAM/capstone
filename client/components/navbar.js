@@ -4,19 +4,13 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import logo from '../../public/images/logo.png'
-import {borders} from '@material-ui/system'
 //make styles bc we are working inside a functional component
 import {makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
-import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
-import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import Grid from '@material-ui/core/Grid'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
 import Fade from '@material-ui/core/Fade'
 import Tooltip from '@material-ui/core/Tooltip'
 //icons
@@ -105,9 +99,8 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
-
                     <Link to={`/${user.id}/gallery`}>
-                     <Button
+                      <Button
                         className={classes.buttonStyle}
                         style={{marginRight: '30px'}}
                       >
@@ -121,10 +114,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       <Typography className={classes.font}>gallery</Typography>
                     </Button>
                   </Link> */}
-
-                  <Button className={classes.buttonStyle} onClick={handleClick}>
-                    logout
-                  </Button>
 
                   {/* <Link to={`/${user.id}/account`}> */}
 
@@ -157,7 +146,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                         className={classes.buttonStyle}
                         style={{marginRight: '60px'}}
                       >
-
                         <AccountCircleIcon />
                       </Button>
                     </Link>
@@ -199,7 +187,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     <Link to="/signin">
                       <Button
                         className={classes.buttonStyle}
-                        style={{marginRight: '28``px'}}
+                        style={{marginRight: '28px'}}
                       >
                         <PersonPinIcon />
                       </Button>
