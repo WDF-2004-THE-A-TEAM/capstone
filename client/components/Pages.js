@@ -79,14 +79,8 @@ class Pages extends React.Component {
                   color="inherit"
                   gutterBottom
                 >
-                  ADD STORY TITLE HERE
+                  {this.props.story.title}
                 </Typography>
-                <Typography variant="h5" color="inherit" paragraph>
-                  Front Page
-                </Typography>
-                <Link variant="subtitle1" href="#">
-                  link goes here
-                </Link>
               </div>
             </Grid>
           </Grid>

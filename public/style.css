@@ -32,10 +32,6 @@ form div {
   flex-direction: row;
 }
 
-img {
-  height: 150px;
-}
-
 #save-button {
   float: right;
 }
