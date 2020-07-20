@@ -1,12 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import {auth, me} from '../store/user'
 import history from '../history'
-
 import CoverImage from '../../public/LindaEng_Untitled_Artwork_7.png'
-
-//Material Ui
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -80,18 +76,13 @@ const SignIn = props => {
   })
 
   const handleSubmit = event => {
-    // the flow of the logic is when we submit the signIn form.
-    //we are going to pass in the user input to the dispatch method, then we make a call to the database using the auth thunk
-    // auth makes a call to the db to authenticate whether or not this email and this password exist together
-    //if this person exists the api route will return the user when the db returns the user obj then the obj will get processed in the store.
     event.preventDefault()
-    // using this because when we click submit we don't want the page to refresh
+
     const email = event.target.email.value
     const password = event.target.password.value
 
-    const method = 'login' // Q: why am I doing this?
-    //A: we need a method for the thunk
-    props.login(email, password, method) //login is aka auth
+    const method = 'login'
+    props.login(email, password, method)
 
     if (state.user) {
       setInfo({
@@ -99,7 +90,7 @@ const SignIn = props => {
         userNameAndPassword: true
       })
       if (state.userNameAndPassword) {
-        history.push('/account')
+        history.push(`/${state.user.id}/canvas`)
       } else {
         return null
       }
@@ -110,7 +101,6 @@ const SignIn = props => {
             ...state,
             fieldEmpty: true
           })
-          console.log('You have empty fields')
           return null
         } else {
           setInfo({
@@ -121,7 +111,7 @@ const SignIn = props => {
       }
     }
   }
-  //onchange in text field When you're typing in the text field it will fire this function the event=typing
+
   const handleChange = event => {
     event.preventDefault()
     const infoType = event.target.id
@@ -129,7 +119,7 @@ const SignIn = props => {
 
     setInfo({
       ...state,
-      [infoType]: info, //set the state to whatever the id is to whatever the person wrote
+      [infoType]: info,
       fieldEmpty: false,
       userNameAndPassword: null
     })

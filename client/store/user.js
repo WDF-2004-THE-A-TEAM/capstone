@@ -29,6 +29,7 @@ export const addNewUser = newUser => async dispatch => {
   try {
     const res = await axios.post('/api/users', newUser)
     dispatch(createUser(res.data))
+    history.push(`/${res.data.id}/canvas`)
   } catch (error) {
     console.error('Big Sad: Error Making a new user')
   }
@@ -46,19 +47,14 @@ export const me = () => async dispatch => {
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
-    res = await axios.post(
-      `/auth/${method}`,
-      // method is how we are getting the correct route.
-      // In the signIn form mapToDispatch, I'm passing in 3 params. When we're matching the email in the password we need to send it as a data structures to access the value
-      {email, password}
-    )
+    res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push(`/${res.data.id}/canvas`)
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
