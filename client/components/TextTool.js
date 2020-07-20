@@ -1,9 +1,15 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import {fabric} from 'fabric'
 import TextFieldsRoundedIcon from '@material-ui/icons/TextFieldsRounded'
+import {withStyles} from '@material-ui/core/styles'
 
-export default class TextTool extends React.Component {
+const styles = theme => ({
+  root: {
+    padding: 35
+  }
+})
+
+class TextTool extends React.Component {
   constructor(props) {
     super(props)
 
@@ -23,17 +29,19 @@ export default class TextTool extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
+
     return (
       <TextFieldsRoundedIcon
+        className={classes.root}
         fontSize="large"
         id="text-tool"
-        color="#4f6d7a"
         onClick={() => {
           this.AddText()
         }}
-      >
-        Text
-      </TextFieldsRoundedIcon>
+      ></TextFieldsRoundedIcon>
     )
   }
 }
+
+export default withStyles(styles)(TextTool)

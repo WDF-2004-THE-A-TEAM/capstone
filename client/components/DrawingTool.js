@@ -1,10 +1,11 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import GestureRoundedIcon from '@material-ui/icons/GestureRounded' //another drawing tool icon option
-import CreateRoundedIcon from '@material-ui/icons/CreateRounded'
+import GestureRoundedIcon from '@material-ui/icons/GestureRounded'
 import {withStyles} from '@material-ui/core/styles'
 
 const styles = theme => ({
+  root: {
+    padding: 35
+  },
   disabled: {
     backgroundColor: theme.palette.primary || 'red'
   }
@@ -18,7 +19,6 @@ class DrawingTool extends React.Component {
   }
 
   drawOnCanvas() {
-    console.log('drawing....')
     this.props.canvas.isDrawingMode = !this.props.canvas.isDrawingMode
     if (this.props.canvas.isDrawingMode) {
       document.getElementById('draw-button').disabled = false
@@ -30,9 +30,11 @@ class DrawingTool extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
       <div>
         <GestureRoundedIcon
+          className={classes.root}
           id="draw-button"
           fontSize="large"
           disabled={true}

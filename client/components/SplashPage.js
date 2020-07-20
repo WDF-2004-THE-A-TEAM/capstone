@@ -3,13 +3,18 @@ import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/box'
 import splashPageImage from '../../public/SplashPage.jpg'
+import splashPageImage2 from '../../public/splash_page.png'
+import splashPageImage3 from '../../public/splash_unicorn.png'
+
 import {Link} from 'react-router-dom'
 
 import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   hero: {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(${splashPageImage})`,
+    // backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(${splashPageImage2})`,
+    backgroundImage: `url(${splashPageImage3})`,
+
     height: '100%',
     top: '0',
     bottom: '0',
@@ -35,10 +40,11 @@ const useStyles = makeStyles(theme => ({
   },
   buttonBox: {
     justifyContent: 'center',
-    display: 'flex'
+    display: 'flex',
+    marginTop: '400px'
   },
   button: {
-    backgroundColor: '#ADEDCC',
+    backgroundColor: '#e58f6d',
     color: '#555',
     margin: '0 10px',
     width: '150px'
@@ -52,9 +58,9 @@ function SplashPage() {
     <div>
       <Box pl={0} className={classes.hero}>
         <Box className={classes.buttonContainer}>
-          <Typography className={classes.heroFont}>
+          {/* <Typography className={classes.heroFont}>
             Start your never ending story
-          </Typography>
+          </Typography> */}
           <Box className={classes.buttonBox}>
             <Link to="/canvas">
               <Button

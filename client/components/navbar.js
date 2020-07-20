@@ -105,8 +105,9 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
-                    <Link to="/gallery">
-                      <Button
+
+                    <Link to={`/${user.id}/gallery`}>
+                     <Button
                         className={classes.buttonStyle}
                         style={{marginRight: '30px'}}
                       >
@@ -114,6 +115,18 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       </Button>
                     </Link>
                   </Tooltip>
+
+                  {/* <Link to={`/${user.id}/gallery`}>
+                    <Button className={classes.buttonStyle}>
+                      <Typography className={classes.font}>gallery</Typography>
+                    </Button>
+                  </Link> */}
+
+                  <Button className={classes.buttonStyle} onClick={handleClick}>
+                    logout
+                  </Button>
+
+                  {/* <Link to={`/${user.id}/account`}> */}
 
                   <Tooltip
                     TransitionComponent={Fade}
@@ -130,6 +143,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       <EmojiPeopleRoundedIcon />
                     </Button>
                   </Tooltip>
+                  {/* </Link> */}
 
                   <Tooltip
                     TransitionComponent={Fade}
@@ -138,11 +152,12 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
-                    <Link to="/account">
+                    <Link to={`/${user.id}/account`}>
                       <Button
                         className={classes.buttonStyle}
                         style={{marginRight: '60px'}}
                       >
+
                         <AccountCircleIcon />
                       </Button>
                     </Link>

@@ -89,7 +89,6 @@ const SignUpForm = props => {
           ...state,
           fieldEmpty: true
         })
-        console.log('You have empty fields')
         return null
       }
     }
@@ -108,7 +107,7 @@ const SignUpForm = props => {
         googleId: newUserName,
         isLoggedIn: true
       }
-      console.log(newUser)
+
       props.signUp(newUser)
       history.push('/canvas')
     }

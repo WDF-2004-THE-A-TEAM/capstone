@@ -20,8 +20,12 @@ const useStyles = makeStyles(theme => ({
   },
   buttonStyle: {
     color: '#4F6D7A',
-    padding: 35,
-    borderRadius: '25%'
+    borderRadius: '25%',
+    padding: 0,
+    margin: 0
+  },
+  clearButton: {
+    padding: 35
   }
 }))
 
@@ -100,9 +104,12 @@ const ToolBar = props => {
             fontSize="large"
           >
             <ClearRoundedIcon
+              canvas={props.canvas}
+              className={classes.clearButton}
               fontSize="large"
               onClick={() => {
                 clearEl()
+                props.canvas.backgroundColor = 'white'
               }}
             />
           </Button>

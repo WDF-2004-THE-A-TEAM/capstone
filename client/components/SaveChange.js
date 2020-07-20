@@ -44,7 +44,6 @@ const SaveChange = props => {
   const handleChange = event => {
     event.preventDefault()
     setStoryId(event.target.value)
-    console.log(storyId)
   }
 
   const handleClickOpen = () => {
@@ -78,13 +77,36 @@ const SaveChange = props => {
     handleClose()
   }
 
-  const saveChange = async () => {
-    console.log('saving change...')
+  const dataURItoBlob = dataURI => {
+    var binary = atob(dataURI.split(',')[1])
+    var array = []
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i))
+    }
+    return new Blob([new Uint8Array(array)], {type: 'image/jpeg'})
+  }
+
+  const saveChange = () => {
+    const canvas = document.getElementById('my-canvas')
+    const dataUrl = canvas.toDataURL('image/jpeg')
+    const blobData = dataURItoBlob(dataUrl)
     let pageID = props.PageId
-    console.log('save pageId', pageID)
+
+    const imageFileToUpload = Object.assign(blobData, {
+      name: `PAGE.png`
+    })
 
     let canvasJSON = JSON.stringify(props.canvas.toDatalessJSON())
-    await axios.put(`/api/pages/${pageID}`, {pageID, canvasJSON})
+    let newPage = {
+      canvasPage: canvasJSON
+    }
+    console.log(
+      'EDIT PAGE CONSOLLLLEEE ====',
+      pageID,
+      newPage,
+      imageFileToUpload
+    )
+    props.editPage(pageID, newPage, imageFileToUpload)
     alert('successfully saved!')
     handleClose()
   }

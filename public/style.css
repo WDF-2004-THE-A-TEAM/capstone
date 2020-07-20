@@ -34,10 +34,6 @@ form div {
   flex-direction: row;
 }
 
-img {
-  height: 150px;
-}
-
 #save-button {
   float: right;
 }
@@ -104,4 +100,9 @@ canvas {
 
 #draw-button {
   color: #4f6d7a;
+}
+
+#user-name {
+  color: #4f6d7a;
+  font-size: 200%;
 }

@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import PageCard from './PageCard'
 import {fetchAllPages} from '../store/pages'
-import {fetchOneStory} from '../store/stories'
+import {fetchOneStory} from '../store/singleStory'
 
 const styles = theme => ({
   mainFeaturedPost: {
@@ -79,14 +79,8 @@ class Pages extends React.Component {
                   color="inherit"
                   gutterBottom
                 >
-                  ADD STORY TITLE HERE
+                  {this.props.story.title}
                 </Typography>
-                <Typography variant="h5" color="inherit" paragraph>
-                  Front Page
-                </Typography>
-                <Link variant="subtitle1" href="#">
-                  link goes here
-                </Link>
               </div>
             </Grid>
           </Grid>
@@ -108,7 +102,7 @@ Pages.propTypes = {
 const mapState = state => {
   return {
     pages: state.allPages.pages,
-    story: state.stories.allStories
+    story: state.singleStory.story
   }
 }
 

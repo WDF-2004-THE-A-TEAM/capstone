@@ -10,6 +10,7 @@ import SplashPage from './components/SplashPage'
 import Gallery from './components/Gallery'
 import Pages from './components/Pages'
 import AmazonTest from './components/amazonTest'
+import Account from './components/Account'
 import {me} from './store'
 
 /**
@@ -33,18 +34,21 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/home" component={Gallery} />
             <Route exact path="/:userId/canvas" component={Homeview} />
             <Route
+              exact
               path="/:userId/canvas/story/:storyId/page/:pageId"
               component={Homeview}
             />
-            <Route exact path="/gallery" component={Gallery} />
+            <Route exact path="/:userId/gallery" component={Gallery} />
             <Route path="/test" component={AmazonTest} />
             <Route
+              exact
               path="/:userId/gallery/stories/:storyId/pages"
               component={Pages}
             />
+            <Route exact path="/:userId/account" component={Account} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

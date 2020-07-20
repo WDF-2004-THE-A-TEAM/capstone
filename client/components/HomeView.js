@@ -8,15 +8,9 @@ import {withStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import DrawingTool from './DrawingTool'
-import TextTool from './TextTool'
-import Remove from './Delete'
 import {fetchAllStories} from '../store/stories'
-import {fetchOnePage} from '../store/pages'
+import {fetchOnePage} from '../store/singlePage'
 import axios from 'axios'
-import {grey} from '@material-ui/core/colors'
-import Navbar from './navbar'
-
 import ToolBar from './ToolBar'
 
 const styles = theme => ({
@@ -41,7 +35,6 @@ const styles = theme => ({
   }
 })
 
-//This should be the parent component where it manages state
 class HomeView extends React.Component {
   constructor(props) {
     super(props)
@@ -51,23 +44,19 @@ class HomeView extends React.Component {
   componentDidMount() {
     this.props.fetchStickers()
     this.props.fetchAllStories(this.props.match.params.userId)
-
     let pageId = this.props.match.params.pageId
-
-    // if pageId isn't exits, then create
-    // render canvas by Id
 
     if (!pageId) {
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
-
       const findPageById = async () => {
         const {data} = await axios.get(`/api/pages/${pageId}`)
         const canvasJSON = data.canvasPage
+        console.log('canvas', canvasJSON)
         this.canvas.loadFromJSON(canvasJSON)
+        this.canvas.backgroundColor = 'white'
       }
-
       findPageById()
     }
   }
@@ -89,8 +78,6 @@ class HomeView extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('page!!!', this.props)
-
     return (
       <div className={classes.root}>
         <Container maxwidth="lg" className={classes.container}>
@@ -122,7 +109,6 @@ class HomeView extends React.Component {
 }
 
 const mapState = state => {
-  console.log('mapping', state)
   return {
     stickers: state.sticker.stickers,
     user: state.user,
@@ -142,8 +128,3 @@ const mapDispatch = dispatch => {
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
 
-// 1 ) this.canvas = new fabric.Canvas('my-canvas')  :: change our canvas from this.state to this.canvas
-// 2 ) move drawOnCanvas from drawingTool component to HomeView component
-// 3) be sure to change onClick to this.props.drawOnCanvas since the function is now pass from the Homeview component as a props
-// 4) On Homeview component,  make sure to pass props on Drawing Tool component (line 120)
-//    - you need to pass 1) this.canvas (our canvas)   2) drawOnCanvas function

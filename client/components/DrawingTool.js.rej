@@ -1,0 +1,4 @@
+diff a/client/components/DrawingTool.js b/client/components/DrawingTool.js	(rejected hunks)
+@@ -8 +8 @@ import Tooltip from '@material-ui/core/Tooltip'
+-import { borders } from '@material-ui/system'
++import {borders} from '@material-ui/system'

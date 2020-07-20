@@ -36,14 +36,6 @@ const SingleStoryCard = props => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Edit
-        </Button>
-      </CardActions>
     </Card>
   )
 }
