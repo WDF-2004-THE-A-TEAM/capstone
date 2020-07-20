@@ -1,9 +1,15 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
+import {withStyles} from '@material-ui/core/styles'
 
-export default class Remove extends React.Component {
+const styles = theme => ({
+  root: {
+    padding: 35
+  }
+})
+
+class Remove extends React.Component {
   constructor(props) {
     super(props)
 
@@ -17,6 +23,8 @@ export default class Remove extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
+
     return (
       <div>
         <div>{this.props.eventKey}</div>
@@ -28,6 +36,7 @@ export default class Remove extends React.Component {
         ></KeyboardEventHandler>
 
         <DeleteForeverRoundedIcon
+          className={classes.root}
           id="text-tool"
           fontSize="large"
           onClick={() => {
@@ -40,3 +49,5 @@ export default class Remove extends React.Component {
     )
   }
 }
+
+export default withStyles(styles)(Remove)
