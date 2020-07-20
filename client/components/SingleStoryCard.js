@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   },
   media: {
     height: 700
+  },
+  fontStyle: {
+    color: '#4F6D7A'
   }
 })
 
@@ -28,10 +31,19 @@ const SingleStoryCard = props => {
           <CardMedia className={classes.media} image={props.story.coverImage} />
         </Link>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={classes.fontStyle}
+          >
             {props.story.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            className={classes.fontStyle}
+            variant="body2"
+            component="p"
+          >
             This is my story!
           </Typography>
         </CardContent>
