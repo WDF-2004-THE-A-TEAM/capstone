@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchStickers} from '../store/sticker'
-import StickerBar from './StickerBar'
 import Canvas from './Canvas'
 import SaveBar from './SaveBar'
 import {fabric} from 'fabric'
@@ -20,7 +19,7 @@ const styles = theme => ({
     backgroundColor: '#C0D6DF'
   },
   paper: {
-    padding: theme.spacing(4),
+    padding: 0,
     textAlign: 'center',
     color: theme.palette.text.secondary,
     backgroundColor: '#C0D6DF'
@@ -46,6 +45,7 @@ class HomeView extends React.Component {
     this.props.fetchStickers()
     this.props.fetchAllStories(this.props.match.params.userId)
     let pageId = this.props.match.params.pageId
+
     if (!pageId) {
       this.canvas = new fabric.Canvas('my-canvas', {backgroundColor: 'white'})
     } else {
@@ -82,14 +82,14 @@ class HomeView extends React.Component {
       <div className={classes.root}>
         <Container maxwidth="lg" className={classes.container}>
           <Grid container alignItems="center" spacing={3}>
-            <Grid item md={3}>
+            <Grid item md={3} spacing={0}>
               <ToolBar
                 canvas={this.canvas}
                 addToCanvas={this.addToCanvas}
                 stickers={this.props.stickers}
               />
             </Grid>
-            <Grid item md={9} className={classes.paper}>
+            <Grid item md={9} spacing={0} className={classes.paper}>
               <h1> canvas </h1>
               <SaveBar
                 canvas={this.canvas}
@@ -127,3 +127,4 @@ const mapDispatch = dispatch => {
 }
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
+

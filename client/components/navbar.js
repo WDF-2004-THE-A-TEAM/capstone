@@ -29,9 +29,8 @@ import EmojiPeopleRoundedIcon from '@material-ui/icons/EmojiPeopleRounded'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 2,
     backgroundColor: '#DD6E42',
-    padding: 2,
+    padding: 0,
     margin: '1px'
   },
   menuButton: {
@@ -41,10 +40,12 @@ const useStyles = makeStyles(theme => ({
     height: '9em'
   },
   headerContainer: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    margin: 0,
+    padding: 0
   },
   toolbarMargin: {
-    height: '2px'
+    height: '0px'
   },
   font: {
     color: '#4F6D7A'
@@ -53,43 +54,22 @@ const useStyles = makeStyles(theme => ({
     color: '#EAEAEA',
     borderRadius: '50%',
     backgroundColor: '#EAA286',
-    padding: 28,
-    marginRight: '24px'
+    padding: 20
   }
 }))
-
-function ElevationScroll(props) {
-  const {children} = props
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    //how far the user scrolls to trigger
-    threshold: 0
-  })
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
-  })
-}
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Container></Container>
-      {/* <ElevationScroll> */}
       <AppBar
-        disableGutters
         position="static"
         style={{
           background: '#DD6E42',
           boxShadow: 'none'
         }}
       >
-        <Toolbar
-          className={classes.headerContainer}
-          maxwidth="lg"
-          disableGutters
-        >
+        <Toolbar className={classes.headerContainer}>
           <Link to="/canvas">
             <img className={classes.title} src={logo} alt="logo" />
           </Link>
@@ -110,7 +90,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     arrow
                   >
                     <Link to={`/${user.id}/canvas`}>
-                      <Button className={classes.buttonStyle}>
+                      <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '28px'}}
+                      >
                         <ColorLensIcon />
                       </Button>
                     </Link>
@@ -122,8 +105,12 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     placement="top"
                     arrow
                   >
+
                     <Link to={`/${user.id}/gallery`}>
-                      <Button className={classes.buttonStyle}>
+                     <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '30px'}}
+                      >
                         <BurstModeRoundedIcon />
                       </Button>
                     </Link>
@@ -150,6 +137,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                   >
                     <Button
                       className={classes.buttonStyle}
+                      style={{marginRight: '30px'}}
                       onClick={handleClick}
                     >
                       <EmojiPeopleRoundedIcon />
@@ -165,7 +153,11 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     arrow
                   >
                     <Link to={`/${user.id}/account`}>
-                      <Button className={classes.buttonStyle}>
+                      <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '60px'}}
+                      >
+
                         <AccountCircleIcon />
                       </Button>
                     </Link>
@@ -189,7 +181,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     arrow
                   >
                     <Link to="/canvas">
-                      <Button className={classes.buttonStyle}>
+                      <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '26px'}}
+                      >
                         <ColorLensIcon />
                       </Button>
                     </Link>
@@ -202,7 +197,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     arrow
                   >
                     <Link to="/signin">
-                      <Button className={classes.buttonStyle}>
+                      <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '28``px'}}
+                      >
                         <PersonPinIcon />
                       </Button>
                     </Link>
@@ -215,7 +213,10 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                     arrow
                   >
                     <Link to="/signup">
-                      <Button className={classes.buttonStyle}>
+                      <Button
+                        className={classes.buttonStyle}
+                        style={{marginRight: '60px'}}
+                      >
                         <PersonAddIcon />
                       </Button>
                     </Link>
@@ -226,7 +227,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           </Box>
         </Toolbar>
       </AppBar>
-      {/* </ElevationScroll> */}
+
       <div className={classes.toolbarMargin} />
     </div>
   )
