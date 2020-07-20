@@ -42,7 +42,6 @@ class Routes extends Component {
               component={Homeview}
             />
             <Route exact path="/:userId/gallery" component={Gallery} />
-            <Route path="/test" component={AmazonTest} />
             <Route
               exact
               path="/:userId/gallery/stories/:storyId/pages"
