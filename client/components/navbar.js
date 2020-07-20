@@ -49,13 +49,16 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50%',
     backgroundColor: '#EAA286',
     padding: 20
+  },
+  toolBarMargin: {
+    ...theme.mixins.toolbar
   }
 }))
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <React.Fragment className={classes.root}>
       <AppBar
         position="static"
         style={{
@@ -108,15 +111,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       </Button>
                     </Link>
                   </Tooltip>
-
-                  {/* <Link to={`/${user.id}/gallery`}>
-                    <Button className={classes.buttonStyle}>
-                      <Typography className={classes.font}>gallery</Typography>
-                    </Button>
-                  </Link> */}
-
-                  {/* <Link to={`/${user.id}/account`}> */}
-
                   <Tooltip
                     TransitionComponent={Fade}
                     TransitionProps={{timeout: 600}}
@@ -132,8 +126,6 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
                       <EmojiPeopleRoundedIcon />
                     </Button>
                   </Tooltip>
-                  {/* </Link> */}
-
                   <Tooltip
                     TransitionComponent={Fade}
                     TransitionProps={{timeout: 600}}
@@ -215,9 +207,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           </Box>
         </Toolbar>
       </AppBar>
-
-      <div className={classes.toolbarMargin} />
-    </div>
+    </React.Fragment>
   )
 }
 
