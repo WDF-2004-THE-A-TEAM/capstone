@@ -100,7 +100,12 @@ const SaveChange = props => {
     let newPage = {
       canvasPage: canvasJSON
     }
-
+    console.log(
+      'EDIT PAGE CONSOLLLLEEE ====',
+      pageID,
+      newPage,
+      imageFileToUpload
+    )
     props.editPage(pageID, newPage, imageFileToUpload)
     alert('successfully saved!')
     handleClose()

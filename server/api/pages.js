@@ -73,10 +73,10 @@ router.put('/:pageId', async (req, res, next) => {
   try {
     const pageId = req.params.pageId
     const pageToEdit = await Page.findByPk(pageId)
-    console.log('PAGETOEDITTT===', pageToEdit)
     const storyId = pageToEdit.storyId
+    console.log('REQQQQQQ BODYYYY===', req.body)
     const updatedPage = await pageToEdit.update(req.body)
-    updatePage.storyId = storyId
+    updatedPage.storyId = storyId
     if (updatedPage) {
       res.status(200).json(updatedPage)
     } else {
