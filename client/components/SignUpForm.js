@@ -2,7 +2,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CoverImage from '../../public/LindaEng_Untitled_Artwork 5.png'
-import {addNewUser} from '../store/user'
+import {addNewUser, me} from '../store/user'
 import history from '../history'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -107,9 +107,7 @@ const SignUpForm = props => {
         googleId: newUserName,
         isLoggedIn: true
       }
-
       props.signUp(newUser)
-      history.push('/canvas')
     }
   }
 
@@ -117,14 +115,12 @@ const SignUpForm = props => {
     event.preventDefault()
     const infoType = event.target.id
     const info = event.target.value
-    console.log('info=', infoType, info)
 
     setInfo({
       ...state,
       [infoType]: info,
       fieldEmpty: false
     })
-    console.log('THIS IS STATE===', state)
   }
 
   return (
@@ -256,10 +252,17 @@ const SignUpForm = props => {
   )
 }
 
-const mapToDispatch = dispatch => {
+const mapState = state => {
   return {
-    signUp: newUser => dispatch(addNewUser(newUser))
+    user: state.user.defaultUser
   }
 }
 
-export default connect(null, mapToDispatch)(SignUpForm)
+const mapToDispatch = dispatch => {
+  return {
+    signUp: newUser => dispatch(addNewUser(newUser)),
+    getUser: () => dispatch(me())
+  }
+}
+
+export default connect(mapState, mapToDispatch)(SignUpForm)

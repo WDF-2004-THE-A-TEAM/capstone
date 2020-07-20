@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 //Create a new user
 router.post('/', async (req, res, next) => {
   try {
-    console.log('SKLDHFKLDJSFJLDS REQ.BODY=====', req.body)
     const newUser = await User.create(req.body)
     if (newUser) {
       res.status(200).json(newUser)
