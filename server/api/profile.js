@@ -8,6 +8,11 @@ module.exports = router
 /**
  * PROFILE IMAGE STORING STARTS
  */
+const s3 = new aws.S3({
+  accessKeyId: 'AKIAJ6XIDB7JHWBJUNDA',
+  secretAccessKey: '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',
+  Bucket: 'eurekanewbucket'
+})
 
 /**
  * Single Upload
