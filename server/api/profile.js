@@ -9,9 +9,9 @@ module.exports = router
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
-  accessKeyId: '',
-  secretAccessKey: '',
-  Bucket: ''
+  accessKeyId: process.env.API_KEY,
+  secretAccessKey: process.env.API_SECRET,
+  Bucket: 'eurekanewbucket'
 })
 
 /**
