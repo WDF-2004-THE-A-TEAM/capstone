@@ -51,6 +51,10 @@ const useStyles = makeStyles(theme => ({
     color: '#555',
     margin: '0 10px',
     width: '150px'
+  },
+  root: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none'
   }
 }))
 
@@ -68,18 +72,16 @@ function SplashPage() {
             <Link to="/canvas">
               <Card className={classes.root}>
                 <CardActionArea>
-                  <CardMedia component="img" height="140" image={DrawButton} />
+                  <CardMedia component="img" width={400} image={DrawButton} />
                 </CardActionArea>
               </Card>
             </Link>
             <Link to="/signup">
-              <ButtonBase
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                disableElevation
-                startIcon={<Avatar src={SignUpButton} />}
-              ></ButtonBase>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia component="img" width={400} image={SignUpButton} />
+                </CardActionArea>
+              </Card>
             </Link>
           </Box>
         </Box>
