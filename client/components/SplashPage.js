@@ -1,12 +1,17 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/box'
 import splashPageImage from '../../public/splash_unicorn.png'
-
+import DrawButton from '../../public/draw_button.png'
+import SignUpButton from '../../public/become_a_member.png'
+import Avatar from '@material-ui/core/Avatar'
 import {Link} from 'react-router-dom'
-
-import Button from '@material-ui/core/Button'
+import ButtonBase from '@material-ui/core/ButtonBase'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles(theme => ({
   hero: {
@@ -46,6 +51,10 @@ const useStyles = makeStyles(theme => ({
     color: '#555',
     margin: '0 10px',
     width: '150px'
+  },
+  root: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none'
   }
 }))
 
@@ -61,24 +70,18 @@ function SplashPage() {
           </Typography> */}
           <Box className={classes.buttonBox}>
             <Link to="/canvas">
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                disableElevation
-              >
-                Draw
-              </Button>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia component="img" width={400} image={DrawButton} />
+                </CardActionArea>
+              </Card>
             </Link>
             <Link to="/signup">
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                disableElevation
-              >
-                Become a StoryTeller
-              </Button>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia component="img" width={400} image={SignUpButton} />
+                </CardActionArea>
+              </Card>
             </Link>
           </Box>
         </Box>

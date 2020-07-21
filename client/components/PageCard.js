@@ -13,6 +13,13 @@ import Grid from '@material-ui/core/Grid'
 import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
+//icons
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded'
+import EditIcon from '@material-ui/icons/Edit'
+import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
+import Fade from '@material-ui/core/Fade'
+
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2)
@@ -31,7 +38,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: '#4F6D7A'
   },
   cardMedia: {
     paddingTop: '56.25%' // 16:9
@@ -42,6 +50,9 @@ const useStyles = makeStyles(theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6)
+  },
+  fontStyle: {
+    color: '#4F6D7A'
   }
 }))
 
@@ -66,16 +77,45 @@ const PageCard = props => {
                   />
                   <CardActions>
                     <PageViewCard image={page.imgURL} />
-                    <Link
-                      to={`/${props.userId}/canvas/story/${props.storyId}/page/${page.id}`}
+
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{timeout: 600}}
+                      title="EDIT"
+                      placement="top"
+                      arrow
                     >
-                      <Button size="small" color="primary">
-                        Edit
-                      </Button>
-                    </Link>
-                    <Button size="small" color="primary">
-                      Delete
-                    </Button>
+                      <Link
+                        to={`/${props.userId}/canvas/story/${props.storyId}/page/${page.id}`}
+                      >
+                        <IconButton
+                          style={{
+                            padding: '30px'
+                          }}
+                          size="medium"
+                          color="secondary"
+                        >
+                          <EditIcon />
+                        </IconButton>
+                      </Link>
+                    </Tooltip>
+                    <Tooltip
+                      TransitionComponent={Fade}
+                      TransitionProps={{timeout: 600}}
+                      title="DELETE"
+                      placement="right"
+                      arrow
+                    >
+                      <IconButton
+                        style={{
+                          padding: '30px'
+                        }}
+                        size="medium"
+                        color="secondary"
+                      >
+                        <DeleteForeverRoundedIcon />
+                      </IconButton>
+                    </Tooltip>
                   </CardActions>
                 </Card>
               </Grid>
