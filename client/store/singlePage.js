@@ -1,10 +1,10 @@
 import axios from 'axios'
+import history from '../history'
 
 //action type
 const GET_ONE_PAGE = 'GET_ONE_PAGE'
 const EDIT_PAGE = 'EDIT_PAGE'
 const ADD_PAGE = 'ADD_PAGE'
-const DELETE_ONE_PAGE = 'DELETE_ONE_PAGE'
 
 //action creator
 const getOnePage = page => {
@@ -23,13 +23,6 @@ const addPage = page => {
   return {
     type: ADD_PAGE,
     page
-  }
-}
-
-const deleteOnePage = pageId => {
-  return {
-    type: DELETE_ONE_PAGE,
-    pageId
   }
 }
 
@@ -142,17 +135,6 @@ export const editOnePage = (pageID, newPage, fileToUpload) => {
   }
 }
 
-//delete a page
-export const deletePage = pageID => async dispatch => {
-  try {
-    await axios.delete(`/api/pages/${pageID}`)
-    dispatch(deleteOnePage(pageID))
-    history.push('/gallery')
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 //reducer
 export default function singlePageReducer(state = initialState, action) {
   switch (action.type) {
@@ -164,11 +146,6 @@ export default function singlePageReducer(state = initialState, action) {
       return {
         ...state,
         pages: action.page
-      }
-    case DELETE_ONE_PAGE:
-      return {
-        ...state,
-        pages: state.allPages.filter(id => id !== action.pageId)
       }
     default:
       return state
