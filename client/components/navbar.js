@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 const Navbar = ({handleClick, isLoggedIn, user}) => {
   const classes = useStyles()
   return (
-    <React.Fragment className={classes.root}>
+    <React.Fragment>
       <AppBar
         position="static"
         style={{

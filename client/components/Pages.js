@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import PageCard from './PageCard'
-import {fetchAllPages} from '../store/pages'
+import {fetchAllPages, deletePage} from '../store/pages'
 import {fetchOneStory} from '../store/singleStory'
 
 const styles = theme => ({
@@ -51,7 +51,6 @@ class Pages extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log('IS THERE A STORY==', this.props)
     return (
       <div>
         <Paper
@@ -62,13 +61,10 @@ class Pages extends React.Component {
               : null
           }}
         >
-          {/* Increase the priority of the hero background image */}
-          {
-            <img
+          <img
               style={{display: 'none'}}
               src={`${this.props.story.coverImage}`}
             />
-          }
           <div className={classes.overlay} />
           <Grid container>
             <Grid item md={6}>
@@ -89,6 +85,7 @@ class Pages extends React.Component {
           pages={this.props.pages}
           userId={this.props.match.params.userId}
           storyId={this.props.match.params.storyId}
+          deletePage={this.props.deletePage}
         />
       </div>
     )
@@ -109,7 +106,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchOneStory: storyId => dispatch(fetchOneStory(storyId)),
-    fetchAllPages: storyId => dispatch(fetchAllPages(storyId))
+    fetchAllPages: storyId => dispatch(fetchAllPages(storyId)),
+    deletePage: (pageId, userId) => dispatch(deletePage(pageId, userId))
   }
 }
 

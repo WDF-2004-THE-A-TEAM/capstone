@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import history from '../history'
 import PageViewCard from '../components/PageViewCard'
 
 import Button from '@material-ui/core/Button'
@@ -59,6 +59,12 @@ const useStyles = makeStyles(theme => ({
 const PageCard = props => {
   const classes = useStyles()
   const pages = props.pages
+
+  const deletePage = pageId => {
+    props.deletePage(pageId)
+    history.push(`/${props.userId}/gallery/stories/${props.storyId}/pages`)
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -67,59 +73,62 @@ const PageCard = props => {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {pages.map((page, id) => (
-              <Grid item key={id} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={page.imgURL}
-                    title="Image title"
-                  />
-                  <CardActions>
-                    <PageViewCard image={page.imgURL} />
+            {pages.length
+              ? pages.map((page, id) => (
+                  <Grid item key={id} xs={12} sm={6} md={4}>
+                    <Card className={classes.card}>
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image={page.imgURL}
+                        title="Image title"
+                      />
+                      <CardActions>
+                        <PageViewCard image={page.imgURL} />
 
-                    <Tooltip
-                      TransitionComponent={Fade}
-                      TransitionProps={{timeout: 600}}
-                      title="EDIT"
-                      placement="top"
-                      arrow
-                    >
-                      <Link
-                        to={`/${props.userId}/canvas/story/${props.storyId}/page/${page.id}`}
-                      >
-                        <IconButton
-                          style={{
-                            padding: '30px'
-                          }}
-                          size="medium"
-                          color="secondary"
+                        <Tooltip
+                          TransitionComponent={Fade}
+                          TransitionProps={{timeout: 600}}
+                          title="EDIT"
+                          placement="top"
+                          arrow
                         >
-                          <EditIcon />
-                        </IconButton>
-                      </Link>
-                    </Tooltip>
-                    <Tooltip
-                      TransitionComponent={Fade}
-                      TransitionProps={{timeout: 600}}
-                      title="DELETE"
-                      placement="right"
-                      arrow
-                    >
-                      <IconButton
-                        style={{
-                          padding: '30px'
-                        }}
-                        size="medium"
-                        color="secondary"
-                      >
-                        <DeleteForeverRoundedIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
+                          <Link
+                            to={`/${props.userId}/canvas/story/${props.storyId}/page/${page.id}`}
+                          >
+                            <IconButton
+                              style={{
+                                padding: '30px'
+                              }}
+                              size="medium"
+                              color="secondary"
+                            >
+                              <EditIcon />
+                            </IconButton>
+                          </Link>
+                        </Tooltip>
+                        <Tooltip
+                          TransitionComponent={Fade}
+                          TransitionProps={{timeout: 600}}
+                          title="DELETE"
+                          placement="right"
+                          arrow
+                        >
+                          <IconButton
+                            style={{
+                              padding: '30px'
+                            }}
+                            size="medium"
+                            color="secondary"
+                            onClick={() => deletePage(page.id)}
+                          >
+                            <DeleteForeverRoundedIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                ))
+              : null}
           </Grid>
         </Container>
       </main>

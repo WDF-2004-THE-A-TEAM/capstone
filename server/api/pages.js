@@ -34,9 +34,9 @@ router.get('/:pageID', async (req, res, next) => {
 })
 
 //Delete one Page
-router.delete('/:pageID', async (req, res, next) => {
+router.delete('/:pageId', async (req, res, next) => {
   try {
-    const pageId = req.params.pageID
+    const pageId = req.params.pageId
     const pageToDelete = await Page.findByPk(pageId)
     const deletedPage = await pageToDelete.destroy()
     if (deletedPage) {
