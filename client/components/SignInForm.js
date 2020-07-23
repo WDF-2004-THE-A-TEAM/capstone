@@ -18,12 +18,15 @@ import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
 
 //Helper function - to be called towards the end of form
-function Copyright() {
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      {'Eureka © '}
+      <Link
+        color="inherit"
+        href="https://github.com/WDF-2004-THE-A-TEAM/capstone/"
+      >
+        The A Team
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -75,25 +78,23 @@ const SignIn = props => {
     fieldEmpty: false
   })
 
-  const handleSubmit = event => {
+  async function handleSubmit(event) {
     event.preventDefault()
 
     const email = event.target.email.value
     const password = event.target.password.value
 
     const method = 'login'
-    props.login(email, password, method)
+    await props.login(email, password, method)
 
     if (state.user) {
       setInfo({
         ...state,
+        fieldEmpty: false,
         userNameAndPassword: true
       })
-      if (state.userNameAndPassword) {
-        history.push(`/${state.user.id}/canvas`)
-      } else {
-        return null
-      }
+
+      history.push(`/${state.user.id}/canvas`)
     } else {
       for (let key in state) {
         if (state[key] === '') {
@@ -107,6 +108,7 @@ const SignIn = props => {
             ...state,
             userNameAndPassword: false
           })
+          check = false
         }
       }
     }
@@ -121,6 +123,7 @@ const SignIn = props => {
       ...state,
       [infoType]: info,
       fieldEmpty: false,
+      submitted: false,
       userNameAndPassword: null
     })
   }
