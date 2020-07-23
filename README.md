@@ -19,13 +19,13 @@
 
 Eureka is a creative drawing app with an interactive canvas for storytelling that allows users to draw, write text, delete items, and add stickers. The user can also create a story and save their artwork as pages to their story. Our target users are kids, ages 5-12. The power of storytelling motivated us to create Eureka. Allowing children to develop their own stories fosters creative thinking, helps develop language skills, and helps children digest the world around them.
 
-(Preview gif goes here)
+![Farmers Market Finder Demo](readme_assets/screen.gif)
 
 ---
 
 ## Demo
 
-Here is a link to a [Live Demo](https://eureka-storytelling.herokuapp.com/)!
+Here is a link to the [Live Demo](https://eureka-storytelling.herokuapp.com/)!
 
 ---
 
@@ -73,11 +73,7 @@ To-do:
 ## Contact
 
 Created by: <br />
-Aliya Best <br />
-Linda Eng <br />
-Nan Peña <br />
-Claudia Saimbert
-
-//Link to our screencast?
-//contact info?
-//more techy stuff
+[Aliya Best](https://www.linkedin.com/in/aliya-best/) <br />
+[Linda Eng](https://www.linkedin.com/in/linda-eng/) <br />
+[Nan Peña](https://www.linkedin.com/in/nanpena/) <br />
+[Claudia Saimbert](https://www.linkedin.com/in/claudiasaimbert/)
