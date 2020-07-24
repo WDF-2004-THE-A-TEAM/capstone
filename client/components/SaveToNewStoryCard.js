@@ -80,7 +80,6 @@ const SaveToNewStoryCard = props => {
       canvasJson: canvasJSON
     }
 
-    console.log('SAVE AS NEW STORY====', newStory)
     props.addStory(props.user.id, newStory, imageFileToUpload)
     handleClose()
   }

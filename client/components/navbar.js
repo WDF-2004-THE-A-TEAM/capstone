@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import logo from '../../public/images/logo.png'
-//make styles bc we are working inside a functional component
+//material ui
 import {makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -31,7 +31,9 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    height: '9em'
+    margin: '1.5em 1.5em',
+    height: '5em',
+    width: 'auto'
   },
   headerContainer: {
     justifyContent: 'space-between',

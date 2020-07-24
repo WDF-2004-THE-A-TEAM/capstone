@@ -7,7 +7,6 @@ describe('Story Model', () => {
   beforeEach(() => {
     story = {
       title: 'A House is not a Home',
-      author: 'Ari Bernard',
       coverImage: 'public/LindaEng_Untitled_Artwork 8.png'
     }
     return db.sync({force: true})
@@ -15,7 +14,6 @@ describe('Story Model', () => {
   it('has fields title, author, coverImage', async () => {
     const newStory = await Story.create(story)
     expect(newStory.title).to.equal('A House is not a Home')
-    expect(newStory.author).to.equal('Ari Bernard')
     expect(newStory.coverImage).to.equal(
       'public/LindaEng_Untitled_Artwork 8.png'
     )
@@ -35,15 +33,4 @@ describe('Story Model', () => {
       }
     }
   }
-
-  it('title cannot be null', validationTestNull('title'))
-  it('author cannot be null', validationTestNull('author'))
-
-  it('has a default image if none specified', async () => {
-    delete story.coverImage
-    const defaultType = await Story.create(story)
-    expect(defaultType.coverImage).to.equal(
-      'public/LindaEng_Untitled_Artwork 8.png'
-    )
-  })
 })

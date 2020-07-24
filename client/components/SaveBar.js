@@ -9,12 +9,12 @@ import {connect} from 'react-redux'
 import SaveToNewStoryCard from './SaveToNewStoryCard'
 import AddPageToStory from './AddPageToStory'
 import SaveChange from './SaveChange'
+
 import Button from '@material-ui/core/Button'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import Fade from '@material-ui/core/Fade'
 import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
-
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({

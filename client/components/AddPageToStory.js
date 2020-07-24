@@ -1,13 +1,3 @@
-//form
-//needs canvas and function
-//get all stories from user
-//populate drop down with all stories
-//map through all stories for options
-//clicking the option will send the storyId
-//submit will submit the following: storyId, pageJSON
-
-//connect store
-//needs addPage thunk
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'

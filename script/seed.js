@@ -10,7 +10,7 @@ const fs = require('fs') //The fs module provides a lot of very useful functiona
 //path.join('..', '..', 'images', 'stickers')
 
 const getAllImagePaths = function(
-  dir = '../../images/stickers',
+  dir = '/images/stickers',
   dirTwo = 'public/images/stickers',
   stickers = []
 ) {
@@ -26,7 +26,7 @@ const getAllImagePaths = function(
 
 const seedUser = [
   {
-    name: 'Dog guy',
+    name: 'Puppy user',
     email: 'doggo@gmail.com',
     password: 'abc123',
     avatar: '',
