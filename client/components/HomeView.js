@@ -53,7 +53,7 @@ class HomeView extends React.Component {
       const findPageById = async () => {
         const {data} = await axios.get(`/api/pages/${pageId}`)
         const canvasJSON = data.canvasPage
-        console.log('canvas', canvasJSON)
+
         this.canvas.loadFromJSON(canvasJSON)
         this.canvas.backgroundColor = 'white'
       }
@@ -127,4 +127,3 @@ const mapDispatch = dispatch => {
 }
 
 export default withStyles(styles)(connect(mapState, mapDispatch)(HomeView))
-

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 const StickerBar = props => {
   const stickers = props.stickers
   const addToCanvas = props.addToCanvas
-  //public/images/stickers/arch.png
+  console.log('STICKER BAR PROPPPS===', props.stickers)
 
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -50,10 +50,10 @@ const StickerBar = props => {
   const body = (
     <div id="sticker" className={classes.root}>
       <GridList className={classes.gridList} cellHeight={210} col={2}>
-        {stickers.map(sticker => {
+        {stickers.map((sticker, id) => {
           return (
             <GridListTile
-              key={sticker.id}
+              key={id}
               onClick={() => {
                 addToCanvas(sticker)
               }}

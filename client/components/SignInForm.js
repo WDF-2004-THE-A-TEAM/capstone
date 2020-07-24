@@ -72,8 +72,8 @@ const SignIn = props => {
 
   //HOOKS
   const [state, setInfo] = React.useState({
-    email: '',
-    password: '',
+    email: 'doggo@gmail.com',
+    password: 'abc123',
     userNameAndPassword: null,
     fieldEmpty: false
   })
@@ -139,6 +139,10 @@ const SignIn = props => {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
+          </Typography>
+          <Typography variant="h5">
+            An account is available below. You can also create a new account and
+            use that instead!
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
