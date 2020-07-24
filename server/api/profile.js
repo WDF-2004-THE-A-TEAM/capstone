@@ -11,7 +11,7 @@ module.exports = router
 const s3 = new aws.S3({
   accessKeyId: process.env.API_KEY,
   secretAccessKey: process.env.API_SECRET,
-  Bucket: 'eurekanewbucket'
+  Bucket: 'eurekabackupstorage'
 })
 
 /**
@@ -20,7 +20,7 @@ const s3 = new aws.S3({
 const profileImgUpload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: 'eurekanewbucket',
+    bucket: 'eurekabackupstorage',
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function(req, file, cb) {

@@ -20,7 +20,7 @@ const getStickers = stickers => ({
 
 export const fetchStickers = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/stickers')
+    const {data} = await axios.get('/api/stickers/')
     dispatch(getStickers(data))
   } catch (error) {
     console.error(error)
