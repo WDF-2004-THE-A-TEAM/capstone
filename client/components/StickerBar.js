@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 const StickerBar = props => {
   const stickers = props.stickers
   const addToCanvas = props.addToCanvas
-  console.log('STICKER BAR PROPPPS===', props.stickers)
 
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)

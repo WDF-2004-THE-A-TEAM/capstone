@@ -28,7 +28,6 @@ class Gallery extends React.Component {
   }
 
   render() {
-    console.log('gallery', this.props)
     const {classes} = this.props
 
     return (

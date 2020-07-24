@@ -24,7 +24,6 @@ class Account extends React.Component {
     const user = this.props.user
     const {classes} = this.props
 
-    console.log(user)
     return (
       <Card className={classes.root}>
         <CardContent>

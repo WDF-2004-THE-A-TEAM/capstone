@@ -76,7 +76,6 @@ router.post('/:storyId/pages', async (req, res, next) => {
 
 //create story
 router.post('/:userId/stories', async (req, res, next) => {
-  console.log('json req.body ===', req.body)
   try {
     let storyBody = req.body
     storyBody.userId = req.params.userId
