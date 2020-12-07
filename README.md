@@ -1,6 +1,7 @@
 <img src="./readme_assets/Eureka_Banner.png" width="100%">
 
 <p align="center">Eureka is a creative drawing app for storytelling built with JavaScript, React, and Fabric.js.</p>
+<p>https://eureka-storytelling.herokuapp.com </p>
 
 ---
 
